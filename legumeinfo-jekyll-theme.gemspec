@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alan Cleary"]
   spec.email         = ["acleary@ncgr.org"]
 
-  spec.summary       = "The Jekyll theme for the Legume Information science portal."
+  spec.summary       = "The Jekyll theme for the Legume Information System science portal."
   spec.homepage      = "https://legumeinfo.org"
   spec.license       = "Apache-2.0"
 
