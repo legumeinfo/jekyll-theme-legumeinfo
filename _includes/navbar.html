@@ -20,7 +20,8 @@
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav uk-visible@m">
         {% for path in page_paths %}
-          {% if path contains "index.html" %}
+          {% if site.exclude_paths contains path %}
+          {% elsif path contains "index.html" %}
             {% assign item = site.pages | where: "path", path | first %}
           <li>{{ page.type }}<a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
           {% endif %}
