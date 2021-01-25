@@ -19,13 +19,9 @@
       </div>
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav uk-visible@m">
-        {% for path in page_paths %}
-          {% if site.exclude_paths contains path %}
-          {% elsif path contains "index.html" %}
-            {% assign item = site.pages | where: "path", path | first %}
-          <li>{{ page.type }}<a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-          {% endif %}
-        {% endfor %}
+
+        {% include navbar-items.html %}
+
         {% if site.twitter_username %}
           <li><a class="tm-no-underline" href="https://twitter.com/{{ site.twitter_username }}" target="_blank" title="Follow us on Twitter"><span uk-icon="twitter"></span></a></li>
         {% endif %}
