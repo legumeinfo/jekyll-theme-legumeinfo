@@ -58,7 +58,7 @@ The assets directory holds static assets that may be used in templates.
 
 **`css/`** The Legumeinfo Jekyll theme uses the [UIkit css framework](https://getuikit.com/).
 As such, all contents of the framework are available in the templates you define in your site.
-You may add additional styling by saving custom styles in Cascading Style Sheets (`.css`) files in the `assets/css/` directory and importing the files in the templates you want to use them in:
+You may add additional styling by saving custom styles in Cascading Style Sheet (`.css`) files in the `assets/css/` directory and importing the files in the templates you want to use them in:
 
     <link rel="stylesheet" href="{{ "assets/css/custom.css" | relative_url }}" type="text/css" />
 
@@ -95,7 +95,7 @@ To include custom JavaScript in your site, put your scripts in the `assets/js/` 
 ### `_data/`
 
 The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog model.
-The Legumeinfo Jekyll templates expects two files to be in this directory: `species.json` and `tools.json`.
+The Legumeinfo Jekyll theme expects two files to be in this directory: `species.json` and `tools.json`.
 
 **`species.json`** This file contains a list of species that the data portal provides omics data for.
 The list should adhere to the following schema:
@@ -121,7 +121,7 @@ The list should adhere to the following schema:
 Links that have the attribute `external: true` will open in a new window.
 
 Note that the species aren't automatically listed anywhere in the theme.
-We recommend overriding the navbar `_includes/navbar-items.html` to add a link to a species template that lists the species.
+We recommend overriding the navbar `_includes/navbar-items.html` file to add a link to a species template that lists the species.
 See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for examples of [overriding the `_includes/navbar-items.html` file](https://github.com/legumeinfo/jekyll-example/blob/main/_includes/navbar-items.html) and [iterating the species in a template](https://github.com/legumeinfo/jekyll-example/blob/main/species/index.html).
 
 **`tools.json`** This file contains a list of tools that are provided by the data portal and links to them.
@@ -164,7 +164,7 @@ All announcements should specify the `post` layout.
 Note, the most recent news items and announcements will be listed in cards on the right side of the homepage.
 These cards contain links to `news/index.html` and `announcements/index.html`, respectively.
 It is left to users of the theme to implement these templates.
-See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`announcements/index.html](https://github.com/legumeinfo/jekyll-example/blob/main/announcements/index.html) pages.
+See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`announcements/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/announcements/index.html) pages.
 
 ### `index.html`
 
@@ -177,7 +177,7 @@ For example:
     layout: home
     ---
 
-The `layout` entry should always specify the `home` layout for the homepage.
+The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the news and announcements cards on the right side of the page.
 
 ### `Gemfile`
 
@@ -190,16 +190,16 @@ The `_config.yml` should be auto-generated when you create your Jekyll site.
 This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
 The Legumeinfo Jekyll theme supports the following entries:
 
-  title: String (the title used for all pages and shown in the site navbar)
-  subtitle (optional): String (the subtitle shown in the site navbar)
-  logo (optional): String (the URL to the site's logo image)
-  email (optional): String (how users may contact the maintainers of the site)
-  description: String (the description used in the site meta)
-  baseurl: String (the subpath of your site, e.g. /blog)
-  url: String (the base hostname & protocol for your site, e.g. http://example.com)
-  twitter_username (optional): String (the site's Twitter handle for social media links)
-  github_username (optional): String (the site's GitHub handle for social media links)
-  newsletter (optional): String (the URL to where users can sign up for your site's newsletter)
+    title: String (the title used for all pages and shown in the site navbar)
+    subtitle (optional): String (the subtitle shown in the site navbar)
+    logo (optional): String (the URL to the site's logo image)
+    email (optional): String (how users may contact the maintainers of the site)
+    description: String (the description used in the site meta)
+    baseurl: String (the subpath of your site, e.g. /blog)
+    url: String (the base hostname & protocol for your site, e.g. http://example.com)
+    twitter_username (optional): String (the site's Twitter handle for social media links)
+    github_username (optional): String (the site's GitHub handle for social media links)
+    newsletter (optional): String (the URL to where users can sign up for your site's newsletter)
 
 As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
 
@@ -207,7 +207,7 @@ As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_co
 
 In general, a page can be added to a Jekyll site simply creating a new HTML file.
 The URL of the page will correspond to its directory structure and the name of the HTML file.
-However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used.
+However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used via the `layout` entry.
 The Legumeinfo Jekyll theme provides the following layouts:
 
     announcements
