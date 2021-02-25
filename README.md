@@ -108,7 +108,7 @@ The Legumeinfo Jekyll theme expects two files to be in this directory: `species.
 **`species.json`** This file contains a list of species that the data portal provides omics data for.
 The list should adhere to the following schema:
 
-```json
+```
 [
   {
     "genus": String,
@@ -137,7 +137,7 @@ See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-examp
 **`tools.json`** This file contains a list of tools that are provided by the data portal and links to them.
 The list should adhere to the following schema:
 
-```json
+```
 [
   {
     "category": String,
