@@ -142,6 +142,7 @@ The list should adhere to the following schema:
   {
     "category": String,
     "name": String
+    "description": String
     "url": String (url to the tool)
   },
   ...
