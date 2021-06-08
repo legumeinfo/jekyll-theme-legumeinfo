@@ -41,8 +41,9 @@ root/
 │   ├── img/
 │   └── js/
 ├── _data/
-│   ├── species.json
-│   └── tools.json
+│   ├── taxa_main.yml
+│   ├── taxa_special.yml
+│   └── tools.yml
 ├── news/
 │   └── _posts/
 │       └── very-important-news-14-09-2021.md
@@ -103,50 +104,46 @@ To include custom JavaScript in your site, put your scripts in the `assets/js/` 
 ### `_data/`
 
 The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog model.
-The Legumeinfo Jekyll theme expects two files to be in this directory: `species.json` and `tools.json`.
+The Legumeinfo Jekyll theme expects two files to be in this directory: `species.yml` and `tools.yml`.
 
-**`species.json`** This file contains a list of species that the data portal provides omics data for.
-The list should adhere to the following schema:
+**`taxa_main.yml` and `taxa_special.yml`** These files contains a list of taxa (genera) that the data portal provides 
+omics data for. The taxa_main file contains major crop and models; taxa_special contains everything else.
+The list should adhere to the following schema pattern:
 
 ```
-[
-  {
-    "genus": String,
-    "species": String,
-    "commonName": String,
-    "img" (optional): String (url to an image),
-    "links" (optional): [
-      {
-        "text": String,
-        "url": String,
-        "external": Boolean (default: false)
-      },
-      ...
-    ]
-  },
-  ...
-]
+---
+- genus: Arachis
+  description: "(peanut: domesticated and wild)"
+- genus: Cajanus
+  description: "(pigeonpea)"
+- genus: Cicer
+  description: "(chickpea)"
+- genus: Glycine
+  description: "(soybean)"
 ```
-
-Links that have the attribute `external: true` will open in a new window.
 
 Note that the species aren't automatically listed anywhere in the theme.
 We recommend overriding the navbar `_includes/navbar-items.html` file to add a link to a species template that lists the species.
 See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for examples of [overriding the `_includes/navbar-items.html` file](https://github.com/legumeinfo/jekyll-example/blob/main/_includes/navbar-items.html) and [iterating the species in a template](https://github.com/legumeinfo/jekyll-example/blob/main/species/index.html).
 
-**`tools.json`** This file contains a list of tools that are provided by the data portal and links to them.
+**`tools.yml`** This file contains a list of tools that are provided by the data portal and links to them.
 The list should adhere to the following schema:
 
 ```
-[
-  {
-    "category": String,
-    "name": String
-    "description": String
-    "url": String (url to the tool)
-  },
-  ...
-]
+---
+- category: Browse and Search
+  name: Gene Families
+  description: Description
+  url: "#"
+- category: Browse and Search
+  name: Genome Context Viewer
+  description: Browser for dynamically discovering and viewing genomic synteny across
+    selected species.
+  url: "#"
+- category: Search sequences and features against sequence databases
+  name: BLAST Sequence Search
+  description: Description
+  url: "#"
 ```
 
 By default these tools will be listed in a vertical menu on the left side of every page in the site.
