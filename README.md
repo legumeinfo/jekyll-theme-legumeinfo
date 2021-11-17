@@ -44,6 +44,10 @@ root/
 │   ├── taxa_main.yml
 │   ├── taxa_special.yml
 │   └── tools.yml
+├── _includes
+│   ├── global-scripts.html
+│   ├── global-stylesheets.html
+│   └── navbar-items.html
 ├── news/
 │   └── _posts/
 │       └── very-important-news-14-09-2021.md
@@ -148,6 +152,14 @@ The list should adhere to the following schema:
 
 By default these tools will be listed in a vertical menu on the left side of every page in the site.
 The tools within the list will be grouped by category.
+
+### `_include/`
+
+The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
+
+**`navbar-items.html`** contains the navigation bar items seen on every page.
+
+**`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
 
 ### `news/` and `announcements/`
 
