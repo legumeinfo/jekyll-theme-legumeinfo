@@ -7,7 +7,9 @@
 
 {% include navbar.html %}
 
-{% include tools-menu.html %}
+{% if page.tools_menu %}
+  {% include tools-menu.html %}
+{% endif %}
 
 <div class="tm-main uk-section uk-section-default">
   <div class="uk-container uk-container-small uk-position-relative">

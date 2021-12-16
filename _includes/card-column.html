@@ -1,7 +1,11 @@
 <div class="tm-sidebar-right uk-visible@l" style="width: 400px;">
 
-  {% include news-card.html %}
+  {% if page.news_card %}
+    {% include news-card.html %}
+  {% endif %}
 
-  {% include announcements-card.html %}
+  {% if page.announcements_card %}
+    {% include announcements-card.html %}
+  {% endif %}
 
 </div>
