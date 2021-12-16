@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+---
+layout: default
+---
 
-{% include head.html %}
-
-<body>
-
-{% include navbar.html %}
-
-{% include tools-menu.html %}
-
-<div class="tm-main uk-section uk-section-default">
-  <div class="uk-container uk-container-small uk-position-relative">
-
-    <div>
-      {{ content }}
-    </div>
-
-    {% include card-column.html %}
-
-  </div>
+<div>
+  {{ content }}
 </div>
 
-</body>
-</html>
+{% if page.news_card or page.announcements_card %}
+  {% include card-column.html page=page %}
+{% endif %}

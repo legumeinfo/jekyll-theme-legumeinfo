@@ -246,6 +246,27 @@ The Legumeinfo Jekyll theme provides the following layouts:
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 
+### Configuration via Front Matter
+
+The theme allows configuration of specific pages via [front matter variables](https://jekyllrb.com/docs/front-matter/).
+The following variables are currently supported:
+
+* `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
+* `news_card (optional): Boolean (shows the news card on the home page)`
+* `announcements_card (optional): Boolean (shows the announcements card on the home page)`
+
+Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
+For example, the following would show the vertical tools menu every page that uses the default template:
+
+```yml
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      tools_menu: true
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/legumeinfo/jekyll-theme-legumeinfo. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
