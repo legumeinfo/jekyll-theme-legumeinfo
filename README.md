@@ -47,7 +47,9 @@ root/
 ├── _includes
 │   ├── global-scripts.html
 │   ├── global-stylesheets.html
-│   └── navbar-items.html
+│   ├── navbar-menu.html
+│   ├── navbar-lower-menu.html
+│   └── off-screen-menu.html
 ├── news/
 │   └── _posts/
 │       └── very-important-news-14-09-2021.md
@@ -127,8 +129,8 @@ The list should adhere to the following schema pattern:
 ```
 
 Note that the species aren't automatically listed anywhere in the theme.
-We recommend overriding the navbar `_includes/navbar-items.html` file to add a link to a species template that lists the species.
-See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for examples of [overriding the `_includes/navbar-items.html` file](https://github.com/legumeinfo/jekyll-example/blob/main/_includes/navbar-items.html) and [iterating the species in a template](https://github.com/legumeinfo/jekyll-example/blob/main/species/index.html).
+We recommend overriding the navbar files (`_includes/navbar-menu.html`, `_includes/navbar-lower-menu.html`, and/or `_includes/off-screen-menu.html`) to add a link to a species template that lists the species.
+See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for examples of [overriding these files](https://github.com/legumeinfo/jekyll-example/blob/main/_includes/) and [iterating the species in a template](https://github.com/legumeinfo/jekyll-example/blob/main/species/index.html).
 
 **`tools.yml`** This file contains a list of tools that are provided by the data portal and links to them.
 The list should adhere to the following schema:
@@ -157,7 +159,11 @@ The tools within the list will be grouped by category.
 
 The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
 
-**`navbar-items.html`** contains the navigation bar items seen on every page.
+**`navbar-menu.html`** contains the navigation bar menu seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens. If using an off-screen menu (described below), it is recommend that the toggle component is placed here (see the [`_includes/navbar-menu.html`](https://github.com/legumeinfo/jekyll-theme-legumeinfo/blob/main/_includes/navbar-menu.html) for an example).
+
+**`navbar-lower-menu.html`** contains the navigation bar menu that appears below the main navigation bar seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
+
+**`off-screen-menu.html`** contains a vertical menu that appears in an off-screen side-bar that's including on every page. The off-screen side-bar has unique div ID `#off-screen-menu` and can be toggled using UIkit's [Toggle component](https://getuikit.com/docs/toggle), e.g. `<button uk-toggle="target: #off-screen-menu" type="button"></button>`
 
 **`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
 
