@@ -2,11 +2,21 @@ exclude_paths: ["news/index.html", "announcements/index.html"]
 title: LIS Jekyll Theme
 subtitle: A theme for building biological information systems with Jekyll
 
+sass:
+    sass_dir: _sass
+    style: compressed
+
+# UIkit theme customization
+style:
+    link_color: '#0071B3'
+    link_hover_color: '#018fe2'
+    primary_background: '#87a96b'
+    invert_navbar_text: true
+
 plugins:
   - jekyll-datapage-generator
 
-#### jekyll-datapage-generator config
-
+# jekyll-datapage-generator config
 page_gen:
   - data: taxon_list
     template: taxon
