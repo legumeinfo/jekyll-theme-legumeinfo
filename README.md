@@ -4,6 +4,10 @@ Welcome to the Legumeinfo Jekyll theme!
 The theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) -- an online data portal that houses various omics data of legume species relevant to industrial agriculture.
 The theme is hosted separately from the Legumeinfo Jekyll site so that it may used by other biological data portals.
 
+To clone this repo:
+
+    git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
+
 
 ## Installation
 
@@ -232,6 +236,11 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `twitter\_username (optional): String (the site's Twitter handle for social media links)`
 * `github\_username (optional): String (the site's GitHub handle for social media links)`
 * `newsletter (optional): String (the URL to where users can sign up for your site's newsletter)`
+* `style (optional):`  
+  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_color: String (what color HTML links should be)</code>\
+  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_hover_color: String (what color HTML links should be when hovered)</code>\
+  <code>&nbsp;&nbsp;&nbsp;&nbsp;primary_background: String (what the background color of the main navbar should be)</code>\
+  <code>&nbsp;&nbsp;&nbsp;&nbsp;invert_navbar_text: Boolean (whether or not to invert the navbar text color)</code>
 
 As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
 
