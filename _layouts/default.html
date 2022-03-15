@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
-{% include head.html %}
-
-<body>
-
-{% include navbar.html %}
+---
+layout: base
+---
 
 {% if page.tools_menu %}
   {% include tools-menu.html %}
 {% endif %}
+<!-- NOTE: putting content between the tools and tm-main blocks will break CSS selectors -->
+<div class="tm-main uk-section uk-section-default uk-flex">
 
-<div class="tm-main uk-section uk-section-default">
-  <div class="uk-container uk-container-small uk-position-relative">
+  <div class="uk-container">
     {{ content }}
   </div>
-</div>
 
-</body>
-</html>
+  {% if page.news_card or page.announcements_card %}
+    {% include card-column.html page=page %}
+  {% endif %}
+
+</div>

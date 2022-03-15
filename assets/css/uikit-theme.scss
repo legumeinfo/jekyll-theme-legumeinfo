@@ -176,10 +176,8 @@ $offcanvas-bar-color-mode: dark;
 $sidebar-left-width: 240px;
 $sidebar-left-width-xl: 300px;
 
-$sidebar-right-width: 200px;
-$sidebar-right-left: 0px;
-$sidebar-right-left-xl: 60px;
-
+$sidebar-right-width: 260px;
+$sidebar-right-width-xl: 320px;
 
 
 /* HTML
@@ -217,10 +215,8 @@ html {
 // Sidebar Right
 
 .tm-sidebar-right {
-    position: absolute;
-    top: 0;
-    left: calc(100% + #{$sidebar-right-left});
-    width: $sidebar-right-width;
+    width: $sidebar-right-width !important;
+    padding-right: 40px;
 }
 
 /* Tablet landscape and bigger */
@@ -230,8 +226,7 @@ html {
 
 /* Desktop and bigger */
 @media (min-width: $breakpoint-large) {
-    .tm-sidebar-right { left: calc(100% + #{$sidebar-right-left}); }
-    .tm-sidebar-left + .tm-main { padding-left: $sidebar-left-width - ($sidebar-right-width + $sidebar-right-left); }
+    .tm-sidebar-left + .tm-main { padding-left: $sidebar-left-width; }
 }
 
 /* Large screen and bigger */
@@ -240,8 +235,11 @@ html {
         width: $sidebar-left-width-xl !important;
         padding: 45px 45px 60px 45px;
     }
-    .tm-sidebar-right { left: calc(100% + #{$sidebar-right-left-xl}); }
-    .tm-sidebar-left + .tm-main { padding-left: $sidebar-left-width-xl - ($sidebar-right-width + $sidebar-right-left-xl); }
+    .tm-sidebar-left + .tm-main { padding-left: $sidebar-left-width-xl; }
+    .tm-sidebar-right {
+        width: $sidebar-right-width-xl !important;
+        padding-right: 45px;
+    }
 }
 
 
