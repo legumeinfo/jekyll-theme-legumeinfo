@@ -15,8 +15,12 @@ $global-color: #666;
 $global-emphasis-color: #333;
 $global-muted-color: #999;
 
+{% if site.style.link_color %}
 $global-link-color: {{ site.style.link_color }};
+{% endif %}
+{% if site.style.link_hover_color %}
 $global-link-hover-color: {{ site.style.link_hover_color }};
+{% endif %}
 
 $global-inverse-color: #fff;
 $inverse-global-emphasis-color: $global-inverse-color;
@@ -26,7 +30,9 @@ $inverse-global-emphasis-color: $global-inverse-color;
 $global-background: #fff;
 
 $global-muted-background: #f8f8f8;
+{% if site.style.primary_background %}
 $global-primary-background: {{ site.style.primary_background }};
+{% endif %}
 $global-secondary-background: #222;
 
 $global-success-background: #32d296;
