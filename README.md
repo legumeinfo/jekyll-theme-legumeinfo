@@ -49,6 +49,7 @@ root/
 │   ├── taxa_special.yml
 │   └── tools.yml
 ├── _includes
+│   ├── alerts.html
 │   ├── global-scripts.html
 │   ├── global-stylesheets.html
 │   ├── navbar-menu.html
@@ -162,6 +163,8 @@ The tools within the list will be grouped by category.
 ### `_include/`
 
 The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
+
+**`alerts.html`** contains alerts that will be displayed in the navbar at the very top of the page. This file may be empty. If the file is not empty, a bell icon will be added to the far right side of the navbar which can be used to toggle the element containing the alerts.
 
 **`navbar-menu.html`** contains the navigation bar menu seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens. If using an off-screen menu (described below), it is recommend that the toggle component is placed here (see the [`_includes/navbar-menu.html`](https://github.com/legumeinfo/jekyll-theme-legumeinfo/blob/main/_includes/navbar-menu.html) for an example).
 
