@@ -1,38 +1,12 @@
-<div id="tools-menu" class="tm-sidebar-left uk-visible@m">
-  <h3>Tools</h3>
-  {% if site.data.tools %}
-  {% assign groups = site.data.tools | group_by: "category" | sort: "name" %}
-  {% for group in groups %}
-  <ul class="uk-nav uk-nav-default tm-nav uk-margin-top">
-    <li class="uk-nav-header">{{ group.name }}</li>
-    {% for item in group.items %}
-    <li><a href="{{ item.url }}">{{ item.name }}</a></li>
-    {% endfor %}
-  </ul>
+<h3>Tools</h3>
+{% if site.data.tools %}
+{% assign groups = site.data.tools | group_by: "category" | sort: "name" %}
+{% for group in groups %}
+<ul class="uk-nav uk-nav-default tm-nav uk-margin-top">
+  <li class="uk-nav-header">{{ group.name }}</li>
+  {% for item in group.items %}
+  <li><a href="{{ item.url }}">{{ item.name }}</a></li>
   {% endfor %}
-  {% endif %}
-
-  <!-- dynamically set the top style property of the tools menu when the height of the navbar changes -->
-  <!-- NOTE: the script tag is nested so it doesn't break a CSS selector -->
-  <script type="text/javascript">
-
-    const navbar = document.getElementById("navbar");
-    const tools = document.getElementById("tools-menu");
-
-    const toolsTopObserver = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        // use the newer contentBoxSize property if the browser supports it
-        if (entry.contentBoxSize) {
-          tools.style.top = entry.contentBoxSize[0].blockSize + 'px';
-        // fallback to the older contentRect property
-        } else {
-          tools.style.top = entry.contentRect.height + 'px';
-        }
-      }
-    });
-
-    toolsTopObserver.observe(navbar);
-
-  </script>
-
-</div>
+</ul>
+{% endfor %}
+{% endif %}
