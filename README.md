@@ -272,6 +272,7 @@ The following variables are currently supported:
 * `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
 * `news_card (optional): Boolean (shows the news card on the home page)`
 * `announcements_card (optional): Boolean (shows the announcements card on the home page)`
+* `twitter_card (optional): Boolean (shows the Twitter feed card on the home page)`
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
 For example, the following would show the vertical tools menu every page that uses the default template:
