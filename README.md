@@ -236,6 +236,7 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `description: String (the description used in the site meta)`
 * `baseurl: String (the subpath of your site, e.g. /blog)`
 * `url: String (the base hostname & protocol for your site, e.g. http://example.com)`
+* `card\_item\_limit (optional): Integer (maximum number of items to display in each card)`
 * `twitter\_username (optional): String (the site's Twitter handle for social media links)`
 * `github\_username (optional): String (the site's GitHub handle for social media links)`
 * `newsletter (optional): String (the URL to where users can sign up for your site's newsletter)`

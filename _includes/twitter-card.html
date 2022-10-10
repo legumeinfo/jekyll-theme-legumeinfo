@@ -1,6 +1,6 @@
 <div class="uk-card uk-card-default uk-margin-top uk-padding-remove" style="border-radius: 12px">
   {% if site.twitter_username %}
-    <a class="twitter-timeline uk-padding-small" href="https://twitter.com/{{ site.twitter_username }}" data-tweet-limit=3>Tweets by {{ site.twitter_username }}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a class="twitter-timeline uk-padding-small" href="https://twitter.com/{{ site.twitter_username }}" data-tweet-limit={{ site.card_item_limit }}>Tweets by {{ site.twitter_username }}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   {% else %}
     <span class="uk-padding-small uk-text-danger">No Twitter username provided.</span>
   {% endif %}

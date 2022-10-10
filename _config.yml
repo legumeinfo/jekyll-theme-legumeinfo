@@ -1,6 +1,7 @@
 exclude_paths: ["news/index.html", "announcements/index.html"]
 title: LIS Jekyll Theme
 subtitle: A theme for building biological information systems with Jekyll
+card_item_limit: 3
 
 sass:
     sass_dir: _sass
