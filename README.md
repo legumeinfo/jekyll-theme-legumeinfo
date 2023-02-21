@@ -57,10 +57,10 @@ root/
 │   └── off-screen-menu.html
 ├── news/
 │   └── _posts/
-│       └── very-important-news-14-09-2021.md
-├── announcements/
+│       └── 14-09-2021-very-important-news.md
+├── events/
 │   └── _posts/
-│       └── big-annoucnement-14-09-2021.md
+│       └── 14-09-2021-big-event.md
 ├── index.html
 ├── Gemfile
 └── _config.yml
@@ -174,13 +174,14 @@ The `_include/` directory is used by Jekyll to place globally-included content o
 
 **`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
 
-### `news/` and `announcements/`
+### `news/` and `events/`
 
 Jekyll is "blog aware," meaning it has built in support for blog-esque content.
-The Legumeinfo Jekyll theme uses this support for news and announcements.
-To create a news item or an announcement, add an HTML file to the `news/_posts/` or `announcements/_posts/` directory, respectively.
-The filename should contain an [ISO formatted date](https://en.wikipedia.org/wiki/ISO_8601#Dates) and a title, such as `news/_posts/2021-2-24-sensational-news.html`.
-Additionally, the files must contain a YML preamble with `layout`, `title`, `author`, `date`, and `summary` entries.
+The Legumeinfo Jekyll theme uses this support for news and events.
+To create a news item or an event, add an HTML file to the `news/_posts/` or `events/_posts/` directory, respectively.
+The filename should contain an [ISO formatted date](https://en.wikipedia.org/wiki/ISO_8601#Dates) and a title, such as `news/_posts/2021-02-24-sensational-news.html`.
+The files must contain a YML preamble with `layout`, `title`, `author`, and `summary` entries.
+Additionally, a news preamble should contain an `author` entry, and can contain an `end_date` entry if it's a multi-day event.
 For example, `news/_posts/2021-2-24-sensational-news.html` may have the preamble:
 
 ```yaml
@@ -188,20 +189,32 @@ For example, `news/_posts/2021-2-24-sensational-news.html` may have the preamble
 layout:     news-item
 title:      Sensational News!
 author:     Alan Cleary
-date:       2021-02-24
 summary:    This news is sensational! Everyone will talk about it... but it changes nothing.
 ---
 ```
+And `events/_posts/2021-2-24-sensational-event.html` may have the preamble:
 
-Note that the `layout` entry has the value `news-item`.
+```yaml
+---
+layout:     event
+title:      Sensational Event!
+end_date:   2022-2-24
+summary:    This event is sensational! Probably because it's so long...
+---
+```
+
+Note that the news post's `layout` entry has the value `news-item`.
 This defines a layout provided by the Legumeinfo Jekyll theme for news items, thus all news items should specify the `news-item` layout.
-Similarly, there is a `post` layout for announcements.
-All announcements should specify the `post` layout.
+Similarly, the event post's `layout` entry has the value `event`..
+All events should specify the `event` layout.
 
-Note, the most recent news items and announcements will be listed in cards on the right side of the homepage.
-These cards contain links to `news/index.html` and `announcements/index.html`, respectively.
+Note, the most recent news items and events will be listed in cards on the right side of the homepage.
+These cards contain links to `news/index.html` and `events/index.html`, respectively.
 It is left to users of the theme to implement these templates.
-See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`announcements/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/announcements/index.html) pages.
+See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`events/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/events/index.html) pages.
+
+Also, note that [by default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
+This functionality is disabled in the theme because events of interest are those that haven't happened yet, i.e. future events.
 
 ### `index.html`
 
@@ -216,7 +229,7 @@ layout: home
 ---
 ```
 
-The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the news and announcements cards on the right side of the page.
+The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the news and events cards on the right side of the page.
 
 ### `Gemfile`
 
@@ -255,8 +268,8 @@ The URL of the page will correspond to its directory structure and the name of t
 However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used via the `layout` entry.
 The Legumeinfo Jekyll theme provides the following layouts:
 
-* `announcements`
 * `default`
+* `events`
 * `home`
 * `news-item`
 * `news`
@@ -272,7 +285,7 @@ The following variables are currently supported:
 
 * `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
 * `news_card (optional): Boolean (shows the news card on the home page)`
-* `announcements_card (optional): Boolean (shows the announcements card on the home page)`
+* `events_card (optional): Boolean (shows the events card on the home page)`
 * `twitter_card (optional): Boolean (shows the Twitter feed card on the home page)`
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.

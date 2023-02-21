@@ -1,8 +1,8 @@
-exclude_paths: ["news/index.html", "announcements/index.html"]
+exclude_paths: ["news/index.html", "events/index.html"]
 title: LIS Jekyll Theme
 subtitle: A theme for building biological information systems with Jekyll
-card_item_limit: 3
 
+# configure styling
 sass:
     sass_dir: _sass
     style: compressed
@@ -14,10 +14,11 @@ style:
     primary_background: '#87a96b'
     invert_navbar_text: true
 
+# install Jekyll plugins required by the theme
 plugins:
   - jekyll-datapage-generator
 
-# jekyll-datapage-generator config
+# configure the jekyll-datapage-generator plugin
 page_gen:
   - data: taxon_list
     template: taxon
@@ -25,3 +26,9 @@ page_gen:
     name: genus
     index_files: true
     debug: true
+
+# shows posts (i.e. news and events) with a date after the date the site was built on
+future: true
+
+# the default number of items shown in card widgets
+card_item_limit: 3
