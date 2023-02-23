@@ -21,6 +21,8 @@ And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
 theme: jekyll-theme-legumeinfo
+# add if you going to use the theme's events features
+future: true
 ```
 
 And then execute:
@@ -213,8 +215,13 @@ These cards contain links to `news/index.html` and `events/index.html`, respecti
 It is left to users of the theme to implement these templates.
 See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`events/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/events/index.html) pages.
 
-Also, note that [by default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
-This functionality is disabled in the theme because events of interest are those that haven't happened yet, i.e. future events.
+**Also, note that [by default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
+The theme requires this functionality because events (i.e. posts) of interest are those that haven't happened yet, i.e. future events.
+The theme cannot enable this for a site so the site must enable it by adding the following to its** `_config.yml` **file:**
+```yaml
+# _config.yml
+future: true
+```
 
 ### `index.html`
 
@@ -260,6 +267,7 @@ The Legumeinfo Jekyll theme supports the following entries:
   <code>&nbsp;&nbsp;&nbsp;&nbsp;invert_navbar_text: Boolean (whether or not to invert the navbar text color)</code>
 
 As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
+And you'll need to add `future: true` if you want to use the themes events features.
 
 ### Layouts
 
