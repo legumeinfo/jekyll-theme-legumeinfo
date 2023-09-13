@@ -13,6 +13,7 @@ style:
     link_hover_color: '#018fe2'
     primary_background: '#87a96b'
     invert_navbar_text: true
+    font_size: 15px
 
 # install Jekyll plugins required by the theme
 plugins:
