@@ -47,7 +47,9 @@ $global-border: #e5e5e5;
 // UIkit
 // ========================================================================
 
-$global-font-family: ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+{% if site.style.font_family %}
+$global-font-family: {{ site.style.font_family }};
+{% endif %}
 {% if site.style.font_size %}
 $global-font-size: {{ site.style.font_size }};
 {% endif %}

@@ -269,6 +269,7 @@ The Legumeinfo Jekyll theme supports the following entries:
   <code>&nbsp;&nbsp;&nbsp;&nbsp;primary_background: String (what the background color of the main navbar should be)</code>\
   <code>&nbsp;&nbsp;&nbsp;&nbsp;invert_navbar_text: Boolean (whether or not to invert the navbar text color)</code>\
   <code>&nbsp;&nbsp;&nbsp;&nbsp;font_size: String (sets the default font size for the entire site)</code>
+  <code>&nbsp;&nbsp;&nbsp;&nbsp;font_family: String|Array (sets the default font family for the entire site)</code>
 
 As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
 And you'll need to add `future: true` if you want to use the themes events features.
