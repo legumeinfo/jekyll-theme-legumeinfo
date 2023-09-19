@@ -249,27 +249,27 @@ The `_config.yml` should be auto-generated when you create your Jekyll site.
 This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
 The Legumeinfo Jekyll theme supports the following entries:
 
-* `title: String (the title used for all pages and shown in the site navbar)`
-* `subtitle (optional): String (the subtitle shown in the site navbar)`
-* `logo (optional): String (the URL to the site's logo image)`
-* `email (optional): String (how users may contact the maintainers of the site)`
-* `description: String (the description used in the site meta)`
-* `baseurl: String (the subpath of your site, e.g. /blog)`
-* `url: String (the base hostname & protocol for your site, e.g. http://example.com)`
-* `card\_item\_limit (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)`
-* `news\_card\_item\_limit (optional): Integer (maximum number of items to display in the News card)`
-* `events\_card\_item\_limit (optional): Integer (maximum number of items to display in the Events card)`
-* `twitter\_card\_item\_limit (optional): Integer (maximum number of items to display in the Twitter card)`
-* `twitter\_username (optional): String (the site's Twitter handle for social media links)`
-* `github\_username (optional): String (the site's GitHub handle for social media links)`
-* `newsletter (optional): String (the URL to where users can sign up for your site's newsletter)`
-* `style (optional):`  
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_color: String (what color HTML links should be)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_hover_color: String (what color HTML links should be when hovered)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;primary_background: String (what the background color of the main navbar should be)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;invert_navbar_text: Boolean (whether or not to invert the navbar text color)</code>
+* `title`: String (the title used for all pages and shown in the site navbar)
+* `subtitle` (optional): String (the subtitle shown in the site navbar)
+* `logo` (optional): String (the URL to the site's logo image)
+* `email` (optional): String (how users may contact the maintainers of the site)
+* `description`: String (the description used in the site meta)
+* `baseurl`: String (the subpath of your site, e.g. /blog)
+* `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
+* `card_item_limit` (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)
+* `news_card_item_limit` (optional): Integer (maximum number of items to display in the News card)
+* `events_card_item_limit` (optional): Integer (maximum number of items to display in the Events card)
+* `twitter_card_item_limit` (optional): Integer (maximum number of items to display in the Twitter card)
+* `twitter_username` (optional): String (the site's Twitter handle for social media links)
+* `github_username` (optional): String (the site's GitHub handle for social media links)
+* `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
+* `style` (optional):
+    * `link_color`: String (what color HTML links should be)
+    * `link_hover_color`: String (what color HTML links should be when hovered)
+    * `primary_background`: String (what the background color of the main navbar should be)
+    * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
 
-As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
+As described above, you'll need to add the Legumeinfo Jekyll theme in your `_config.yml`.
 And you'll need to add `future: true` if you want to use the themes events features.
 
 ### Layouts
