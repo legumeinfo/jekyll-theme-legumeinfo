@@ -256,6 +256,7 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `description: String (the description used in the site meta)`
 * `baseurl: String (the subpath of your site, e.g. /blog)`
 * `url: String (the base hostname & protocol for your site, e.g. http://example.com)`
+* `google_analytics_id (optional): your Google Analytics ID`
 * `card\_item\_limit (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)`
 * `news\_card\_item\_limit (optional): Integer (maximum number of items to display in the News card)`
 * `events\_card\_item\_limit (optional): Integer (maximum number of items to display in the Events card)`
