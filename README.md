@@ -8,13 +8,14 @@ To clone this repo:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
+The standard place to place this repo is under `_themes` in your Jekyll site.
 
 ## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "jekyll-theme-legumeinfo"
+gem "jekyll-theme-legumeinfo", path: "./_themes/jekyll-theme-legumeinfo"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
