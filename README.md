@@ -258,6 +258,8 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
 * `google_analytics_id` (optional): String (unique Google Analytics ID for the site)
 * `card_item_limit` (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)
+* `announcements_card_item_limit` (optional): Integer (maximum number of items to display in the Announcements card)
+* `blog_card_item_limit` (optional): Integer (maximum number of items to display in the Blog card)
 * `news_card_item_limit` (optional): Integer (maximum number of items to display in the News card)
 * `events_card_item_limit` (optional): Integer (maximum number of items to display in the Events card)
 * `twitter_card_item_limit` (optional): Integer (maximum number of items to display in the Twitter card)
@@ -296,6 +298,8 @@ The theme allows configuration of specific pages via [front matter variables](ht
 The following variables are currently supported:
 
 * `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
+* `announcements_card (optional): Boolean (shows the announcements card on the home page)`
+* `blog_card (optional): Boolean (shows the blog card on the home page)`
 * `news_card (optional): Boolean (shows the news card on the home page)`
 * `events_card (optional): Boolean (shows the events card on the home page)`
 * `twitter_card (optional): Boolean (shows the Twitter feed card on the home page)`
