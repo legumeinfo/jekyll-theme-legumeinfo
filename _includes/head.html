@@ -27,6 +27,11 @@
 
   {% include global-scripts.html %}
 
+  {% if page.web_components and site.web_components_version %}
+  <!-- LIS Web Components -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@legumeinfo/web-components@{{ site.web_components_version }}/dist/web-components.min.js"></script>
+  {% endif %}
+
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="{{ "/assets/icons/apple-touch-icon-57x57.png" | relative_url }}">
   <link rel="apple-touch-icon" sizes="114x114" href="{{ "/assets/icons/apple-touch-icon-114x114.png" | relative_url }}">
