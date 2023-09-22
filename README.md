@@ -288,8 +288,11 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `home`
 * `news-item`
 * `news`
+* `blog-item`
+* `blog`
 * `page`
 * `post`
+* `reading-width`
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 
