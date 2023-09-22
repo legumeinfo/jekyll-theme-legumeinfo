@@ -8,13 +8,14 @@ To clone this repo:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
+The standard place to place this repo is under `_themes` in your Jekyll site.
 
 ## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "jekyll-theme-legumeinfo"
+gem "jekyll-theme-legumeinfo", path: "./_themes/jekyll-theme-legumeinfo"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
@@ -257,11 +258,11 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `baseurl`: String (the subpath of your site, e.g. /blog)
 * `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
 * `google_analytics_id` (optional): String (unique Google Analytics ID for the site)
-* `card_item_limit` (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)
-* `blog_card_item_limit` (optional): Integer (maximum number of items to display in the Blog card)
-* `news_card_item_limit` (optional): Integer (maximum number of items to display in the News card)
-* `events_card_item_limit` (optional): Integer (maximum number of items to display in the Events card)
-* `twitter_card_item_limit` (optional): Integer (maximum number of items to display in the Twitter card)
+* `card_item_limit` (default=`3`): Integer (maximum number of items to display in each card for which no individual limit is specified)
+* `blog_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Blog card)
+* `news_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the News card)
+* `events_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Events card)
+* `twitter_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Twitter card)
 * `twitter_username` (optional): String (the site's Twitter handle for social media links)
 * `github_username` (optional): String (the site's GitHub handle for social media links)
 * `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
@@ -270,6 +271,7 @@ The Legumeinfo Jekyll theme supports the following entries:
     * `link_hover_color`: String (what color HTML links should be when hovered)
     * `primary_background`: String (what the background color of the main navbar should be)
     * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
+* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [LIS Web Components](#lis-web-components) section for details)
 
 As described above, you'll need to add the Legumeinfo Jekyll theme in your `_config.yml`.
 And you'll need to add `future: true` if you want to use the themes events features.
@@ -298,9 +300,10 @@ The following variables are currently supported:
 
 * `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
 * `blog_card (optional): Boolean (shows the blog card on the home page)`
-* `news_card (optional): Boolean (shows the news card on the home page)`
-* `events_card (optional): Boolean (shows the events card on the home page)`
-* `twitter_card (optional): Boolean (shows the Twitter feed card on the home page)`
+* `news_card` (optional): Boolean (shows the news card on the home page)
+* `events_card` (optional): Boolean (shows the events card on the home page)
+* `twitter_card` (optional): Boolean (shows the Twitter feed card on the home page)
+* `web_components` (optional): Boolean (includes the LIS Web Components JavaScript in the page)
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
 For example, the following would show the vertical tools menu every page that uses the default template:
@@ -313,6 +316,22 @@ defaults:
     values:
       tools_menu: true
 ```
+
+### LIS Web Components
+
+The theme uses the [LIS Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
+Since not every page needs Web Components, you must "opt-in" to including the LIS Web Components JavaScript on pages you want to use components in.
+This is done using the `web_components` [front matter variable](#configuration-via-front-matter).
+For example:
+```liquid
+---
+web_components: true
+---
+
+<lis-gene-search-element></lis-gene-search-element>
+```
+The theme specifies which version of the LIS Web Components JavaScript library to use.
+However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
 
 ## Contributing
 
