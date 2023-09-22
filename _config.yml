@@ -18,6 +18,9 @@ style:
 plugins:
   - jekyll-datapage-generator
 
+# LIS Web Components
+web_components_version: 1.0.0
+
 # configure the jekyll-datapage-generator plugin
 page_gen:
   - data: taxon_list
