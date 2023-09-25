@@ -301,8 +301,8 @@ It is recommend that each page uses the `default` layout unless the page corresp
 The theme allows configuration of specific pages via [front matter variables](https://jekyllrb.com/docs/front-matter/).
 The following variables are currently supported:
 
-* `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
-* `blog_card (optional): Boolean (shows the blog card on the home page)`
+* `tools_menu` (optional): Boolean (shows the vertical tools menu on any page using the default template)
+* `blog_card` (optional): Boolean (shows the blog card on the home page)
 * `news_card` (optional): Boolean (shows the news card on the home page)
 * `events_card` (optional): Boolean (shows the events card on the home page)
 * `twitter_card` (optional): Boolean (shows the Twitter feed card on the home page)
