@@ -54,11 +54,21 @@ $global-font-family: {{ site.style.font_family }};
 $global-font-size: {{ site.style.font_size }};
 {% endif %}
 
-$global-2xlarge-font-size: 38px;
-$global-xlarge-font-size: 30px;
-$global-large-font-size: 24px;
-$global-medium-font-size: 20px;
-$global-small-font-size: 14px;
+{% if site.style.xxlarge_font_size %}
+$global-2xlarge-font-size: {{ site.style.xxlarge_font_size }};
+{% endif %}
+{% if site.style.xlarge_font_size %}
+$global-xlarge-font-size: {{ site.style.xlarge_font_size }};
+{% endif %}
+{% if site.style.large_font_size %}
+$global-large-font-size: {{ site.style.large_font_size }};
+{% endif %}
+{% if site.style.medium_font_size %}
+$global-medium-font-size: {{ site.style.medium_font_size }};
+{% endif %}
+{% if site.style.small_font_size %}
+$global-small-font-size: {{ site.style.small_font_size }};
+{% endif %}
 
 $global-emphasis-color: #222;
 
