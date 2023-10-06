@@ -14,6 +14,11 @@ style:
     primary_background: '#87a96b'
     invert_navbar_text: true
     font_size: 15px
+    xxlarge_font_size: 38px
+    xlarge_font_size: 30px
+    large_font_size: 24px
+    medium_font_size: 20px
+    small_font_size: 14px
     font_family: ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 
 # install Jekyll plugins required by the theme
