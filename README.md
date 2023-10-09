@@ -293,6 +293,7 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `page`
 * `post`
 * `reading-width`
+* `full-width`
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 
