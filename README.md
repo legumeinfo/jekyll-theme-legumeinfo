@@ -8,13 +8,14 @@ To clone this repo:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
+The standard place to place this repo is under `_themes` in your Jekyll site.
 
 ## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "jekyll-theme-legumeinfo"
+gem "jekyll-theme-legumeinfo", path: "./_themes/jekyll-theme-legumeinfo"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
@@ -249,34 +250,37 @@ The `_config.yml` should be auto-generated when you create your Jekyll site.
 This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
 The Legumeinfo Jekyll theme supports the following entries:
 
-* `title: String (the title used for all pages and shown in the site navbar)`
-* `subtitle (optional): String (the subtitle shown in the site navbar)`
-* `logo (optional): String (the URL to the site's logo image)`
-* `email (optional): String (how users may contact the maintainers of the site)`
-* `description: String (the description used in the site meta)`
-* `baseurl: String (the subpath of your site, e.g. /blog)`
-* `url: String (the base hostname & protocol for your site, e.g. http://example.com)`
-* `card\_item\_limit (optional): Integer (maximum number of items to display in each card for which no individual limit is specified)`
-* `news\_card\_item\_limit (optional): Integer (maximum number of items to display in the News card)`
-* `events\_card\_item\_limit (optional): Integer (maximum number of items to display in the Events card)`
-* `twitter\_card\_item\_limit (optional): Integer (maximum number of items to display in the Twitter card)`
-* `twitter\_username (optional): String (the site's Twitter handle for social media links)`
-* `github\_username (optional): String (the site's GitHub handle for social media links)`
-* `newsletter (optional): String (the URL to where users can sign up for your site's newsletter)`
-* `style (optional):`  
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_color: String (what color HTML links should be)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;link_hover_color: String (what color HTML links should be when hovered)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;primary_background: String (what the background color of the main navbar should be)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;invert_navbar_text: Boolean (whether or not to invert the navbar text color)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;font_family: String|Array (sets the default font family for the entire site)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;font_size: String (sets the default font size for the entire site)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;xxlarge_font_size: String (sets the default &lsquo;XX-large&rsquo; font size for the entire site, normally 2.625 &times; font_size)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;xlarge_font_size: String (sets the default &lsquo;X-large&rsquo; font size for the entire site, normally 2.0 &times; font_size)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;large_font_size: String (sets the default &lsquo;large&rsquo; font size for the entire site, normally 1.5 &times; font_size)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;medium_font_size: String (sets the default &lsquo;medium&rsquo; font size for the entire site, normally 1.25 &times; font_size)</code>\
-  <code>&nbsp;&nbsp;&nbsp;&nbsp;small_font_size: String (sets the default &lsquo;small&rsquo; font size for the entire site, normally 0.875 &times; font_size)</code>
+* `title`: String (the title used for all pages and shown in the site navbar)
+* `subtitle` (optional): String (the subtitle shown in the site navbar)
+* `logo` (optional): String (the URL to the site's logo image)
+* `email` (optional): String (how users may contact the maintainers of the site)
+* `description`: String (the description used in the site meta)
+* `baseurl`: String (the subpath of your site, e.g. /blog)
+* `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
+* `google_analytics_id` (optional): String (unique Google Analytics ID for the site)
+* `card_item_limit` (default=`3`): Integer (maximum number of items to display in each card for which no individual limit is specified)
+* `blog_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Blog card)
+* `news_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the News card)
+* `events_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Events card)
+* `twitter_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Twitter card)
+* `twitter_username` (optional): String (the site's Twitter handle for social media links)
+* `github_username` (optional): String (the site's GitHub handle for social media links)
+* `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
+* `style` (optional):
+    * `link_color`: String (what color HTML links should be)
+    * `link_hover_color`: String (what color HTML links should be when hovered)
+    * `primary_background`: String (what the background color of the main navbar should be)
+    * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
+    * `font_family` (default: depends on available fonts): String|Array (the default font family for the entire site)
+    * `font_size` (default=`15px`): String (the default font size for the entire site)
+    * `xxlarge_font_size` (default=`38px`): String (the default &lsquo;XX-large&rsquo; font size for the entire site, normally 2.625 &times; `font_size`)
+    * `xlarge_font_size` (default=`30px`): String (the default &lsquo;X-large&rsquo; font size for the entire site, normally 2.0 &times; `font_size`)
+    * `large_font_size` (default=`24px`): String (the default &lsquo;large&rsquo; font size for the entire site, normally 1.5 &times; `font_size`)
+    * `medium_font_size` (default=`20px`): String (the default &lsquo;medium&rsquo; font size for the entire site, normally 1.25 &times; `font_size`)
+    * `small_font_size` (default=`14px`): String (the default &lsquo;small&rsquo; font size for the entire site, normally 0.875 &times; `font_size`)
+* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [LIS Web Components](#lis-web-components) section for details)
 
-As described above, you'll need to add the Legumeinfo Jekyll theme in your `\_config.yml`.
+As described above, you'll need to add the Legumeinfo Jekyll theme in your `_config.yml`.
 And you'll need to add `future: true` if you want to use the themes events features.
 
 ### Layouts
@@ -291,8 +295,12 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `home`
 * `news-item`
 * `news`
+* `blog-item`
+* `blog`
 * `page`
 * `post`
+* `reading-width`
+* `full-width`
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 
@@ -301,10 +309,12 @@ It is recommend that each page uses the `default` layout unless the page corresp
 The theme allows configuration of specific pages via [front matter variables](https://jekyllrb.com/docs/front-matter/).
 The following variables are currently supported:
 
-* `tools_menu (optional): Boolean (shows the vertical tools menu on any page using the default template)`
-* `news_card (optional): Boolean (shows the news card on the home page)`
-* `events_card (optional): Boolean (shows the events card on the home page)`
-* `twitter_card (optional): Boolean (shows the Twitter feed card on the home page)`
+* `tools_menu` (optional): Boolean (shows the vertical tools menu on any page using the default template)
+* `blog_card` (optional): Boolean (shows the blog card on the home page)
+* `news_card` (optional): Boolean (shows the news card on the home page)
+* `events_card` (optional): Boolean (shows the events card on the home page)
+* `twitter_card` (optional): Boolean (shows the Twitter feed card on the home page)
+* `web_components` (optional): Boolean (includes the LIS Web Components JavaScript in the page)
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
 For example, the following would show the vertical tools menu every page that uses the default template:
@@ -317,6 +327,22 @@ defaults:
     values:
       tools_menu: true
 ```
+
+### LIS Web Components
+
+The theme uses the [LIS Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
+Since not every page needs Web Components, you must "opt-in" to including the LIS Web Components JavaScript on pages you want to use components in.
+This is done using the `web_components` [front matter variable](#configuration-via-front-matter).
+For example:
+```liquid
+---
+web_components: true
+---
+
+<lis-gene-search-element></lis-gene-search-element>
+```
+The theme specifies which version of the LIS Web Components JavaScript library to use.
+However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
 
 ## Contributing
 
