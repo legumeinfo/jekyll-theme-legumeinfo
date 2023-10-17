@@ -13,6 +13,8 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.title }}" href="{{ "/feed.xml" | relative_url }}" />
 
+  {% include analytics.html %}
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ "assets/css/uikit.min.css" | relative_url }}" type="text/css" />
   <link rel="stylesheet" href="{{ "assets/css/uikit-theme.css" | relative_url }}" type="text/css" />
@@ -24,6 +26,11 @@
   <script src="{{ "assets/js/uikit-icons.min.js" | relative_url }}"></script>
 
   {% include global-scripts.html %}
+
+  {% if page.web_components and site.web_components_version %}
+  <!-- LIS Web Components -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@legumeinfo/web-components@{{ site.web_components_version }}/dist/web-components.min.js"></script>
+  {% endif %}
 
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="{{ "/assets/icons/apple-touch-icon-57x57.png" | relative_url }}">
