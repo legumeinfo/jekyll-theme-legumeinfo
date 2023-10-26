@@ -8,7 +8,7 @@ To clone this repo:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
-The standard place to place this repo is under `_themes` in your Jekyll site.
+The standard place to install this repo as a theme is in the `_themes/` directory of your Jekyll site.
 
 ## Installation
 
@@ -242,11 +242,11 @@ The `layout` entry should always specify the `home` layout for the homepage, tho
 ### `Gemfile`
 
 The `Gemfile` should be auto-generated when you create your Jekyll site.
-As described above, you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
+As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
 
 ### `_config.yml`
 
-The `_config.yml` should be auto-generated when you create your Jekyll site.
+The `_config.yml` file should be auto-generated when you create your Jekyll site.
 This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
 The Legumeinfo Jekyll theme supports the following entries:
 
@@ -271,10 +271,17 @@ The Legumeinfo Jekyll theme supports the following entries:
     * `link_hover_color`: String (what color HTML links should be when hovered)
     * `primary_background`: String (what the background color of the main navbar should be)
     * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
+    * `font_family` (default=`ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`): String|Array (the default font family for the entire site; fonts are provided by the Web Browser so the array is treated as an ordered list of fonts to try)
+    * `font_size` (default=`15px`): String (the default font size for the entire site)
+    * `xxlarge_font_size` (default=`38px`): String (the default extra-extra-large font size for the entire site, normally 2.625 &times; `font_size`)
+    * `xlarge_font_size` (default=`30px`): String (the default extra-large font size for the entire site, normally 2.0 &times; `font_size`)
+    * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
+    * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
+    * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
 * `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [LIS Web Components](#lis-web-components) section for details)
 
-As described above, you'll need to add the Legumeinfo Jekyll theme in your `_config.yml`.
-And you'll need to add `future: true` if you want to use the themes events features.
+As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
+And you'll need to add `future: true` if you want to use the theme's events features.
 
 ### Layouts
 
