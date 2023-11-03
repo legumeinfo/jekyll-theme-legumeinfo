@@ -2,13 +2,17 @@
 # This YAML front matter ensures Jekyll will pass the site variables in.
 ---
 
-// hard-code the URI for now; we can update the code to allow URI override
-// at run-time if need be.
+/** The URI of the GraphQL server to query. */
 const uri = "{{ site.graphql_uri }}";
 
 
-// A function that gets data from a GraphQL server via a POST request.
-// Adapted from https://graphql.org/graphql-js/graphql-clients/
+/**
+ * Gets data from a GraphQL server via a POST request.
+ * Adapted from https://graphql.org/graphql-js/graphql-clients/
+ * @param {string} query - The GraphQL query.
+ * @param {object} variables - The variables for the GraphQL query.
+ * @returns {Promise<Response>} A `Promise` that resolves to a `Response` object.
+ */
 export function query(query, variables={}, abortSignal=undefined) {
     return fetch(uri, {
         method: 'POST',

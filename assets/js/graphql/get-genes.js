@@ -2,6 +2,7 @@ import { query } from './query.js';
 import { modalLink } from './modal.js';
 
 
+/** The GraphQL query used to get genes. */
 export const getGenesQuery = `
   query GenesQuery($identifier: String, $name: String, $description: String, $genus: String, $species: String, $strain: String, $family: String, $page: Int, $pageSize: Int) {
     genes(genus: $genus, species: $species, strain: $strain, identifier: $identifier, name: $name, description: $description, geneFamilyIdentifier: $family, page: $page, pageSize: $pageSize) {
@@ -22,9 +23,17 @@ export const getGenesQuery = `
       }
     }
   }
-  `;
-      
+`;
 
+
+/**
+ * Gets genes from GraphQL.
+ * @param {object} queryData - An object containing zero or more variables for the GraphQL query.
+ * @param {object} pageData - An object containing pagination data for the GraphQL query, if any.
+ * @param {object} options - An object containing optional parameters for the HTTP request,
+ * namely, an optional `AbortSignal` instance that can be used to cancel the request mid-flight.
+ * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
+ */
 export function getGenes(queryData={}, pageData={}, options={}) {
   const {genus, species, strain, identifier, description, family} = queryData;
   const {page, pageSize} = pageData;
@@ -43,6 +52,12 @@ export function getGenes(queryData={}, pageData={}, options={}) {
 }
 
 
+/**
+ * Converts GraphQL `GenesResults` into the `PaginatedSearchResults<GeneSearchResult[]>` used by the
+ * `LisGeneSearchElement` (`<lis-gene-search-element>`) Web Component.
+ * @param {object} data - An object containing the data portional of the GraphQL query HTTP response.
+ * @returns {object} A `PaginatedSearchResults<GeneSearchResult[]>` object.
+ */
 export function genesDataToSearchResults(data) {
   // extract the page info
   const {hasNextPage: hasNext, numResults, pageSize, pageCount: numPages}
@@ -75,14 +90,28 @@ export function genesDataToSearchResults(data) {
   // return the expected paginated results object
   return {hasNext, numResults, pageSize, numPages, results};
 }
-      
 
+
+/**
+ * The gene search function to use for the `searchFunction` property of the `LisGeneSearchElement`
+ * (`<lis-gene-search-element>`) Web Component.
+ * @param {object} queryData - An object containing data from the submitted search form.
+ * @param {number} page - The page of results to load.
+ * @param {object} options - An object containing optional parameters to pass to the `getGenes` function.
+ * @returns {Promise} A `Promise` that resolves to the `PaginatedSearchResults<GeneSearchResult[]>` used by the
+ * `LisGeneSearchElement` (`<lis-gene-search-element>`) Web Component.
+ */
 export function geneSearchFunction(queryData, page, options={}) {
   return getGenes(queryData, {page, pageSize: 10}, options)
     .then(({data}) => genesDataToSearchResults(data));
 }
 
 
+/**
+ * Creates the `geneSearchFunction` with the given callbacks applied to the returned `Promise`.
+ * @param {...Function} callbacks - The callback function to apply to the returned `Promise`.
+ * @returns {Promise} The `Promise` returned by the `geneSearchFunction` with the callbacks applied.
+ */
 export function geneSearchFunctionFactory(...callbacks) {
   return (queryData, page, options={}) => {
     let promise = geneSearchFunction(queryData, page, options);
@@ -94,6 +123,13 @@ export function geneSearchFunctionFactory(...callbacks) {
 }
 
 
+/**
+ * Creates a callback function that can be used with the `geneSearchFunctionFactory` function
+ * to convert `identifiers` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
+ * open a modal with the given `modalId`.
+ * @param {string} modalId - The HTML `id` of the target modal element.
+ * @returns {Function} The created callback function.
+ */
 export function geneIdentifierModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
     const results = oldResults.map(({identifier, ...geneInfo}) => {
@@ -108,6 +144,13 @@ export function geneIdentifierModalLinkFactory(modalId) {
 }
 
 
+/**
+ * Creates a callback function that can be used with the `geneSearchFunctionFactory` function
+ * to convert `locations` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
+ * open a modal with the given `modalId`.
+ * @param {string} modalId - The HTML `id` of the target modal element.
+ * @returns {Function} The created callback function.
+ */
 export function locationModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
     const results = oldResults.map(({locations: oldLocations, ...geneInfo}) => {
@@ -125,6 +168,12 @@ export function locationModalLinkFactory(modalId) {
 }
 
 
+/**
+ * Creates all callback functions that can be used with the `geneSearchFunctionFactory` function
+ * to add modal links to the `PaginatedSearchResults<GeneSearchResult[]>`.
+ * @param {string} modalId - The HTML `id` of the target modal element.
+ * @returns {Function[]} The created callback functions.
+ */
 export function allModalLinksFactory(modalId) {
   return [
     geneIdentifierModalLinkFactory(modalId),
