@@ -42,3 +42,6 @@ future: true
 
 # the default number of items shown in card widgets
 card_item_limit: 3
+
+# the GraphQL Server URI; LIS by default
+graphql_uri: https://graphql.lis.ncgr.org/

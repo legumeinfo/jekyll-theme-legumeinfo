@@ -278,7 +278,8 @@ The Legumeinfo Jekyll theme supports the following entries:
     * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
     * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
     * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
-* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [LIS Web Components](#lis-web-components) section for details)
+* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
+* `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
 
 As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
 And you'll need to add `future: true` if you want to use the theme's events features.
@@ -328,7 +329,7 @@ defaults:
       tools_menu: true
 ```
 
-### LIS Web Components
+### Web Components
 
 The theme uses the [LIS Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
 Since not every page needs Web Components, you must "opt-in" to including the LIS Web Components JavaScript on pages you want to use components in.
@@ -339,10 +340,26 @@ For example:
 web_components: true
 ---
 
-<lis-gene-search-element></lis-gene-search-element>
+<lis-gene-search-element id="gene-search"></lis-gene-search-element>
+
+<script type="module">
+  import {getOrganismsFormDataFunction, geneSearchFunction} from "lis-graphql";
+  const geneSearchElement = document.getElementById('gene-search');
+  geneSearchElement.formDataFunction = getOrganismsFormDataFunction;
+  geneSearchElement.searchFunction = geneSearchFunction;
+</script>
 ```
 The theme specifies which version of the LIS Web Components JavaScript library to use.
 However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
+
+### GraphQL Support
+
+LIS uses a [GraphQL Server](https://github.com/legumeinfo/graphql-server) to provide a consistent, interconnected API for accessing its data and services.
+For convenience, the theme provides JavaScript for querying a GraphQL Server, including functions that fetch and format data for specific Web Components.
+These scripts are available via the `lis-graphql` JavaScript module.
+This module can be loaded on any page by simply importing one or more features from the module, as demonstrated in [Web Components](#web-components).
+The theme loads data from the LIS GraphQL Server by default.
+However, this can be overridden using the `graphql_uri` variable in the [`_config.yml` file](#_configyml).
 
 ## Contributing
 
