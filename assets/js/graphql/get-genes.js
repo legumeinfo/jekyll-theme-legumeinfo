@@ -1,4 +1,5 @@
 import { query } from './query.js';
+import { modalLink } from './modal.js';
 
 
 export const getGenesQuery = `
@@ -76,7 +77,57 @@ export function genesDataToSearchResults(data) {
 }
       
 
-export function geneSearch(queryData, page, options={}) {
+export function geneSearchFunction(queryData, page, options={}) {
   return getGenes(queryData, {page, pageSize: 10}, options)
     .then(({data}) => genesDataToSearchResults(data));
+}
+
+
+export function geneSearchFunctionFactory(...callbacks) {
+  return (queryData, page, options={}) => {
+    let promise = geneSearchFunction(queryData, page, options);
+    callbacks.forEach((callback) => {
+      promise = promise.then(callback);
+    });
+    return promise;
+  };
+}
+
+
+export function geneIdentifierModalLinkFactory(modalId) {
+  return ({results: oldResults, ...pageInfo}) => {
+    const results = oldResults.map(({identifier, ...geneInfo}) => {
+      const data = {identifier, type: 'gene'};
+      return {
+        ...geneInfo,
+        identifier: modalLink(modalId, identifier, data),
+      }
+    });
+    return {...pageInfo, results};
+  }
+}
+
+
+export function locationModalLinkFactory(modalId) {
+  return ({results: oldResults, ...pageInfo}) => {
+    const results = oldResults.map(({locations: oldLocations, ...geneInfo}) => {
+      const locations = oldLocations.map((location) => {
+        // extract the data from the location string made by genesDataToSearchResults
+        const re = /(?<identifier>.+):(?<start>\d+)\-(?<end>\d+)/;
+        const data = location.match(re).groups;
+        data.type = 'location';
+        return modalLink(modalId, location, data);
+      });
+      return {...geneInfo, locations};
+    });
+    return {...pageInfo, results};
+  }
+}
+
+
+export function allModalLinksFactory(modalId) {
+  return [
+    geneIdentifierModalLinkFactory(modalId),
+    locationModalLinkFactory(modalId),
+  ];
 }

@@ -336,10 +336,10 @@ web_components: true
 <lis-gene-search-element id="gene-search"></lis-gene-search-element>
 
 <script type="module">
-  import {getOrganismsFormData, geneSearch} from "lis-graphql";
+  import {getOrganismsFormDataFunction, geneSearchFunction} from "lis-graphql";
   const geneSearchElement = document.getElementById('gene-search');
-  geneSearchElement.formDataFunction = getOrganismsFormData;
-  geneSearchElement.searchFunction = geneSearch;
+  geneSearchElement.formDataFunction = getOrganismsFormDataFunction;
+  geneSearchElement.searchFunction = geneSearchFunction;
 </script>
 ```
 The theme specifies which version of the LIS Web Components JavaScript library to use.

@@ -62,7 +62,7 @@ export function organismsDataToFormData(data) {
 }
 
 
-export function getOrganismsFormData(queryData={}, pageData={}, options={}) {
+export function getOrganismsFormDataFunction(queryData={}, pageData={}, options={}) {
   return getOrganisms(queryData, pageData, options)
     .then(({data}) => organismsDataToFormData(data));
 }
