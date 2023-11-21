@@ -40,7 +40,8 @@ taxa_menu: true
 <h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i>: {{ item["commonName"] }}</h3>
 {% endif %}
 
-{% assign species_photo = site.static_files | where: "path", "assets/img/species_images/{{ item["abbrev"] }}.jpg" | first %}
+{% capture species_photo_path %}assets/img/species_images/{{ item["abbrev"] }}.jpg{% endcapture %}
+{% assign species_photo = site.static_files | where: "path", species_photo_path | first %}
 {% if species_photo %}
 <div class="species-image">
   <img src="/assets/img/species_images/{{ item["abbrev"] }}.jpg" alt="Image: {{ item["commonName"] }}"/>
