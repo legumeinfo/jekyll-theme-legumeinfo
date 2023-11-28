@@ -1,3 +1,7 @@
-<div class="uk-alert-primary uk-margin-remove" uk-alert>
-  <p><b>Welcome to the legumeinfo Jekyll theme!</b> The theme can be found on <a href="https://github.com/legumeinfo/jekyll-theme-legumeinfo" target="_blank">GitHub</a>. Click the bell (<span uk-icon="bell"></span>) in the navigation bar to toggle this alert.</p>
+{% if site.data.alerts %}
+{% for alert in site.data.alerts %}
+<div class="uk-alert-{{ alert.type }}" uk-alert>
+  <p>{{ alert.message }}</p>
 </div>
+{% endfor %}
+{% endif %}
