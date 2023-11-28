@@ -275,6 +275,11 @@ html {
     background: $global-primary-background;
 }
 
+.tm-navbar-container .uk-alert {
+    margin: 0;
+    border-bottom: 1px solid;
+}
+
 .tm-navbar-container .uk-navbar-nav > li > a,
 .tm-navbar-container .uk-navbar-item:not(.uk-logo),
 .tm-navbar-container .uk-navbar-toggle {

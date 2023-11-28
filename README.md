@@ -48,11 +48,11 @@ root/
 │   ├── img/
 │   └── js/
 ├── _data/
+│   ├── alerts.yml
 │   ├── taxa_main.yml
 │   ├── taxa_special.yml
 │   └── tools.yml
 ├── _includes
-│   ├── alerts.html
 │   ├── global-scripts.html
 │   ├── global-stylesheets.html
 │   ├── navbar-menu.html
@@ -120,11 +120,20 @@ To include custom JavaScript in your site, put your scripts in the `assets/js/` 
 The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog model.
 The Legumeinfo Jekyll theme expects two files to be in this directory: `species.yml` and `tools.yml`.
 
+**`alerts.yml`** This file contains a list of alerts to be shown on top of the navbar in every page on the site. If the list is not empty, a bell icon will be added to the far right side of the navbar which can be used to toggle the element containing the alerts. Each alert in the list should adhere to the following schema pattern:
+
+```yml
+---
+-
+  type: "primary"|"success"|"warning"|"danger"
+  message: "<b>Welcome to the legumeinfo Jekyll starter site!</b> The site's code can be found on <a href='https://github.com/legumeinfo/jekyll-starter-legumeinfo' target='_blank'>GitHub</a>. Click the bell (<span uk-icon='bell'></span>) in the navigation bar to toggle this alert."
+```
+
 **`taxa_main.yml` and `taxa_special.yml`** These files contains a list of taxa (genera) that the data portal provides 
 omics data for. The taxa_main file contains major crop and models; taxa_special contains everything else.
 The list should adhere to the following schema pattern:
 
-```
+```yml
 ---
 - genus: Arachis
   description: "(peanut: domesticated and wild)"
@@ -166,8 +175,6 @@ The tools within the list will be grouped by category.
 ### `_include/`
 
 The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
-
-**`alerts.html`** contains alerts that will be displayed in the navbar at the very top of the page. This file may be empty. If the file is not empty, a bell icon will be added to the far right side of the navbar which can be used to toggle the element containing the alerts.
 
 **`navbar-menu.html`** contains the navigation bar menu seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens. If using an off-screen menu (described below), it is recommend that the toggle component is placed here (see the [`_includes/navbar-menu.html`](https://github.com/legumeinfo/jekyll-theme-legumeinfo/blob/main/_includes/navbar-menu.html) for an example).
 
