@@ -1,16 +1,18 @@
 # jekyll-theme-legumeinfo
 
 Welcome to the Legumeinfo Jekyll theme!
-The theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) -- an online data portal that houses various omics data of legume species relevant to industrial agriculture.
+The theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) - an online data portal that houses various omics data of legume species relevant to industrial agriculture.
 The theme is hosted separately from the Legumeinfo Jekyll site so that it may used by other biological data portals.
 
-To clone this repo:
+See the the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository to get started with a Jekyll site already setup to use the theme.
+
+## Installation
+
+Clone this repo as follows:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
 The standard place to install this repo as a theme is in the `_themes/` directory of your Jekyll site.
-
-## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
 
@@ -22,7 +24,7 @@ And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
 theme: jekyll-theme-legumeinfo
-# add if you going to use the theme's events features
+# add if you're going to use the theme's events features
 future: true
 ```
 
