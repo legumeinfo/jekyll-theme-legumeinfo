@@ -313,17 +313,21 @@ The URL of the page will correspond to its directory structure and the name of t
 However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used via the `layout` entry.
 The Legumeinfo Jekyll theme provides the following layouts:
 
-* `default`
-* `events`
-* `home`
-* `news-item`
-* `news`
-* `blog-item`
-* `blog`
-* `page`
-* `post`
-* `reading-width`
-* `full-width`
+* `base`: The base layout for all pages.
+* `default`: The default layout used if a page does not specify a layout.
+* `404`: The layout used when a page is not found.
+* `blog-item`: The layout used when viewing a specific blog post. Uses `reading-width` layout.
+* `blog`: The layout used when viewing all blog posts.
+* `event`: The layout used when viewing a specific event.
+* `events`: The layout used when viewing all events (automatically updates without rebuilding site).
+* `full-width`: A layout uses the full width of the page for content.
+* `home`: The layout used when viewing the home page.
+* `news-item`: The layout used when viewing a specific news item.
+* `news`: The layout used when viewing all news items.
+* `page`: Alias for `default`.
+* `post`: Alias for `default`.
+* `reading-width`: A layout that puts content in a container with an ideal width for reading.
+* `taxon`: The template used when generating pages for the `_data/taxon_list.yml` file.
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 </details>
