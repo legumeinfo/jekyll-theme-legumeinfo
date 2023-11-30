@@ -70,6 +70,7 @@ root/
 ```
 
 ### `assets/`
+<details>
 
 The assets directory holds static assets that may be used in templates.
 
@@ -114,8 +115,10 @@ To include custom JavaScript in your site, put your scripts in the `assets/js/` 
 ```liquid
 <script src="{{ "assets/js/my-webcomponent.js" | relative_url }}"></script>
 ```
+</details>
 
 ### `_data/`
+<details>
 
 The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog model.
 The Legumeinfo Jekyll theme expects two files to be in this directory: `species.yml` and `tools.yml`.
@@ -171,8 +174,10 @@ The list should adhere to the following schema:
 
 By default these tools will be listed in a vertical menu on the left side of every page in the site.
 The tools within the list will be grouped by category.
+</details>
 
 ### `_include/`
+<details>
 
 The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
 
@@ -183,8 +188,10 @@ The `_include/` directory is used by Jekyll to place globally-included content o
 **`off-screen-menu.html`** contains a vertical menu that appears in an off-screen side-bar that's including on every page. The off-screen side-bar has unique div ID `#off-screen-menu` and can be toggled using UIkit's [Toggle component](https://getuikit.com/docs/toggle), e.g. `<button uk-toggle="target: #off-screen-menu" type="button"></button>`
 
 **`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
+</details>
 
 ### `news/` and `events/`
+<details>
 
 Jekyll is "blog aware," meaning it has built in support for blog-esque content.
 The Legumeinfo Jekyll theme uses this support for news and events.
@@ -230,8 +237,10 @@ The theme cannot enable this for a site so the site must enable it by adding the
 # _config.yml
 future: true
 ```
+</details>
 
 ### `index.html`
+<details>
 
 `index.html` is the homepage for the site.
 It should contain a YML preamble with `title` and `layout` entries.
@@ -245,13 +254,17 @@ layout: home
 ```
 
 The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the news and events cards on the right side of the page.
+</details>
 
 ### `Gemfile`
+<details>
 
 The `Gemfile` should be auto-generated when you create your Jekyll site.
 As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
+</details>
 
 ### `_config.yml`
+<details>
 
 The `_config.yml` file should be auto-generated when you create your Jekyll site.
 This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
@@ -290,8 +303,10 @@ The Legumeinfo Jekyll theme supports the following entries:
 
 As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
 And you'll need to add `future: true` if you want to use the theme's events features.
+</details>
 
 ### Layouts
+<details>
 
 In general, a page can be added to a Jekyll site simply creating a new HTML file.
 The URL of the page will correspond to its directory structure and the name of the HTML file.
@@ -311,8 +326,10 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `full-width`
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
+</details>
 
 ### Configuration via Front Matter
+<details>
 
 The theme allows configuration of specific pages via [front matter variables](https://jekyllrb.com/docs/front-matter/).
 The following variables are currently supported:
@@ -335,8 +352,10 @@ defaults:
     values:
       tools_menu: true
 ```
+</details>
 
 ### Web Components
+<details>
 
 The theme uses the [LIS Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
 Since not every page needs Web Components, you must "opt-in" to including the LIS Web Components JavaScript on pages you want to use components in.
@@ -358,8 +377,10 @@ web_components: true
 ```
 The theme specifies which version of the LIS Web Components JavaScript library to use.
 However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
+</details>
 
 ### GraphQL Support
+<details>
 
 LIS uses a [GraphQL Server](https://github.com/legumeinfo/graphql-server) to provide a consistent, interconnected API for accessing its data and services.
 For convenience, the theme provides JavaScript for querying a GraphQL Server, including functions that fetch and format data for specific Web Components.
@@ -367,6 +388,7 @@ These scripts are available via the `lis-graphql` JavaScript module.
 This module can be loaded on any page by simply importing one or more features from the module, as demonstrated in [Web Components](#web-components).
 The theme loads data from the LIS GraphQL Server by default.
 However, this can be overridden using the `graphql_uri` variable in the [`_config.yml` file](#_configyml).
+</details>
 
 ## Contributing
 
