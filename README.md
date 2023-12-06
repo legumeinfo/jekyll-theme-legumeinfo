@@ -170,7 +170,7 @@ The list should adhere to the following schema:
 ```
 
 By default these tools will be listed in a vertical menu on the left side of every page in the site.
-The tools within the list will be grouped by category.
+The tools within the list will be grouped by category. The tool description is shown in a tooltip.
 
 ### `_include/`
 
