@@ -49,7 +49,7 @@
       {% if icon[0] == "apple" -%}
         {% assign rel = "apple-touch-icon" -%}
       {% else -%}
-        {% assign rel = "favicon" -%}
+        {% assign rel = "icon" -%}
       {% endif -%}
       {% assign sizes_extension = icon[-1] | split: "." -%}
       <link rel="{{ rel }}" type="image/png" sizes="{{ sizes_extension[0] }}" href="{{ static_file.path | relative_url }}">
