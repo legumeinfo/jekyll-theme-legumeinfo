@@ -402,16 +402,13 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/legume
 
 ## Development
 
-To set up your environment to develop the Legumeinfo Jekyll  theme, run `bundle install`.
+The theme is not configured to be run directly as a Jekyll site.
+Instead, it should be installed as the theme for a Jekyll site (as described in the [installation instructions](#installation)) and developed in the context of the site.
+We recommend using the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) Jekyll site for development since it is an exhibit of the theme's features and includes the theme as a git submodule.
+The starter site also includes Docker (Compose) files so you don't have to set up a local development environment.
 
-The theme is setup just like a normal Jekyll site!
-To test the theme, run `bundle exec jekyll serve` and open your browser at [`http://localhost:4000`](http://localhost:4000).
-This starts a Jekyll server using the Legumeinfo Jekyll theme.
-Add pages, documents, data, etc. like normal to test the theme's contents.
-As you make modifications to the theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When the theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to the theme-gem, please edit the regexp in `jekyll-theme-legumeinfo.gemspec` accordingly.
+When the theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` that are tracked with Git will be bundled.
+To add a custom directory to the theme-gem, edit the `spec.files` regexp in the `jekyll-theme-legumeinfo.gemspec` file accordingly.
 
 ## License
 
