@@ -1,8 +1,8 @@
 # jekyll-theme-legumeinfo
 
 Welcome to the Legumeinfo Jekyll theme!
-The theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) - an online data portal that houses various omics data of legume species relevant to industrial agriculture.
-The theme is hosted separately from the Legumeinfo Jekyll site so that it may used by other biological data portals.
+This theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) - an online data portal that houses various omics data of legumes and related species.
+The theme is hosted separately from the Legumeinfo Jekyll site so that it may be used by other biological data portals, including portals for specific genera and species.
 
 See the the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository to get started with a Jekyll site already setup to use the theme.
 
