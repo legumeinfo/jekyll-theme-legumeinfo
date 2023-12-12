@@ -8,11 +8,11 @@ See the the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-sta
 
 ## Installation
 
-Clone this repo as follows:
+Clone this repository as follows:
 
     git clone --recurse-submodules https://github.com/legumeinfo/jekyll-theme-legumeinfo.git
 
-The standard place to install this repo as a theme is in the `_themes/` directory of your Jekyll site.
+The standard place to install this repository as a theme is in the `_themes/` directory of your Jekyll site.
 
 Add this line to your Jekyll site's `Gemfile`:
 
@@ -48,14 +48,19 @@ root/
 ├── Gemfile
 ├── _data/
 │   ├── alerts.yml
-│   ├── taxa_main.yml
-│   ├── taxa_special.yml
-│   └── tools.yml
-├── _includes
+│   ├── taxon_list.yml
+│   ├── tools.yml
+│   └── taxa/
+│       ├── Aeschynomene/
+│       │   ├── genus_resources.yml
+│       │   ├── species_collections.yml
+│       │   └── species_resources.yml
+│       └── ...
+├── _includes/
 │   ├── global-scripts.html
 │   ├── global-stylesheets.html
-│   ├── navbar-menu.html
 │   ├── navbar-lower-menu.html
+│   ├── navbar-menu.html
 │   └── off-screen-menu.html
 ├── assets/
 │   ├── css/
@@ -64,14 +69,22 @@ root/
 │   ├── img/
 │   └── js/
 ├── blog/
+│   ├── index.html
 │   └── _posts/
-│       └── 2021-09-14-profound-blog-post.html
+│       ├── 2021-09-14-profound-blog-post.html
+│       └── ...
 ├── events/
+│   ├── index.html
 │   └── _posts/
-│       └── 2021-09-14-big-event.html
-└── news/
-    └── _posts/
-        └── 2021-09-14-very-important-news.html
+│       ├── 2021-09-14-big-event.html
+│       └── ...
+├── news/
+│   ├── index.html
+│   └── _posts/
+│       ├── 2021-09-14-very-important-news.html
+│       └── ...
+└── taxa/
+    └── index.html
 ```
 
 ### `_config.yml`
@@ -155,25 +168,99 @@ The Legumeinfo Jekyll theme expects two files to be in this directory: `species.
   message: "<b>Welcome to the legumeinfo Jekyll starter site!</b> The site's code can be found on <a href='https://github.com/legumeinfo/jekyll-starter-legumeinfo' target='_blank'>GitHub</a>. Click the bell (<span uk-icon='bell'></span>) in the navigation bar to toggle this alert."
 ```
 
-**`taxa_main.yml` and `taxa_special.yml`** These files contains a list of taxa (genera) that the data portal provides 
-omics data for. The taxa_main file contains major crop and models; taxa_special contains everything else.
-The list should adhere to the following schema pattern:
+**`taxon_list.yml` and `taxa/`** The `taxon_list.yml` file contains a list of taxa (genera) that the data portal provides omics data for.
+When the Jekyll site is built, the theme geneartes a page in the `_site/taxa/` directory for each genus in the list using the [jekyll-datapage-generator plugin](https://github.com/avillafiorita/jekyll-datapage_gen) and the [`taxon` layout](#layouts).
+The `taxon_list.yml` file should adhere to the following schema pattern:
 
 ```yml
 ---
-- genus: Arachis
+-
+  genus: Arachis
   description: "(peanut: domesticated and wild)"
-- genus: Cajanus
+  category: main
+-
+  genus: Cajanus
   description: "(pigeonpea)"
-- genus: Cicer
-  description: "(chickpea)"
-- genus: Glycine
-  description: "(soybean)"
+  category: main
+-
+  description: "(jointvetch; model for nodule evolution)"
+  genus: Aeschynomene
+  category: special
+-
+  description: "(potato bean: potential tuberous crop)"
+  genus: Apios
+  category: special
+```
+`category` should be one of `main` or `special` and will be used to determine what groupings the genera will be placed in in the taxa menu.
+
+The `taxa/` directory should contain a subdirectory for each genus in the `taxon_list.yml` file.
+Each subidrectory should contain three files: `genus_resources.yml`, `species_collections.yml`, and `species_resources.yml`.
+`genus_resources.yml` should adhere to the following schema pattern:
+```yml
+---
+commonName: jointvetch
+description: Aeschynomene is a genus of flowering plants in the family Fabaceae, and
+  was recently assigned to the informal monophyletic Dalbergia clade of the Dalbergieae.
+  They are known commonly as jointvetches. These legumes are most common in warm regions
+  and many species are aquatic. The genus as currently circumscribed is paraphyletic
+  and it has been suggested that the subgenus Ochopodium be elevated to a new genus
+  within the Dalbergieae, though other changes will also be required to render the
+  genus monophyletic.
+genus: Aeschynomene
+resources:
+- name: AeschynomeneMine
+- URL: https://mines.legumeinfo.org/aeschynomenemine/begin.do
+- description: InterMine for Aeschynomene species
+species:
+- evenia
+taxid: 48134
+```
+`species_collections.yml` should adhere to the following schema pattern:
+```yml
+---
+species:
+- name: evenia
+  genomes:
+    - collection: CIAT22838.gnm1.XF73
+      synopsis: "Aeschynomene evenia isolate CIAT22838, whole genome shotgun sequencing project."
+  annotations:
+    - collection: CIAT22838.gnm1.ann1.ZM3R
+      synopsis: "Aeschynomene evenia isolate CIAT22838, whole genome shotgun sequencing project."
+```
+And `species_resources.yml` should adhere to the following schema pattern:
+```yml
+---
+species:
+- abbrev: aesev
+  commonName: shrubby jointvetch
+  description: The legume genus Aeschynomene L. includes approximately 150 tropical
+    and subtropical species, part of them having a semi-aquatic lifestyle. Some hydrophytic
+    Aeschynomene species display unusual symbiotic features such as stem nodulation
+    and the presence of a Nod factor-independent infection process with some Bradyrhizobium
+    strains. To decipher the mechanisms of this original symbiotic process, Aeschynomene
+    evenia has emerged as a new model legume because of its advantageous genetic and
+    developmental characteristics for molecular genetics. A. evenia (2n=20, 400 Mb/1C)
+    is an autogamous diploid species that is annual or short-lived perennial, consisting
+    of various genotypes.
+  genus: Aeschynomene
+  species: evenia
+  strains:
+  - accession: CIAT22838
+    description: The sequenced A. evenia genotype is an inbred line produced by IRD
+      from the accession CIAT22838 originating from Malawi. 94% of the 400 Mb genome
+      was assembled, 80% anchored to the 10 A. evenia chromosomes and 32,667 protein-coding
+      genes predicted, providing a platform for comparative genomics and analysis
+      of the nitrogen-fixing symbiosis in legumes.
+    identifier: CIAT22838
+    name: CIAT22838
+    origin: Malawi
+    resources: []
+  taxid: 561484
 ```
 
 Note that the species aren't automatically listed anywhere in the theme.
 We recommend overriding the navbar files (`_includes/navbar-menu.html`, `_includes/navbar-lower-menu.html`, and/or `_includes/off-screen-menu.html`) to add a link to a species template that lists the species.
-See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for examples of [overriding these files](https://github.com/legumeinfo/jekyll-example/blob/main/_includes/) and [iterating the species in a template](https://github.com/legumeinfo/jekyll-example/blob/main/species/index.html).
+See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files and iterating the species in a template.
 
 **`tools.yml`** This file contains a list of tools that are provided by the data portal and links to them.
 The list should adhere to the following schema:
@@ -317,6 +404,15 @@ future: true
 ```
 </details>
 
+### `taxa/`
+<details>
+
+The theme generates a page for each taxon (genus) when the Jekyll site is built; see **`taxon_list.yml` and `taxa/`** in the [`_data/`](#_data) section for details.
+These pages are placed in the `_site/taxa/` directory, which corresponds to the `taxa/` directory in the site's source code.
+It is left to users of the theme to implement the `taxa/index.html` page.
+See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for an example implementations of this page.
+</details>
+
 ### Layouts
 <details>
 
@@ -339,7 +435,7 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `page`: Alias for `default`.
 * `post`: Alias for `default`.
 * `reading-width`: A layout that puts content in a container with an ideal width for reading.
-* `taxon`: The template used when generating pages for the `_data/taxon_list.yml` file.
+* `taxon`: The template used when generating pages for the taxa (genera) in the `_data/taxon_list.yml` file.
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 </details>
