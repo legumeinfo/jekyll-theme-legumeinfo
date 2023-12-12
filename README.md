@@ -43,12 +43,9 @@ A Jekyll site that uses the Legumeinfo theme should have the following directory
 
 ```
 root/
-├── assets/
-│   ├── css/
-│   ├── icons/
-│   │   └── favicon.ico
-│   ├── img/
-│   └── js/
+├── _config.yml
+├── index.html
+├── Gemfile
 ├── _data/
 │   ├── alerts.yml
 │   ├── taxa_main.yml
@@ -60,63 +57,87 @@ root/
 │   ├── navbar-menu.html
 │   ├── navbar-lower-menu.html
 │   └── off-screen-menu.html
-├── news/
+├── assets/
+│   ├── css/
+│   ├── icons/
+│   │   └── favicon.ico
+│   ├── img/
+│   └── js/
+├── blog/
 │   └── _posts/
-│       └── 14-09-2021-very-important-news.md
+│       └── 2021-09-14-profound-blog-post.html
 ├── events/
 │   └── _posts/
-│       └── 14-09-2021-big-event.md
-├── index.html
-├── Gemfile
-└── _config.yml
+│       └── 2021-09-14-big-event.html
+└── news/
+    └── _posts/
+        └── 2021-09-14-very-important-news.html
 ```
 
-### `assets/`
+### `_config.yml`
 <details>
 
-The assets directory holds static assets that may be used in templates.
+The `_config.yml` file should be auto-generated when you create your Jekyll site.
+This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
+The Legumeinfo Jekyll theme supports the following entries:
 
-**`css/`** The Legumeinfo Jekyll theme uses the [UIkit css framework](https://getuikit.com/).
-As such, all contents of the framework are available in the templates you define in your site.
-You may add additional styling by saving custom styles in Cascading Style Sheet (`.css`) files in the `assets/css/` directory and importing the files in the templates you want to use them in:
+* `title`: String (the title used for all pages and shown in the site navbar)
+* `subtitle` (optional): String (the subtitle shown in the site navbar)
+* `logo` (optional): String (the URL to the site's logo image)
+* `email` (optional): String (how users may contact the maintainers of the site)
+* `description`: String (the description used in the site meta)
+* `baseurl`: String (the subpath of your site, e.g. /blog)
+* `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
+* `google_analytics_id` (optional): String (unique Google Analytics ID for the site)
+* `card_item_limit` (default=`3`): Integer (maximum number of items to display in each card for which no individual limit is specified)
+* `blog_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Blog card)
+* `news_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the News card)
+* `events_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Events card)
+* `twitter_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Twitter card)
+* `twitter_username` (optional): String (the site's Twitter handle for social media links)
+* `github_username` (optional): String (the site's GitHub handle for social media links)
+* `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
+* `style` (optional):
+    * `link_color`: String (what color HTML links should be)
+    * `link_hover_color`: String (what color HTML links should be when hovered)
+    * `primary_background`: String (what the background color of the main navbar should be)
+    * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
+    * `font_family` (default=`ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`): String|Array (the default font family for the entire site; fonts are provided by the Web Browser so the array is treated as an ordered list of fonts to try)
+    * `font_size` (default=`15px`): String (the default font size for the entire site)
+    * `xxlarge_font_size` (default=`38px`): String (the default extra-extra-large font size for the entire site, normally 2.625 &times; `font_size`)
+    * `xlarge_font_size` (default=`30px`): String (the default extra-large font size for the entire site, normally 2.0 &times; `font_size`)
+    * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
+    * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
+    * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
+* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
+* `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
 
-```liquid
-<link rel="stylesheet" href="{{ "assets/css/custom.css" | relative_url }}" type="text/css" />
+As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
+And you'll need to add `future: true` if you want to use the theme's events features.
+</details>
+
+### `index.html`
+<details>
+
+`index.html` is the homepage for the site.
+It should contain a YML preamble with `title` and `layout` entries.
+For example:
+
+```yaml
+---
+title: Home
+layout: home
+---
 ```
 
-**`icons/`** The `icons/` directory is intended to hold any icons you may want to use in your site.
-However, there are certain icons the Legumeinfo Jekyll theme will specifically look for in this directory.
-Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load the following icons from the `assets/icons/` directory:
+The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the blog, news, and events cards on the right side of the page.
+</details>
 
-  * `apple-touch-icon-57x57.png`
-  * `apple-touch-icon-114x114.png`
-  * `apple-touch-icon-72x72.png`
-  * `apple-touch-icon-144x144.png`
-  * `apple-touch-icon-60x60.png`
-  * `apple-touch-icon-120x120.png`
-  * `apple-touch-icon-76x76.png`
-  * `apple-touch-icon-152x152.png`
-  * `apple-touch-icon-180x180.png`
-  * `favicon-192x192.png`
-  * `favicon-160x160.png`
-  * `favicon-96x96.png`
-  * `favicon-16x16.png`
-  * `favicon-32x32.png`
+### `Gemfile`
+<details>
 
-**`img/`** The `img/` directory is intended to hold images that you want to use in your templates.
-To do so, simply copy the image files in the `assets/img/` directory (or a subdirectory) and include them in the template where you want to use them:
-
-```liquid
-<img src="{{ "assets/img/lupine.jpg" | relative_url }}" />
-```
-
-**`js/`** Though Jekyll is a static site generator, dynamic behavior can be added via JavaScript.
-The `js/` directory is intended to hold JavaScript (`.js`) files that you may want to include in you templates.
-To include custom JavaScript in your site, put your scripts in the `assets/js/` directory and include them in the templates you want to use them in:
-
-```liquid
-<script src="{{ "assets/js/my-webcomponent.js" | relative_url }}"></script>
-```
+The `Gemfile` should be auto-generated when you create your Jekyll site.
+As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
 </details>
 
 ### `_data/`
@@ -192,17 +213,82 @@ The `_include/` directory is used by Jekyll to place globally-included content o
 **`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
 </details>
 
-### `news/` and `events/`
+### `assets/`
+<details>
+
+The assets directory holds static assets that may be used in templates.
+
+**`css/`** The Legumeinfo Jekyll theme uses the [UIkit css framework](https://getuikit.com/).
+As such, all contents of the framework are available in the templates you define in your site.
+You may add additional styling by saving custom styles in Cascading Style Sheet (`.css`) files in the `assets/css/` directory and importing the files in the templates you want to use them in:
+
+```liquid
+<link rel="stylesheet" href="{{ "assets/css/custom.css" | relative_url }}" type="text/css" />
+```
+
+**`icons/`** The `icons/` directory is intended to hold any icons you may want to use in your site.
+However, there are certain icons the Legumeinfo Jekyll theme will specifically look for in this directory.
+Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load the following icons from the `assets/icons/` directory:
+
+  * `apple-touch-icon-57x57.png`
+  * `apple-touch-icon-114x114.png`
+  * `apple-touch-icon-72x72.png`
+  * `apple-touch-icon-144x144.png`
+  * `apple-touch-icon-60x60.png`
+  * `apple-touch-icon-120x120.png`
+  * `apple-touch-icon-76x76.png`
+  * `apple-touch-icon-152x152.png`
+  * `apple-touch-icon-180x180.png`
+  * `favicon-192x192.png`
+  * `favicon-160x160.png`
+  * `favicon-96x96.png`
+  * `favicon-16x16.png`
+  * `favicon-32x32.png`
+
+**`img/`** The `img/` directory is intended to hold images that you want to use in your templates.
+To do so, simply copy the image files in the `assets/img/` directory (or a subdirectory) and include them in the template where you want to use them:
+
+```liquid
+<img src="{{ "assets/img/lupine.jpg" | relative_url }}" />
+```
+
+**`js/`** Though Jekyll is a static site generator, dynamic behavior can be added via JavaScript.
+The `js/` directory is intended to hold JavaScript (`.js`) files that you may want to include in you templates.
+To include custom JavaScript in your site, put your scripts in the `assets/js/` directory and include them in the templates you want to use them in:
+
+```liquid
+<script src="{{ "assets/js/my-webcomponent.js" | relative_url }}"></script>
+```
+</details>
+
+### `blog/`, `events/`, and `news/`
 <details>
 
 Jekyll is "blog aware," meaning it has built in support for blog-esque content.
-The Legumeinfo Jekyll theme uses this support for news and events.
-To create a news item or an event, add an HTML file to the `news/_posts/` or `events/_posts/` directory, respectively.
+The Legumeinfo Jekyll theme uses this support for a blog, events, and news.
+To create a blog post, an event, or a news item, add an HTML file to the `blog/_posts/`, `events/_posts/`, or `news/_posts/` directory, respectively.
 The filename should contain an [ISO formatted date](https://en.wikipedia.org/wiki/ISO_8601#Dates) and a title, such as `news/_posts/2021-02-24-sensational-news.html`.
 The files must contain a YML preamble with `layout`, `title`, `author`, and `summary` entries.
-Additionally, a news preamble should contain an `author` entry, and can contain an `end_date` entry if it's a multi-day event.
-For example, `news/_posts/2021-2-24-sensational-news.html` may have the preamble:
-
+Additionally, a blog and news preamble should contain an `author` entry, and an event preamble can contain an `end_date` entry if it's a multi-day event.
+For example, `blog/_posts/2021-09-14-profound-blog-post.html` may have the preamble:
+```yaml
+---
+layout:     blog-item
+title:      Sensational Event!
+end_date:   2022-02-25
+summary:    This event is sensational! Probably because it's so long...
+---
+```
+`events/_posts/2021-09-14-big-event.html` may have the preamble:
+```yaml
+---
+layout:     event
+title:      Sensational Event!
+end_date:   2022-02-25
+summary:    This event is sensational! Probably because it's so long...
+---
+```
+And `news/_posts/2021-09-14-very-important-news.html` may have the preamble:
 ```yaml
 ---
 layout:     news-item
@@ -211,28 +297,18 @@ author:     Alan Cleary
 summary:    This news is sensational! Everyone will talk about it... but it changes nothing.
 ---
 ```
-And `events/_posts/2021-2-24-sensational-event.html` may have the preamble:
 
-```yaml
----
-layout:     event
-title:      Sensational Event!
-end_date:   2022-2-24
-summary:    This event is sensational! Probably because it's so long...
----
-```
+Note that the blog post's `layout` entry has the value `blog-item`.
+This defines a layout provided by the Legumeinfo Jekyll theme for blog posts, thus all blog posts should specify the `blog-item` layout.
+Similarly, the event's `layout` entry has the value `event` and the news item's `layout` entry has the value `news-item`.
+All events and news items should specify these layouts as well.
 
-Note that the news post's `layout` entry has the value `news-item`.
-This defines a layout provided by the Legumeinfo Jekyll theme for news items, thus all news items should specify the `news-item` layout.
-Similarly, the event post's `layout` entry has the value `event`..
-All events should specify the `event` layout.
+The most recent blog posts, events, and news items will be listed in cards on the right side of the homepage.
+These cards contain links to `blog/index.html`, `events/index.html`, and `news/index.html`, respectively.
+It is left to users of the theme to implement these pages.
+See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for example implementations of these pages.
 
-Note, the most recent news items and events will be listed in cards on the right side of the homepage.
-These cards contain links to `news/index.html` and `events/index.html`, respectively.
-It is left to users of the theme to implement these templates.
-See the [Legumeinfo Jekyll site code](https://github.com/legumeinfo/jekyll-example) for example implementations of [`news/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/news/index.html) and [`events/index.html`](https://github.com/legumeinfo/jekyll-example/blob/main/events/index.html) pages.
-
-**Also, note that [by default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
+**[By default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
 The theme requires this functionality because events (i.e. posts) of interest are those that haven't happened yet, i.e. future events.
 The theme cannot enable this for a site so the site must enable it by adding the following to its** `_config.yml` **file:**
 ```yaml
@@ -241,76 +317,10 @@ future: true
 ```
 </details>
 
-### `index.html`
-<details>
-
-`index.html` is the homepage for the site.
-It should contain a YML preamble with `title` and `layout` entries.
-For example:
-
-```yaml
----
-title: Home
-layout: home
----
-```
-
-The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the news and events cards on the right side of the page.
-</details>
-
-### `Gemfile`
-<details>
-
-The `Gemfile` should be auto-generated when you create your Jekyll site.
-As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
-</details>
-
-### `_config.yml`
-<details>
-
-The `_config.yml` file should be auto-generated when you create your Jekyll site.
-This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
-The Legumeinfo Jekyll theme supports the following entries:
-
-* `title`: String (the title used for all pages and shown in the site navbar)
-* `subtitle` (optional): String (the subtitle shown in the site navbar)
-* `logo` (optional): String (the URL to the site's logo image)
-* `email` (optional): String (how users may contact the maintainers of the site)
-* `description`: String (the description used in the site meta)
-* `baseurl`: String (the subpath of your site, e.g. /blog)
-* `url`: String (the base hostname & protocol for your site, e.g. http://example.com)
-* `google_analytics_id` (optional): String (unique Google Analytics ID for the site)
-* `card_item_limit` (default=`3`): Integer (maximum number of items to display in each card for which no individual limit is specified)
-* `blog_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Blog card)
-* `news_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the News card)
-* `events_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Events card)
-* `twitter_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Twitter card)
-* `twitter_username` (optional): String (the site's Twitter handle for social media links)
-* `github_username` (optional): String (the site's GitHub handle for social media links)
-* `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
-* `style` (optional):
-    * `link_color`: String (what color HTML links should be)
-    * `link_hover_color`: String (what color HTML links should be when hovered)
-    * `primary_background`: String (what the background color of the main navbar should be)
-    * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
-    * `font_family` (default=`ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`): String|Array (the default font family for the entire site; fonts are provided by the Web Browser so the array is treated as an ordered list of fonts to try)
-    * `font_size` (default=`15px`): String (the default font size for the entire site)
-    * `xxlarge_font_size` (default=`38px`): String (the default extra-extra-large font size for the entire site, normally 2.625 &times; `font_size`)
-    * `xlarge_font_size` (default=`30px`): String (the default extra-large font size for the entire site, normally 2.0 &times; `font_size`)
-    * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
-    * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
-    * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
-* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
-* `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
-
-As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
-And you'll need to add `future: true` if you want to use the theme's events features.
-</details>
-
 ### Layouts
 <details>
 
-In general, a page can be added to a Jekyll site simply creating a new HTML file.
+In general, a page can be added to a Jekyll site by simply creating a new HTML file.
 The URL of the page will correspond to its directory structure and the name of the HTML file.
 However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used via the `layout` entry.
 The Legumeinfo Jekyll theme provides the following layouts:
