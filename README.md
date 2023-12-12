@@ -28,15 +28,15 @@ theme: jekyll-theme-legumeinfo
 future: true
 ```
 
-And then execute:
+Now the theme can be installled via Bundler:
 
     $ bundle
 
-Or install it yourself as:
+Or directly as a gem:
 
     $ gem install jekyll-theme-legumeinfo
 
-## Usage
+## Creating a Site
 
 See the [Jekyll website](https://jekyllrb.com/) for an introduction to Jekyll.
 A Jekyll site that uses the Legumeinfo theme should have the following directory structure:
@@ -412,6 +412,12 @@ These pages are placed in the `_site/taxa/` directory, which corresponds to the 
 It is left to users of the theme to implement the `taxa/index.html` page.
 See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for an example implementations of this page.
 </details>
+
+
+## Features and Configuration
+
+In addition to the file-specific features and configurations listed above, the following features and configurations are available throughout a Jekyll site using this theme.
+
 
 ### Layouts
 <details>
