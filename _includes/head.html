@@ -43,17 +43,20 @@
 
   <!-- Icons -->
   {% for static_file in site.static_files -%}
-    {% if static_file.path contains "/assets/icons/apple-touch-icon-" or static_file.path contains "/assets/icons/favicon-" -%}
-      {% assign path_components = static_file.path | split: "/" -%}
-      {% assign icon = path_components[-1] | split: "-" -%}
-      {% if icon[0] == "apple" -%}
-        {% assign rel = "apple-touch-icon" -%}
+    {% if static_file.path contains "/assets/icons/apple-touch-icon-" or static_file.path contains "/assets/icons/favicon" -%}
+      {% assign icon_filename = static_file.path | split: "/" | last -%}
+      {% if icon_filename == "favicon.ico" -%}
+        <link rel="icon" href="{{ static_file.path | relative_url }}">
       {% else -%}
-        {% assign rel = "icon" -%}
+        {% assign icon = icon_filename | split: "-" -%}
+        {% if icon[0] == "apple" -%}
+          {% assign rel = "apple-touch-icon" -%}
+        {% else -%}
+          {% assign rel = "icon" -%}
+        {% endif -%}
+        {% assign sizes_extension = icon[-1] | split: "." -%}
+        <link rel="{{ rel }}" type="image/png" sizes="{{ sizes_extension[0] }}" href="{{ static_file.path | relative_url }}">
       {% endif -%}
-      {% assign sizes_extension = icon[-1] | split: "." -%}
-      <link rel="{{ rel }}" type="image/png" sizes="{{ sizes_extension[0] }}" href="{{ static_file.path | relative_url }}">
     {% endif -%}
   {% endfor -%} 
-  <link rel="shortcut icon" href="{{ "/assets/icons/favicon.ico" | relative_url }}">
 </head>
