@@ -143,7 +143,8 @@ layout: home
 ---
 ```
 
-The `layout` entry should always specify the `home` layout for the homepage, though you can specify the `default` layout if you want the same layout but without the blog, news, and events cards on the right side of the page.
+The `layout` entry should always specify the `home` layout for the homepage.
+See the [Configuration via Front Matter](#configuration-via-front-matter) section for details on how to enable the tools menu and the blog, news, events, and Twitter widgets.
 </details>
 
 ### `Gemfile`
@@ -282,7 +283,7 @@ The list should adhere to the following schema:
   url: "#"
 ```
 
-By default these tools will be listed in a vertical menu on the left side of every page in the site.
+These tools can optionally be listed in a vertical menu on the left side of every page in the site; see the [Configuration via Front Matter](#configuration-via-front-matter) section for details.
 The tools within the list will be grouped by category.
 </details>
 
