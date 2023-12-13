@@ -1,7 +1,7 @@
 # jekyll-theme-legumeinfo
 
 Welcome to the Legumeinfo Jekyll theme!
-This theme contains the styles and templates for the [Legume Information System (LIS)](https://legumeinfo.org/) - an online data portal that houses various omics data of legumes and related species.
+This theme contains the styles and templates for the [Legume Information System (Legumeinfo)](https://legumeinfo.org/) - an online data portal that houses various omics data of legumes and related species.
 The theme is hosted separately from the Legumeinfo Jekyll site so that it may be used by other biological data portals, including portals for specific genera and species.
 
 See the the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository to get started with a Jekyll site already setup to use the theme.
@@ -122,7 +122,7 @@ The Legumeinfo Jekyll theme supports the following entries:
     * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
     * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
     * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
-* `web_components_version` (default=`1.0.0`): String (the version of the LIS Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
+* `web_components_version` (default=`1.0.0`): String (the version of the Legumeinfo Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
 * `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
 
 As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
@@ -458,7 +458,7 @@ The following variables are currently supported:
 * `news_card` (optional): Boolean (shows the news card on the home page)
 * `events_card` (optional): Boolean (shows the events card on the home page)
 * `twitter_card` (optional): Boolean (shows the Twitter feed card on the home page)
-* `web_components` (optional): Boolean (includes the LIS Web Components JavaScript in the page)
+* `web_components` (optional): Boolean (includes the Legumeinfo Web Components JavaScript in the page)
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
 For example, the following would show the vertical tools menu every page that uses the default template:
@@ -476,8 +476,8 @@ defaults:
 ### Web Components
 <details>
 
-The theme uses the [LIS Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
-Since not every page needs Web Components, you must "opt-in" to including the LIS Web Components JavaScript on pages you want to use components in.
+The theme uses the [Legumeinfo Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
+Since not every page needs Web Components, you must "opt-in" to including the Legumeinfo Web Components JavaScript on pages you want to use components in.
 This is done using the `web_components` [front matter variable](#configuration-via-front-matter).
 For example:
 ```liquid
@@ -494,18 +494,18 @@ web_components: true
   geneSearchElement.searchFunction = geneSearchFunction;
 </script>
 ```
-The theme specifies which version of the LIS Web Components JavaScript library to use.
+The theme specifies which version of the Legumeinfo Web Components JavaScript library to use.
 However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
 </details>
 
 ### GraphQL Support
 <details>
 
-LIS uses a [GraphQL Server](https://github.com/legumeinfo/graphql-server) to provide a consistent, interconnected API for accessing its data and services.
+Legumeinfo uses a [GraphQL Server](https://github.com/legumeinfo/graphql-server) to provide a consistent, interconnected API for accessing its data and services.
 For convenience, the theme provides JavaScript for querying a GraphQL Server, including functions that fetch and format data for specific Web Components.
 These scripts are available via the `lis-graphql` JavaScript module.
 This module can be loaded on any page by simply importing one or more features from the module, as demonstrated in [Web Components](#web-components).
-The theme loads data from the LIS GraphQL Server by default.
+The theme loads data from the Legumeinfo GraphQL Server by default.
 However, this can be overridden using the `graphql_uri` variable in the [`_config.yml` file](#_configyml).
 </details>
 
