@@ -83,22 +83,7 @@ You may add additional styling by saving custom styles in Cascading Style Sheet 
 
 **`icons/`** The `icons/` directory is intended to hold any icons you may want to use in your site.
 However, there are certain icons the Legumeinfo Jekyll theme will specifically look for in this directory.
-Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load the following icons from the `assets/icons/` directory:
-
-  * `apple-touch-icon-57x57.png`
-  * `apple-touch-icon-114x114.png`
-  * `apple-touch-icon-72x72.png`
-  * `apple-touch-icon-144x144.png`
-  * `apple-touch-icon-60x60.png`
-  * `apple-touch-icon-120x120.png`
-  * `apple-touch-icon-76x76.png`
-  * `apple-touch-icon-152x152.png`
-  * `apple-touch-icon-180x180.png`
-  * `favicon-192x192.png`
-  * `favicon-160x160.png`
-  * `favicon-96x96.png`
-  * `favicon-16x16.png`
-  * `favicon-32x32.png`
+Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load all icon files named `assets/icons/apple-touch-icon-<size>.png` and `assets/icons/favicon-<size>.png`, where `<size>` indicates the dimensions in pixels (e.g., `assets/icons/favicon-192x192.png`).
 
 **`img/`** The `img/` directory is intended to hold images that you want to use in your templates.
 To do so, simply copy the image files in the `assets/img/` directory (or a subdirectory) and include them in the template where you want to use them:
