@@ -371,22 +371,7 @@ See the [`_includes/`](#_includes) section for details.
 
 The `icons/` directory is intended to hold any icons you may want to use in your site.
 However, there are certain icons the Legumeinfo Jekyll theme will specifically look for in this directory.
-Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load the following icons from the `assets/icons/` directory:
-
-  * `apple-touch-icon-57x57.png`
-  * `apple-touch-icon-114x114.png`
-  * `apple-touch-icon-72x72.png`
-  * `apple-touch-icon-144x144.png`
-  * `apple-touch-icon-60x60.png`
-  * `apple-touch-icon-120x120.png`
-  * `apple-touch-icon-76x76.png`
-  * `apple-touch-icon-152x152.png`
-  * `apple-touch-icon-180x180.png`
-  * `favicon-192x192.png`
-  * `favicon-160x160.png`
-  * `favicon-96x96.png`
-  * `favicon-16x16.png`
-  * `favicon-32x32.png`
+Specifically, the theme will attempt to load a `favicon.ico` file and all icon files named `apple-touch-icon-<size>.png` or `favicon-<size>.png`, where `<size>` indicates the dimensions in pixels (e.g. `favicon-192x192.png`).
 
 #### `img/`
 
