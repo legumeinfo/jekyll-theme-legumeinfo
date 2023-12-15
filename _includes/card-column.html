@@ -1,5 +1,9 @@
 <div class="tm-sidebar-right uk-flex-none uk-visible@l">
 
+  {% if page.blog_card %}
+    {% include blog-card.html %}
+  {% endif %}
+
   {% if page.news_card %}
     {% include news-card.html %}
   {% endif %}
