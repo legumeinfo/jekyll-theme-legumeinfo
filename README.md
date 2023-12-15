@@ -1,10 +1,11 @@
 # jekyll-theme-legumeinfo
 
-Welcome to the Legumeinfo Jekyll theme!
-This theme contains the styles and templates for the [Legume Information System (Legumeinfo)](https://legumeinfo.org/) - an online data portal that houses various omics data of legumes and related species.
-The theme is hosted separately from the Legumeinfo Jekyll site so that it may be used by other biological data portals, including portals for specific genera and species.
+Welcome to jekyll-theme-legumeinfo!
+A [Jekyll](https://jekyllrb.com/) theme built on [UIkit](https://getuikit.com/) for the [Legume Information System (Legumeinfo)](https://legumeinfo.org/) - an online data portal that houses various omics data of legumes and related species.
+This theme is developed separately from the Legumeinfo Jekyll site so that it may be used by other biological data portals, including portals for specific genera and species.
 
 See the the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository to get started with a Jekyll site already setup to use the theme.
+
 
 ## Installation
 
@@ -20,7 +21,7 @@ Add this line to your Jekyll site's `Gemfile`:
 gem "jekyll-theme-legumeinfo", path: "./_themes/jekyll-theme-legumeinfo"
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
+And add this line to your Jekyll site's `_config.yml` file:
 
 ```yaml
 theme: jekyll-theme-legumeinfo
@@ -28,7 +29,7 @@ theme: jekyll-theme-legumeinfo
 future: true
 ```
 
-Now the theme can be installled via Bundler:
+Now the theme can be installed via Bundler:
 
     $ bundle
 
@@ -36,10 +37,11 @@ Or directly as a gem:
 
     $ gem install jekyll-theme-legumeinfo
 
+
 ## Creating a Site
 
 See the [Jekyll website](https://jekyllrb.com/) for an introduction to Jekyll.
-A Jekyll site that uses the Legumeinfo theme should have the following directory structure:
+A Jekyll site that uses the Legumeinfo Jekyll theme should have the following directory structure:
 
 ```
 root/
@@ -87,11 +89,12 @@ root/
     └── index.html
 ```
 
+
 ### `_config.yml`
 <details>
 
 The `_config.yml` file should be auto-generated when you create your Jekyll site.
-This file contains configuration information used by both Jekyll and the Legumeinfo Jekyll theme.
+This file contains configuration information used by both a Jekyll site and its theme.
 The Legumeinfo Jekyll theme supports the following entries:
 
 * `title`: String (the title used for all pages and shown in the site navbar)
@@ -109,7 +112,7 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `twitter_card_item_limit` (default=`card_item_limit`): Integer (maximum number of items to display in the Twitter card)
 * `twitter_username` (optional): String (the site's Twitter handle for social media links)
 * `github_username` (optional): String (the site's GitHub handle for social media links)
-* `newsletter` (optional): String (the URL to where users can sign up for your site's newsletter)
+* `newsletter` (optional): String (the URL where users can sign up for your site's newsletter)
 * `style` (optional):
     * `link_color`: String (what color HTML links should be)
     * `link_hover_color`: String (what color HTML links should be when hovered)
@@ -125,15 +128,17 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `web_components_version` (default=`1.0.0`): String (the version of the Legumeinfo Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
 * `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
 
-As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
+As described in the [Installation](#installation) section, you'll need to add the Legumeinfo Jekyll theme in your `_config.yml` file.
 And you'll need to add `future: true` if you want to use the theme's events features.
+See the [`blog/`, `events/`, and `news/`](#blog-events-and-news) section for details.
 </details>
+
 
 ### `index.html`
 <details>
 
-`index.html` is the homepage for the site.
-It should contain a YML preamble with `title` and `layout` entries.
+`index.html` is the home page for the site.
+It should contain the [YAML front matter](#configuration-via-front-matter) variables `title` and `layout`.
 For example:
 
 ```yaml
@@ -143,24 +148,29 @@ layout: home
 ---
 ```
 
-The `layout` entry should always specify the `home` layout for the homepage.
-See the [Configuration via Front Matter](#configuration-via-front-matter) section for details on how to enable the tools menu and the blog, news, events, and Twitter widgets.
+The `layout` variable should always specify the `home` layout for the home page.
+See the [Configuration via Front Matter](#configuration-via-front-matter) section for details on how to enable the tools menu and the blog, news, events, and Twitter cards.
 </details>
+
 
 ### `Gemfile`
 <details>
 
 The `Gemfile` should be auto-generated when you create your Jekyll site.
-As described in [Installation](#installation), you'll need to add the Legumeinfo Jekyll theme GEM as a dependency in your `Gemfile`.
+As described in the [Installation](#installation) section, you'll need to add the Legumeinfo Jekyll theme as a dependency in your `Gemfile`.
 </details>
+
 
 ### `_data/`
 <details>
 
-The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog model.
-The Legumeinfo Jekyll theme expects two files to be in this directory: `species.yml` and `tools.yml`.
+The `_data/` directory is used by Jekyll to load static data that is not accommodated by its blog support.
+The Legumeinfo Jekyll theme expects three files to be in this directory: `alerts.yml`, `taxon_list.yml` (and accompanying `taxa/` subdirectory), and `tools.yml`.
 
-**`alerts.yml`** This file contains a list of alerts to be shown on top of the navbar in every page on the site. If the list is not empty, a bell icon will be added to the far right side of the navbar which can be used to toggle the element containing the alerts. Each alert in the list should adhere to the following schema pattern:
+
+#### `alerts.yml`
+
+This file contains a list of alerts to be shown on top of the navbar on every page in the site. If the list is not empty, a bell icon will be added to the far right side of the navbar that can be used to toggle the element containing the alerts. Each alert in the list should adhere to the following schema pattern:
 
 ```yml
 ---
@@ -169,8 +179,11 @@ The Legumeinfo Jekyll theme expects two files to be in this directory: `species.
   message: "<b>Welcome to the legumeinfo Jekyll starter site!</b> The site's code can be found on <a href='https://github.com/legumeinfo/jekyll-starter-legumeinfo' target='_blank'>GitHub</a>. Click the bell (<span uk-icon='bell'></span>) in the navigation bar to toggle this alert."
 ```
 
-**`taxon_list.yml` and `taxa/`** The `taxon_list.yml` file contains a list of taxa (genera) that the data portal provides omics data for.
-When the Jekyll site is built, the theme geneartes a page in the `_site/taxa/` directory for each genus in the list using the [jekyll-datapage-generator plugin](https://github.com/avillafiorita/jekyll-datapage_gen) and the [`taxon` layout](#layouts).
+
+#### `taxon_list.yml` and `taxa/`
+
+The `taxon_list.yml` file contains a list of taxa (genera) that the data portal provides omics data for.
+When the Jekyll site is built, the Legumeinfo Jekyll theme geneartes a page in the `_site/taxa/` directory for each genus in the list using the [jekyll-datapage-generator plugin](https://github.com/avillafiorita/jekyll-datapage_gen) and the [`taxon` layout](#layouts).
 The `taxon_list.yml` file should adhere to the following schema pattern:
 
 ```yml
@@ -192,11 +205,15 @@ The `taxon_list.yml` file should adhere to the following schema pattern:
   genus: Apios
   category: special
 ```
-`category` should be one of `main` or `special` and will be used to determine what groupings the genera will be placed in in the taxa menu.
+Each `category` variable should have the value `main` or `special`.
+These categories are used to determine the groupings of the genera in the taxa menu.
 
 The `taxa/` directory should contain a subdirectory for each genus in the `taxon_list.yml` file.
 Each subidrectory should contain three files: `genus_resources.yml`, `species_collections.yml`, and `species_resources.yml`.
-`genus_resources.yml` should adhere to the following schema pattern:
+These files should adhere to the following schema patterns:
+
+##### `genus_resources.yml`
+
 ```yml
 ---
 commonName: jointvetch
@@ -216,7 +233,9 @@ species:
 - evenia
 taxid: 48134
 ```
-`species_collections.yml` should adhere to the following schema pattern:
+
+##### `species_collections.yml`
+
 ```yml
 ---
 species:
@@ -228,7 +247,9 @@ species:
     - collection: CIAT22838.gnm1.ann1.ZM3R
       synopsis: "Aeschynomene evenia isolate CIAT22838, whole genome shotgun sequencing project."
 ```
-And `species_resources.yml` should adhere to the following schema pattern:
+
+##### `species_resources.yml`
+
 ```yml
 ---
 species:
@@ -259,14 +280,17 @@ species:
   taxid: 561484
 ```
 
-Note that the species aren't automatically listed anywhere in the theme.
-We recommend overriding the navbar files (`_includes/navbar-menu.html`, `_includes/navbar-lower-menu.html`, and/or `_includes/off-screen-menu.html`) to add a link to a species template that lists the species.
-See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files and iterating the species in a template.
+Note that the species aren't automatically listed anywhere by the theme.
+We recommend overriding the navbar files to add links to a species page that lists the species.
+See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files and iterating the species in a page.
 
-**`tools.yml`** This file contains a list of tools that are provided by the data portal and links to them.
+
+#### `tools.yml`
+
+This file contains a list of web-based tools that are provided by the data portal and links to them.
 The list should adhere to the following schema:
 
-```
+```yml
 ---
 - category: Browse and Search
   name: Gene Families
@@ -283,38 +307,69 @@ The list should adhere to the following schema:
   url: "#"
 ```
 
-These tools can optionally be listed in a vertical menu on the left side of every page in the site; see the [Configuration via Front Matter](#configuration-via-front-matter) section for details.
+These tools can optionally be listed in a vertical menu on the left side of any page in the site.
+See the [Configuration via Front Matter](#configuration-via-front-matter) section for details.
 The tools within the list will be grouped by category.
 </details>
 
-### `_include/`
+
+### `_includes/`
 <details>
 
-The `_include/` directory is used by Jekyll to place globally-included content onto the site. These files will replace the files of the same name in the theme.
+Jekyll allows the contents of files stored in a site's `_includes/` directory to be included within a page.
+The Legumeinfo Jekyll theme uses these files to create custom layouts.
+A Jekyll site using the Legumeinfo Jekyll theme can include these files from the theme or override them by adding files with the same name to the site's `_includes/` directory.
+The following `_includes/` files are defined by the Legumeinfo Jekyll theme and are intended to be overridden.
 
-**`navbar-menu.html`** contains the navigation bar menu seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens. If using an off-screen menu (described below), it is recommend that the toggle component is placed here (see the [`_includes/navbar-menu.html`](https://github.com/legumeinfo/jekyll-theme-legumeinfo/blob/main/_includes/navbar-menu.html) for an example).
+#### `navbar-menu.html`
 
-**`navbar-lower-menu.html`** contains the navigation bar menu that appears below the main navigation bar seen on every page. It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
+This file contains the navigation bar menu seen on every page.
+It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
+If using an off-screen menu (described below), it is recommend that the off-screen menu's toggle component is placed here.
 
-**`off-screen-menu.html`** contains a vertical menu that appears in an off-screen side-bar that's including on every page. The off-screen side-bar has unique div ID `#off-screen-menu` and can be toggled using UIkit's [Toggle component](https://getuikit.com/docs/toggle), e.g. `<button uk-toggle="target: #off-screen-menu" type="button"></button>`
+#### `navbar-lower-menu.html`
 
-**`global-scripts.html`** and **`global-stylesheets.html`** contain scripts and styles to be included on every page.
+This file contains the navigation bar menu that appears below the main navigation bar seen on every page.
+It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
+
+#### `off-screen-menu.html`
+
+This file contains a vertical menu that appears in an off-screen side-bar that's including on every page.
+The off-screen side-bar has unique div ID `#off-screen-menu` and can be toggled using UIkit's [toggle component](https://getuikit.com/docs/toggle).
+For example:
+
+```html
+<button uk-toggle="target: #off-screen-menu" type="button"></button>
+```
+
+#### `global-scripts.html` and `global-stylesheets.html`
+
+These files should contain `<script>` and `<link>` tags, respectively, to be included on every page in the Jekyll site.
+
+See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files.
 </details>
+
 
 ### `assets/`
 <details>
 
-The assets directory holds static assets that may be used in templates.
+The `assets/` directory holds static asset files (e.g. stylesheets, icons, images, etc) that may be used throughout a Jekyll site.
 
-**`css/`** The Legumeinfo Jekyll theme uses the [UIkit css framework](https://getuikit.com/).
-As such, all contents of the framework are available in the templates you define in your site.
-You may add additional styling by saving custom styles in Cascading Style Sheet (`.css`) files in the `assets/css/` directory and importing the files in the templates you want to use them in:
+#### `css/`
+
+The Legumeinfo Jekyll theme uses the [UIkit CSS framework](https://getuikit.com/).
+As such, all contents of the framework are available in the pages you define in your site.
+You may add additional styling by saving custom styles in Cascading Style Sheet (`.css`) files in the `assets/css/` directory and importing the files in the pages you want to use them in:
 
 ```liquid
 <link rel="stylesheet" href="{{ "assets/css/custom.css" | relative_url }}" type="text/css" />
 ```
+A site can be configured to include these files in every page by overriding the `_includes/global-stylesheets.html` file.
+See the [`_includes/`](#_includes) section for details.
 
-**`icons/`** The `icons/` directory is intended to hold any icons you may want to use in your site.
+#### `icons/`
+
+The `icons/` directory is intended to hold any icons you may want to use in your site.
 However, there are certain icons the Legumeinfo Jekyll theme will specifically look for in this directory.
 Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will attempt to load the following icons from the `assets/icons/` directory:
 
@@ -333,20 +388,28 @@ Specifically, in addition to the `favicon.ico`, the Legumeinfo Jekyll theme will
   * `favicon-16x16.png`
   * `favicon-32x32.png`
 
-**`img/`** The `img/` directory is intended to hold images that you want to use in your templates.
-To do so, simply copy the image files in the `assets/img/` directory (or a subdirectory) and include them in the template where you want to use them:
+#### `img/`
+
+The `img/` directory is intended to hold images that you want to use in your Jekyll site.
+To do so, simply place image files in the `assets/img/` directory and include them in the pages you want to use them in.
+For example:
 
 ```liquid
 <img src="{{ "assets/img/lupine.jpg" | relative_url }}" />
 ```
 
-**`js/`** Though Jekyll is a static site generator, dynamic behavior can be added via JavaScript.
-The `js/` directory is intended to hold JavaScript (`.js`) files that you may want to include in you templates.
-To include custom JavaScript in your site, put your scripts in the `assets/js/` directory and include them in the templates you want to use them in:
+#### `js/`
+
+Although Jekyll is a static site generator, dynamic behavior can be added via JavaScript.
+The `js/` directory is intended to hold JavaScript (`.js`) files that you may want to include in your Jekyll site to enable such dynamic behavior.
+To include custom JavaScript in your site, put your scripts in the `assets/js/` directory and include them in the pages you want to use them in.
+For example:
 
 ```liquid
 <script src="{{ "assets/js/my-webcomponent.js" | relative_url }}"></script>
 ```
+A site can be configured to include these files in every page by overriding the `_includes/global-scripts.html` file.
+See the [`_includes/`](#_includes) section for details.
 </details>
 
 ### `blog/`, `events/`, and `news/`
@@ -356,9 +419,10 @@ Jekyll is "blog aware," meaning it has built in support for blog-esque content.
 The Legumeinfo Jekyll theme uses this support for a blog, events, and news.
 To create a blog post, an event, or a news item, add an HTML file to the `blog/_posts/`, `events/_posts/`, or `news/_posts/` directory, respectively.
 The filename should contain an [ISO formatted date](https://en.wikipedia.org/wiki/ISO_8601#Dates) and a title, such as `news/_posts/2021-02-24-sensational-news.html`.
-The files must contain a YML preamble with `layout`, `title`, `author`, and `summary` entries.
-Additionally, a blog and news preamble should contain an `author` entry, and an event preamble can contain an `end_date` entry if it's a multi-day event.
-For example, `blog/_posts/2021-09-14-profound-blog-post.html` may have the preamble:
+The files must contain the [YAML front matter](#configuration-via-front-matter) variables `layout`, `title`, `author`, and `summary`.
+Additionally, blog and news front matter should contain an `author` variable, and event front matter can contain an `end_date` variable if it's a multi-day event.
+For example, `blog/_posts/2021-09-14-profound-blog-post.html` may have the front matter:
+
 ```yaml
 ---
 layout:     blog-item
@@ -367,7 +431,9 @@ end_date:   2022-02-25
 summary:    This event is sensational! Probably because it's so long...
 ---
 ```
-`events/_posts/2021-09-14-big-event.html` may have the preamble:
+
+`events/_posts/2021-09-14-big-event.html` may have the front matter:
+
 ```yaml
 ---
 layout:     event
@@ -376,7 +442,9 @@ end_date:   2022-02-25
 summary:    This event is sensational! Probably because it's so long...
 ---
 ```
-And `news/_posts/2021-09-14-very-important-news.html` may have the preamble:
+
+And `news/_posts/2021-09-14-very-important-news.html` may have the front matter:
+
 ```yaml
 ---
 layout:     news-item
@@ -386,29 +454,30 @@ summary:    This news is sensational! Everyone will talk about it... but it chan
 ---
 ```
 
-Note that the blog post's `layout` entry has the value `blog-item`.
+Note that the blog post's `layout` variable has the value `blog-item`.
 This defines a layout provided by the Legumeinfo Jekyll theme for blog posts, thus all blog posts should specify the `blog-item` layout.
-Similarly, the event's `layout` entry has the value `event` and the news item's `layout` entry has the value `news-item`.
+Similarly, the event's `layout` variable has the value `event` and the news item's `layout` variable has the value `news-item`.
 All events and news items should specify these layouts as well.
 
-The most recent blog posts, events, and news items will be listed in cards on the right side of the homepage.
+The most recent blog posts, events, and news items can be listed in cards on the right side of any page in a Jekyll site using the Legumeinfo Jekyll theme.
 These cards contain links to `blog/index.html`, `events/index.html`, and `news/index.html`, respectively.
 It is left to users of the theme to implement these pages.
-See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for example implementations of these pages.
+See the [Configuration via Front Matter](#configuration-via-front-matter) section for details on how to enable the cards and see the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for example implementations of the pages the cards link to.
 
 **[By default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
-The theme requires this functionality because events (i.e. posts) of interest are those that haven't happened yet, i.e. future events.
+The Legumeinfo Jekyll theme requires this functionality because events (i.e. Jekyll blog posts) of interest are those that haven't happened yet, i.e. future events.
 The theme cannot enable this for a site so the site must enable it by adding the following to its** `_config.yml` **file:**
+
 ```yaml
-# _config.yml
 future: true
 ```
+Alternatively, the `--future` command line option can be used when building the site.
 </details>
 
 ### `taxa/`
 <details>
 
-The theme generates a page for each taxon (genus) when the Jekyll site is built; see **`taxon_list.yml` and `taxa/`** in the [`_data/`](#_data) section for details.
+The Legumeinfo Jekyll theme generates a page for each taxon (genus) when the Jekyll site is built; see **`taxon_list.yml` and `taxa/`** in the [`_data/`](#_data) section for details.
 These pages are placed in the `_site/taxa/` directory, which corresponds to the `taxa/` directory in the site's source code.
 It is left to users of the theme to implement the `taxa/index.html` page.
 See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for an example implementations of this page.
@@ -417,51 +486,55 @@ See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter
 
 ## Features and Configuration
 
-In addition to the file-specific features and configurations listed above, the following features and configurations are available throughout a Jekyll site using this theme.
+In addition to the file-specific features and configurations listed above, the following features and configurations are available throughout a Jekyll site using the Legumeinfo Jekyll theme.
 
 
 ### Layouts
 <details>
 
 In general, a page can be added to a Jekyll site by simply creating a new HTML file.
-The URL of the page will correspond to its directory structure and the name of the HTML file.
-However, every page must contain a YML preamble that, at a minimum, defines the layout that should be used via the `layout` entry.
+The URL of the page will correspond to its location in the site's directory structure and the name of the HTML file.
+However, these HTML files should typically not be self-contained web pages, but rather, only contain content to be placed in a page template, or *layout*, provided by the Jekyll site or theme.
+
+The Legumeinfo Jekyll theme provides a default layout that will be automatically used for every page that doesn't explicitly specify a layout.
+The layout a page should use is specified using the `layout` variable in the page's [YAML front matter](#configuration-via-front-matter).
 The Legumeinfo Jekyll theme provides the following layouts:
 
 * `base`: The base layout for all pages.
 * `default`: The default layout used if a page does not specify a layout.
 * `404`: The layout used when a page is not found.
-* `blog-item`: The layout used when viewing a specific blog post. Uses `reading-width` layout.
+* `blog-item`: The layout used when viewing a specific blog post. Uses the `reading-width` layout.
 * `blog`: The layout used when viewing all blog posts.
 * `event`: The layout used when viewing a specific event.
-* `events`: The layout used when viewing all events (automatically updates without rebuilding site).
-* `full-width`: A layout uses the full width of the page for content.
+* `events`: The layout used when viewing all events (automatically updates without rebuilding the site).
+* `full-width`: A layout that uses the full width of the page for content, i.e. the tools menu and cards are not available in this layout.
 * `home`: The layout used when viewing the home page.
 * `news-item`: The layout used when viewing a specific news item.
 * `news`: The layout used when viewing all news items.
 * `page`: Alias for `default`.
 * `post`: Alias for `default`.
-* `reading-width`: A layout that puts content in a container with an ideal width for reading.
+* `reading-width`: A layout that puts content in a container with a width ideal for reading.
 * `taxon`: The template used when generating pages for the taxa (genera) in the `_data/taxon_list.yml` file.
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 </details>
 
+
 ### Configuration via Front Matter
 <details>
 
-The theme allows configuration of specific pages via [front matter variables](https://jekyllrb.com/docs/front-matter/).
+The Legumeinfo Jekyll theme allows configuration of specific pages via [YAML front matter variables](https://jekyllrb.com/docs/front-matter/).
 The following variables are currently supported:
 
-* `tools_menu` (optional): Boolean (shows the vertical tools menu on any page using the default template)
-* `blog_card` (optional): Boolean (shows the blog card on the home page)
-* `news_card` (optional): Boolean (shows the news card on the home page)
-* `events_card` (optional): Boolean (shows the events card on the home page)
-* `twitter_card` (optional): Boolean (shows the Twitter feed card on the home page)
+* `tools_menu` (optional): Boolean (shows the vertical tools menu on the left side of any page using the `default` layout)
+* `blog_card` (optional): Boolean (shows the blog card on the right side of any page using the `default` layout)
+* `news_card` (optional): Boolean (shows the news card on the right side of any page using the `default` layout)
+* `events_card` (optional): Boolean (shows the events card on the right side of any page using the `default` layout)
+* `twitter_card` (optional): Boolean (shows the Twitter feed card on the right side of any page using the `default` layout)
 * `web_components` (optional): Boolean (includes the Legumeinfo Web Components JavaScript in the page)
 
 Note, [front matter default values](https://jekyllrb.com/docs/configuration/front-matter-defaults/) can be set in the `_config.yml` file.
-For example, the following would show the vertical tools menu every page that uses the default template:
+For example, the following would show the vertical tools menu on every page that uses the `default` layout:
 
 ```yml
 defaults:
@@ -473,13 +546,15 @@ defaults:
 ```
 </details>
 
+
 ### Web Components
 <details>
 
-The theme uses the [Legumeinfo Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
+The Legumeinfo Jekyll theme uses the [Legumeinfo Web Components](https://www.npmjs.com/package/@legumeinfo/web-components) JavaScript library to support dynamic functionality, such as gene search.
 Since not every page needs Web Components, you must "opt-in" to including the Legumeinfo Web Components JavaScript on pages you want to use components in.
 This is done using the `web_components` [front matter variable](#configuration-via-front-matter).
 For example:
+
 ```liquid
 ---
 web_components: true
@@ -488,7 +563,7 @@ web_components: true
 <lis-gene-search-element id="gene-search"></lis-gene-search-element>
 
 <script type="module">
-  import {getOrganismsFormDataFunction, geneSearchFunction} from "lis-graphql";
+  import { getOrganismsFormDataFunction, geneSearchFunction } from "lis-graphql";
   const geneSearchElement = document.getElementById('gene-search');
   geneSearchElement.formDataFunction = getOrganismsFormDataFunction;
   geneSearchElement.searchFunction = geneSearchFunction;
@@ -498,32 +573,36 @@ The theme specifies which version of the Legumeinfo Web Components JavaScript li
 However, this can be overridden using the `web_components_version` variable in the [`_config.yml` file](#_configyml).
 </details>
 
+
 ### GraphQL Support
 <details>
 
 Legumeinfo uses a [GraphQL Server](https://github.com/legumeinfo/graphql-server) to provide a consistent, interconnected API for accessing its data and services.
-For convenience, the theme provides JavaScript for querying a GraphQL Server, including functions that fetch and format data for specific Web Components.
+For convenience, the Legumeinfo Jekyll theme provides JavaScript for querying an instance of the Legumeinfo GraphQL Server, including functions that fetch and format data for specific Web Components.
 These scripts are available via the `lis-graphql` JavaScript module.
-This module can be loaded on any page by simply importing one or more features from the module, as demonstrated in [Web Components](#web-components).
+This module can be loaded on any page by simply importing one or more features from the module, as demonstrated in the [Web Components](#web-components) section.
 The theme loads data from the Legumeinfo GraphQL Server by default.
 However, this can be overridden using the `graphql_uri` variable in the [`_config.yml` file](#_configyml).
 </details>
 
+
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/legumeinfo/jekyll-theme-legumeinfo. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/legumeinfo/jekyll-theme-legumeinfo.
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
 
 ## Development
 
-The theme is not configured to be run directly as a Jekyll site.
-Instead, it should be installed as the theme for a Jekyll site (as described in the [installation instructions](#installation)) and developed in the context of the site.
+The Legumeinfo Jekyll theme is not configured to be run directly as a Jekyll site.
+Instead, it should be installed as the theme for a Jekyll site (as described in the [Installation](#installation) section) and developed in the context of the site.
 We recommend using the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) Jekyll site for development since it is an exhibit of the theme's features and includes the theme as a git submodule.
 The starter site also includes Docker (Compose) files so you don't have to set up a local development environment.
 
-When the theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` that are tracked with Git will be bundled.
-To add a custom directory to the theme-gem, edit the `spec.files` regexp in the `jekyll-theme-legumeinfo.gemspec` file accordingly.
+When the theme is released, only the files in `_layouts/`, `_includes/`, `_sass/` and `assets/` that are tracked with Git will be bundled.
+To add a custom directory to the theme's gem, edit the `spec.files` regular expression in the `jekyll-theme-legumeinfo.gemspec` file accordingly.
+
 
 ## License
 
-The Legumeinfo Jekyll theme is available as open source under the terms of the [Apache-2.0 License](https://opensource.org/licenses/Apache-2.0).
-
+The Legumeinfo Jekyll theme is available as open source software under the terms of the [Apache-2.0 License](https://opensource.org/licenses/Apache-2.0).
