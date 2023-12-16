@@ -11,11 +11,11 @@
       </div>
     </div>
   </div>
-  {% if site.twitter_username %}
+  {% if site contains "twitter_username" %}
   <!-- code from Twitter -->
   <a class="twitter-timeline uk-padding-small"
     href="https://twitter.com/{{ site.twitter_username }}"
-    data-tweet-limit={% if site.twitter_card_item_limit %}
+    data-tweet-limit={% if site contains "twitter_card_item_limit" %}
       {{ site.twitter_card_item_limit }}
     {% else %}
       {{ site.card_item_limit }}

@@ -5,21 +5,21 @@ taxa_menu: true
 {% assign genus = page.title %}
 {% assign genus_resources = site.data.taxa[genus].genus_resources %}
 {% assign species_resources = site.data.taxa[genus].species_resources %}
-{% if genus_resources.taxid == nil %}
+{% unless genus_resources contains "taxid" %}
 
 <p class="temp"><i>{{ page.title }}</i> has no resource data in the Datastore.</p>
 
 {% else %}
 
-{% if genus_resources.commonName==nil %}
+{% unless genus_resources contains "commonName" %}
 <h1><i>{{ genus_resources.genus }}</i></h2>
 {% else %}
 <h1><i>{{ genus_resources.genus }}</i> ({{ genus_resources.commonName }})</h2>
-{% endif %}
+{% endunless %}
 <p>{{ genus_resources.description }}</p>
 <p>NCBI taxonomy ID: <b>{{ genus_resources.taxid }}</b></p>
 
-{% if genus_resources.resources.size > 0 %}
+{% if genus_resources contains "resources" %}
 <h2>Tools and resources for the genus as a whole</h2>
 <dl>
   {% for resource in genus_resources.resources %}
@@ -34,11 +34,11 @@ taxa_menu: true
 {% for item in species_resources.species %}
 
 <hr/>
-{% if item["commonName"]==nil %}
+{% unless item contains "commonName" %}
 <h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i></h3>
 {% else %}
 <h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i>: {{ item["commonName"] }}</h3>
-{% endif %}
+{% endunless %}
 
 {% capture species_photo_path %}assets/img/species_images/{{ item["abbrev"] }}.jpg{% endcapture %}
 {% assign species_photo = site.static_files | where: "path", species_photo_path | first %}
@@ -48,11 +48,11 @@ taxa_menu: true
   {% for attribItem in site.data.species_image_attribution %}
   {%   if attribItem.gensp contains item["abbrev"] %}
   <div class="attribution">
-    {%   if attribItem.source == nil %}
+    {%   unless attribItem contains "source" %}
     &copy; {{ attribItem.attribution }}
     {%   else %}
     &copy; <a href="{{ attribItem.source }}">{{ attribItem.attribution }}</a>
-    {%   endif %}
+    {%   endunless %}
   </div>
   {%   endif %}
   {% endfor %}
@@ -63,7 +63,7 @@ taxa_menu: true
 
 <p>NCBI taxonomy ID: <b>{{ item["taxid"] }}</b></p>
 
-{% if item["resources"].size > 0 %}
+{% if item contains "resources" %}
 <h4><i>{{ item["genus"] }} {{ item["species"] }}</i> resources</h4>
 <dl>
   {% for resource in item["resources"] %}
@@ -79,7 +79,7 @@ taxa_menu: true
 {% for strain in item["strains"] %}
 <b>{{ strain.identifier }}</b> ({{ strain.origin }}) <br/>
 {{ strain.description }}
-{% if strain.resources.size > 0 %}
+{% if strain contains "resources" %}
 <ul>
   {% for resource in strain.resources %}
   <li><a href="{{ resource.URL }}">{{ resource.name }}</a> : {{ resource.description }}</li>
@@ -92,4 +92,4 @@ taxa_menu: true
 
 {% endfor %}
 
-{% endif %}
+{% endunless %}

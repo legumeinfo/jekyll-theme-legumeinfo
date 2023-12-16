@@ -1,4 +1,4 @@
-{% if site.data.alerts %}
+{% if site.data contains "alerts" %}
 {% for alert in site.data.alerts %}
 <div class="uk-alert-{{ alert.type }}" uk-alert>
   <p>{{ alert.message }}</p>

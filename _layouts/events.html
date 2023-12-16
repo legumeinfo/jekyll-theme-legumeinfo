@@ -36,7 +36,7 @@ Populate the description lists using JavaScript so the site doesn't have to be r
         title: "{{ post.title }}",
         date: "{{ post.date | date_to_string }}",
         unixDate: {{ post.date | date: '%s' }},
-        {% if post.end_date %}
+        {% if post contains "end_date" %}
         endDate: "{{ post.end_date | date_to_string }}",
         unixEndDate: {{ post.end_date | date: '%s' }},
         {% else %}
