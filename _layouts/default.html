@@ -11,7 +11,7 @@ layout: base
     {{ content }}
   </div>
 
-  {% if page.news_card or page.events_card or page.twitter_card %}
+  {% if page.blog_card or page.news_card or page.events_card or page.twitter_card %}
     {% include card-column.html page=page %}
   {% endif %}
 
