@@ -410,7 +410,7 @@ For example, `blog/_posts/2021-09-14-profound-blog-post.html` may have the front
 
 ```yaml
 ---
-layout:     blog-item
+layout:     blog-post
 title:      Sensational Event!
 end_date:   2022-02-25
 summary:    This event is sensational! Probably because it's so long...
@@ -439,8 +439,8 @@ summary:    This news is sensational! Everyone will talk about it... but it chan
 ---
 ```
 
-Note that the blog post's `layout` variable has the value `blog-item`.
-This defines a layout provided by the Legumeinfo Jekyll theme for blog posts, thus all blog posts should specify the `blog-item` layout.
+Note that the blog post's `layout` variable has the value `blog-post`.
+This defines a layout provided by the Legumeinfo Jekyll theme for blog posts, thus all blog posts should specify the `blog-post` layout.
 Similarly, the event's `layout` variable has the value `event` and the news item's `layout` variable has the value `news-item`.
 All events and news items should specify these layouts as well.
 
@@ -488,14 +488,14 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `base`: The base layout for all pages.
 * `default`: The default layout used if a page does not specify a layout.
 * `404`: The layout used when a page is not found.
-* `blog-item`: The layout used when viewing a specific blog post. Uses the `reading-width` layout.
 * `blog`: The layout used when viewing all blog posts.
+* `blog-post`: The layout used when viewing a specific blog post. Uses the `reading-width` layout.
 * `event`: The layout used when viewing a specific event.
 * `events`: The layout used when viewing all events (automatically updates without rebuilding the site).
 * `full-width`: A layout that uses the full width of the page for content, i.e. the tools menu and cards are not available in this layout.
 * `home`: The layout used when viewing the home page.
-* `news-item`: The layout used when viewing a specific news item.
 * `news`: The layout used when viewing all news items.
+* `news-item`: The layout used when viewing a specific news item.
 * `page`: Alias for `default`.
 * `post`: Alias for `default`.
 * `reading-width`: A layout that puts content in a container with a width ideal for reading.
