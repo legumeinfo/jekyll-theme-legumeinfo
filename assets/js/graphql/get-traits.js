@@ -1,5 +1,4 @@
 import { query } from './query.js';
-//import { modalLink } from './modal.js';
 
 
 /** The GraphQL query used to get traits. */
@@ -65,39 +64,35 @@ query TraitQuery($pageSize: Int, $page: Int, $name: String, $studyType: String, 
  * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
  */
 export function getTraits(queryData={}, pageData={}, options={}) {
-  const genus = queryData.genus;
-  const species = queryData.species;
-  const studyType = queryData.type;
-  const name = queryData.traits;
-  const publicationId = queryData.pubId;
-  const author = queryData.author;
-  if (studyType === 'QTL') {
-    studyType = 'QTLStudy';
+  const {genus, species, type, traits, pubId, author} = queryData;
+  if (type === 'QTL') {
+    type = 'QTLStudy';
   }
   const {page, pageSize} = pageData;
   const variables = {
     genus,
     species,
-    studyType,
-    name,
-    publicationId,
+    studyType: type,
+    name: traits,
+    publicationId: pubId,
     author,
     page,
-    pageSize: 10,
+    pageSize,
   };
   const {abortSignal} = options;
   return query(getTraitsQuery, variables, abortSignal);
 }
 
 /**
- * Converts GraphQL `TraitsResults` into the `PaginatedSearchResults<TraitSearchResult[]>` used by the
- * `LisTraitSearchElement` (`<lis-trait-search-element>`) Web Component.
+ * Converts GraphQL `TraitsResults` into the `PaginatedSearchResults<TraitAssociationSearchResult[]>` used by the
+ * `LisTraitAssociationSearchElement` (`<lis-trait-search-element>`) Web Component.
  * @param {object} data - An object containing the data portional of the GraphQL query HTTP response.
- * @returns {object} A `PaginatedSearchResults<TraitSearchResult[]>` object.
+ * @returns {object} A `PaginatedSearchResults<TraitAssociationSearchResult[]>` object.
  */
 export function traitsDataToSearchResults(data) {
   // extract the page info
-  const {hasNextPage: hasNext, numResults, pageSize, pageCount: numPages} = data.traits.pageInfo;
+  const {hasNextPage: hasNext, numResults, pageSize, pageCount: numPages}
+    = data.traits.pageInfo;
   // flatten results
   const results = data.traits.results.map(({name, ...trait}) => {
     const type = trait.qtlStudy ? 'QTL' : 'GWAS';
@@ -119,12 +114,12 @@ export function traitsDataToSearchResults(data) {
 /**
  * The trait search function to use for the `searchFunction` property of the `LisTraitAssociationSearchElement`
  * (`<lis-trait-association-search-element>`) Web Component.
- * @param {string} query - The search query.
- * @param {number} page - The page number.
- * @param {number} pageSize - The page size.
- * @param {object} options - An object containing optional parameters for the HTTP request,
+ * @param {string} queryData - An object containing data from the submitted search form.
+ * @param {number} page - The page of results to load.
+ * @param {object} options - An object containing optional parameters to pass to the `getGenes` function.
  * namely, an optional `AbortSignal` instance that can be used to cancel the request mid-flight.
- * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
+ * @returns {Promise} A `Promise` that resolves to the `PaginatedSearchResults<TraitAssociationSearchResult[]>` used by the
+ * `LisTraitAssociationSearchElement` (`<lis-trait-association-search-element>`) Web Component.
  */
 export function traitSearchFunction(queryData, page, options={}) {
     return getTraits(queryData, {page, pageSize: 10}, options)
@@ -132,9 +127,9 @@ export function traitSearchFunction(queryData, page, options={}) {
 }
 
 /**
- * Creates the `traitSearchFunction` with the given callbacks applied to the returned `Promise`.
+ * Creates the `traitAssociationSearchFunction` with the given callbacks applied to the returned `Promise`.
  * @param {...Function} callbacks - The callback function to apply to the returned `Promise`.
- * @returns {Promise} The `Promise` returned by the `traitSearchFunction` with the callbacks applied.
+ * @returns {Promise} The `Promise` returned by the `traitAssociationSearchFunction` with the callbacks applied.
  */
 export function traitSearchFunctionFactory(...callbacks) {
     return (queryData, page, options={}) => {
@@ -144,17 +139,4 @@ export function traitSearchFunctionFactory(...callbacks) {
         });
         return promise;
     };
-}
-
-export function identifierModalLinkFactory(modalId) {
-  return ({results: oldResults, ...pageInfo}) => {
-    const results = oldResults.map((result) => {
-      const data = {identifier: result.identifier, type: 'trait'};
-      return {
-        ...result,
-        //identifier: modalLink(modalId, result.identifier, data)
-      }
-    });
-    return {...pageInfo, results};    
-  }
 }
