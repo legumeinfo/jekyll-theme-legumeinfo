@@ -64,7 +64,8 @@ query TraitQuery($pageSize: Int, $page: Int, $name: String, $studyType: String, 
  * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
  */
 export function getTraits(queryData={}, pageData={}, options={}) {
-  const {genus, species, type, traits, pubId, author} = queryData;
+  const {genus, species, traits, pubId, author} = queryData;
+  let {type} = queryData;
   if (type === 'QTL') {
     type = 'QTLStudy';
   }
