@@ -44,7 +44,8 @@ export function getOrganisms(queryData={}, pageData={}, options={}) {
 
 /**
  * Converts GraphQL `OrganismsResults` into the `*SearchFormData` used by the
- * `LisGeneSearchElement` (`<lis-gene-search-element>`) Web Component.
+ * `LisGeneSearchElement` (`<lis-gene-search-element>`) and the `LisTraitAssociationSearchElement` 
+ * (`<lis-trait-association-search-element>`) Web Components.
  * @param {object} data - An object containing the data portional of the GraphQL query HTTP response.
  * @returns {object} A `*SearchFormData` object.
  */
@@ -79,12 +80,14 @@ export function organismsDataToFormData(data) {
 
 /**
  * The organisms form data function to use for the `formDataFunction` property of the `LisGeneSearchElement`
- * (`<lis-gene-search-element>`) Web Component.
+ * (`<lis-gene-search-element>`) and the `LisTraitAssociationSearchElement` 
+ * (`<lis-trait-association-search-element>`) Web Components.
  * @param {object} queryData - An object containing the data needed to get organisms.
  * @param {object} pageData - An object containing pagination data for the GraphQL query, if any.
  * @param {object} options - An object containing optional parameters to pass to the `getOrganisms` function.
  * @returns {Promise} A `Promise` that resolves to the `*SearchFormData` used by the `LisGeneSearchElement`
- * (`<lis-gene-search-element>`) Web Component.
+ * (`<lis-gene-search-element>`) and the `LisTraitAssociationSearchElement` 
+ * (`<lis-trait-association-search-element>`) Web Components.
  */
 export function getOrganismsFormDataFunction(queryData={}, pageData={}, options={}) {
   return getOrganisms(queryData, pageData, options)
