@@ -1,11 +1,4 @@
-<div class="uk-card uk-card-small uk-card-default uk-margin-top">
-  <div class="uk-card-header">
-    <div class="uk-grid-small uk-flex-middle" uk-grid>
-      <div class="uk-width-expand">
-        <h3 class="uk-card-title uk-margin-remove-bottom">BLOG POSTS</h3>
-      </div>
-    </div>
-  </div>
+{% capture content %}
   <div class="uk-card-body">
     <ul class="uk-list uk-list-disc">
       {% assign blogLimit = site.card_item_limit %}
@@ -17,7 +10,10 @@
       {% endfor %}
     </ul>
   </div>
-  <div class="uk-card-footer">
+{% endcapture %}
+
+{% capture footer %}
     <a href="{{ "/blog" | relative_url }}" class="uk-button uk-button-text">More Blog Posts</a>
-  </div>
-</div>
+{% endcapture %}
+
+{% include card.html title='BLOG POSTS' content=content footer=footer %}

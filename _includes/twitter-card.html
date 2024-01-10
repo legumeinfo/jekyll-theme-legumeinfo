@@ -1,16 +1,10 @@
-<div class="uk-card uk-card-small uk-card-default uk-margin-top">
-  <div class="uk-card-header">
-    <div class="uk-grid-small uk-flex-middle" uk-grid>
-      <div class="uk-width-expand">
-        <h3 class="uk-card-title uk-margin-remove-bottom"
-        >Tweets from <a class="uk-link-heading"
-                       href="https://twitter.com/{{ site.twitter_username }}"
-                       target="_blank"
-                     >@{{ site.twitter_username }}</a>
-        </h3>
-      </div>
-    </div>
-  </div>
+{% capture title %}Tweets from <a class="uk-link-heading"
+  href="https://twitter.com/{{ site.twitter_username }}"
+  target="_blank"
+>@{{ site.twitter_username }}</a>
+{% endcapture %}
+
+{% capture content %}
   {% if site.twitter_username %}
   <!-- code from Twitter -->
   <a class="twitter-timeline uk-padding-small"
@@ -28,10 +22,13 @@
   {% else %}
   <span class="uk-padding-small uk-text-danger">No Twitter username provided</span>
   {% endif %}
-  <div class="uk-card-footer">
+{% endcapture %}
+
+{% capture footer %}
     <a class="uk-button uk-button-text"
       href="https://twitter.com/{{ site.twitter_username }}"
       target="_blank"
     >More Tweets</a>
-  </div>
-</div>
+{% endcapture %}
+
+{% include card.html title=title content=content footer=footer %}

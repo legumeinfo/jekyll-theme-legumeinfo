@@ -319,18 +319,52 @@ The tools within the list will be grouped by category.
 Jekyll allows the contents of files stored in a site's `_includes/` directory to be included within a page.
 The Legumeinfo Jekyll theme uses these files to create custom layouts.
 A Jekyll site using the Legumeinfo Jekyll theme can include these files from the theme or override them by adding files with the same name to the site's `_includes/` directory.
-The following `_includes/` files are defined by the Legumeinfo Jekyll theme and are intended to be overridden.
+The following `_includes/` files are defined by the Legumeinfo Jekyll theme and are intended to be used or overridden.
+
+#### `card.html`
+
+The `card.html` file encapsulates the [UIkit boilerplate](https://getuikit.com/docs/card) used by the blog, news, events, and Twitter cards.
+See the [Configuration via Front Matter](#configuration-via-front-matter) section for details about these cards.
+This file can be overridden to customize the appearance of the cards, or it can be used to add a card not provided by the theme.
+
+When using the `card.html` file, the `title`, `content`, and `footer` parameters must be provided.
+For example, the blog card uses the `card.html` file as follows:
+```liquid
+{% capture content %}
+  <div class="uk-card-body">
+    <ul class="uk-list uk-list-disc">
+      {% assign blogLimit = site.card_item_limit %}
+      {% if site.blog_card_item_limit %}
+        {% assign blogLimit = site.blog_card_item_limit %}
+      {% endif %}
+      {% for post in site.categories.blog limit:blogLimit %}
+      <li><b>{{ post.date | date_to_string }}:</b> <a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endcapture %}
+
+{% capture footer %}
+    <a href="{{ "/blog" | relative_url }}" class="uk-button uk-button-text">More Blog Posts</a>
+{% endcapture %}
+
+{% include card.html title='BLOG POSTS' content=content footer=footer %}
+```
+
+#### `global-scripts.html` and `global-stylesheets.html`
+
+These files should contain `<script>` and `<link>` tags, respectively, to be included on every page in the Jekyll site.
+
+#### `navbar-lower-menu.html`
+
+This file contains the navigation bar menu that appears below the main navigation bar seen on every page.
+It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
 
 #### `navbar-menu.html`
 
 This file contains the navigation bar menu seen on every page.
 It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
 If using an off-screen menu (described below), it is recommend that the off-screen menu's toggle component is placed here.
-
-#### `navbar-lower-menu.html`
-
-This file contains the navigation bar menu that appears below the main navigation bar seen on every page.
-It is recommended that this menu is given a [responsive width](https://getuikit.com/docs/width#responsive-width) so it can be replaced with a more compact menu on smaller screens.
 
 #### `off-screen-menu.html`
 
@@ -341,10 +375,6 @@ For example:
 ```html
 <button uk-toggle="target: #off-screen-menu" type="button"></button>
 ```
-
-#### `global-scripts.html` and `global-stylesheets.html`
-
-These files should contain `<script>` and `<link>` tags, respectively, to be included on every page in the Jekyll site.
 
 See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files.
 </details>
