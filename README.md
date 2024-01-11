@@ -64,6 +64,9 @@ root/
 │   ├── navbar-lower-menu.html
 │   ├── navbar-menu.html
 │   └── off-screen-menu.html
+├── _sass/
+│   ├── mixins.scss
+│   └── variables.scss
 ├── assets/
 │   ├── css/
 │   ├── icons/
@@ -114,17 +117,7 @@ The Legumeinfo Jekyll theme supports the following entries:
 * `github_username` (optional): String (the site's GitHub handle for social media links)
 * `newsletter` (optional): String (the URL where users can sign up for your site's newsletter)
 * `style` (optional):
-    * `link_color`: String (what color HTML links should be)
-    * `link_hover_color`: String (what color HTML links should be when hovered)
-    * `primary_background`: String (what the background color of the main navbar should be)
     * `invert_navbar_text`: Boolean (whether or not to invert the navbar text color)
-    * `font_family` (default=`ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`): String|Array (the default font family for the entire site; fonts are provided by the Web Browser so the array is treated as an ordered list of fonts to try)
-    * `font_size` (default=`15px`): String (the default font size for the entire site)
-    * `xxlarge_font_size` (default=`38px`): String (the default extra-extra-large font size for the entire site, normally 2.625 &times; `font_size`)
-    * `xlarge_font_size` (default=`30px`): String (the default extra-large font size for the entire site, normally 2.0 &times; `font_size`)
-    * `large_font_size` (default=`24px`): String (the default large font size for the entire site, normally 1.5 &times; `font_size`)
-    * `medium_font_size` (default=`20px`): String (the default medium font size for the entire site, normally 1.25 &times; `font_size`)
-    * `small_font_size` (default=`14px`): String (the default small font size for the entire site, normally 0.875 &times; `font_size`)
 * `web_components_version` (default=`1.0.0`): String (the version of the Legumeinfo Web Components JavaScript library to use; see the [Web Components](#web-components) section for details)
 * `graphql_uri` (default=`https://graphql.lis.ncgr.org/`): String (the URI of the GraphQL Server the theme should load data from; see the [GraphQL Support](#graphql-support) section for details)
 
@@ -377,6 +370,55 @@ For example:
 ```
 
 See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for examples of overriding these files.
+</details>
+
+
+### `_sass/`
+<details>
+
+The Legumeinfo Jekyll theme uses the [UIkit CSS framework](https://getuikit.com/).
+Specifically, the Legumeinfo Jekyll theme customizes UIkit by defining its own [UIkit theme](https://getuikit.com/docs/sass#create-a-uikit-theme).
+Users of the Legumeinfo Jekyll theme can override this UIkit theme and/or further customize UIkit using the `variables.scss` and `mixins.scss` [Sass](https://sass-lang.com/documentation/) files.
+Note that Jekyll does not support liquid syntax in files located in the `_sass/` directory.
+
+#### `variables.scss`
+
+Much of UIkit can be customized by overriding its [Sass variables](https://sass-lang.com/documentation/variables/).
+See [`variables.scss`](https://github.com/uikit/uikit/blob/develop/src/scss/variables.scss) in the UIkit source code for a complete list of variables.
+The Jekyll Legumeinfo theme allows users to override these variables via the `variables.scss` file.
+The following variables are overridden by the Jekyll Legumeinfo theme and may be of interest to sites that want to stylistically differentiate themselves from Legumeinfo:
+
+```scss
+$global-link-color: #0071B3;
+$global-link-hover-color: #018fe2;
+
+$global-primary-background: #87a96b;
+
+$global-font-size: 15px;
+$global-2xlarge-font-size: 38px;
+$global-xlarge-font-size: 30px;
+$global-large-font-size: 24px;
+$global-medium-font-size: 20px;
+$global-small-font-size: 14px;
+
+$global-font-family: ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+```
+
+#### `mixins.scss`
+
+To avoid overhead selectors, UIkit supports overriding/extending the styling of specific selectors by using [Sass mixins](https://sass-lang.com/documentation/at-rules/mixin/), which UIkit calls "[hooks](https://getuikit.com/docs/sass#use-hooks)".
+See [`mixins.scss`](https://github.com/uikit/uikit/blob/develop/src/scss/mixins.scss) in the UIkit source code for a complete list of mixin hooks.
+The Jekyll Legumeinfo theme allows users to define their own mixin hooks via the `mixins.scss` file.
+For instance, the following hooks update the [nav](https://getuikit.com/docs/nav) element's link colors to match the global link colors:
+
+```scss
+@mixin hook-nav-default-item() {
+    color: $global-link-color;
+}
+@mixin hook-nav-default-item-hover() {
+    color: $global-link-hover-color;
+}
+```
 </details>
 
 
