@@ -29,6 +29,8 @@ theme: jekyll-theme-legumeinfo
 future: true
 ```
 
+If you are using a version of Jekyll prior to 4.0, you'll need to copy the contents of the theme's [_config.yml](https://github.com/legumeinfo/jekyll-theme-legumeinfo/blob/main/_config.yml) file into your Jekyll site's `_config.yml` file.
+
 Now the theme can be installed via Bundler:
 
     $ bundle

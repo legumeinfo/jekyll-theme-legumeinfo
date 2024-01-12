@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml)!i) }
 
-  spec.add_runtime_dependency "jekyll", "~> 4.2"
+  spec.add_runtime_dependency "jekyll", ">= 3.5", "< 5.0"
   spec.add_runtime_dependency "webrick", "~> 1.7"
   spec.add_runtime_dependency "jekyll-datapage-generator", "~> 1.4.0"
 end
