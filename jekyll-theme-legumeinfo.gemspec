@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alan Cleary"]
   spec.email         = ["acleary@ncgr.org"]
 
-  spec.summary       = "The Jekyll theme for the Legume Information System science portal."
-  spec.homepage      = "https://legumeinfo.org"
+  spec.summary       = "A Jekyll theme for the Legume Information System and related biodata websites."
+  spec.homepage      = "https://github.com/legumeinfo/jekyll-theme-legumeinfo"
   spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml)!i) }
