@@ -1,18 +1,18 @@
 <div class="tm-sidebar-right uk-flex-none uk-visible@l">
 
-  {% if page.blog_card %}
+  {% if page contains "blog_card" and page.blog_card %}
     {% include blog-card.html %}
   {% endif %}
 
-  {% if page.news_card %}
+  {% if page contains "news_card" and page.news_card %}
     {% include news-card.html %}
   {% endif %}
 
-  {% if page.events_card %}
+  {% if page contains "events_card" and page.events_card %}
     {% include events-card.html %}
   {% endif %}
 
-  {% if page.twitter_card %}
+  {% if page contains "twitter_card" and page.twitter_card %}
     {% include twitter-card.html %}
   {% endif %}
 

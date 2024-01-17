@@ -11,85 +11,87 @@ taxa_menu: true
 
 {% else %}
 
-{% if genus_resources.commonName==nil %}
-<h1><i>{{ genus_resources.genus }}</i></h2>
-{% else %}
+  {% if genus_resources contains "commonName" %}
 <h1><i>{{ genus_resources.genus }}</i> ({{ genus_resources.commonName }})</h2>
-{% endif %}
+  {% else %}
+<h1><i>{{ genus_resources.genus }}</i></h2>
+  {% endif %}
 <p>{{ genus_resources.description }}</p>
 <p>NCBI taxonomy ID: <b>{{ genus_resources.taxid }}</b></p>
 
-{% if genus_resources.resources.size > 0 %}
+  {% if genus_resources contains "resources" %}
 <h2>Tools and resources for the genus as a whole</h2>
 <dl>
-  {% for resource in genus_resources.resources %}
-  <dt><a href="{{ resource.URL }}">{{ resource.name }}</a></dt>
-  <dd>{{ resource.description }}</dd>
-  {% endfor %}
+    {% for resource in genus_resources.resources %}
+  <dt>{% if resource contains "URL" and resource contains "name" %}<a href="{{ resource.URL }}">{{ resource.name }}</a>{% endif %}</dt>
+  <dd>{% if resource contains "description" %}{{ resource.description }}{% endif %}</dd>
+    {% endfor %}
 </dl>
-{% endif %}
+  {% endif %}
 
 <h2>Tools and resources for particular species</h2>
 
-{% for item in species_resources.species %}
+  {% for item in species_resources.species %}
 
 <hr/>
-{% if item["commonName"]==nil %}
+    {% if item contains "commonName" %}
+<h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i>: {{ item.commonName }}</h3>
+    {% else %}
 <h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i></h3>
-{% else %}
-<h3 id="{{ item["species"] }}"><i>{{ item["genus"] }} {{ item["species"] }}</i>: {{ item["commonName"] }}</h3>
-{% endif %}
+    {% endif %}
 
-{% capture species_photo_path %}assets/img/species_images/{{ item["abbrev"] }}.jpg{% endcapture %}
-{% assign species_photo = site.static_files | where: "path", species_photo_path | first %}
-{% if species_photo %}
+    {% capture species_photo_path %}assets/img/species_images/{{ item["abbrev"] }}.jpg{% endcapture %}
+    {% assign species_photo = site.static_files | where: "path", species_photo_path | first %}
+    {% if species_photo %}
 <div class="species-image">
   <img src="/assets/img/species_images/{{ item["abbrev"] }}.jpg" alt="Image: {{ item["commonName"] }}"/>
-  {% for attribItem in site.data.species_image_attribution %}
-  {%   if attribItem.gensp contains item["abbrev"] %}
+      {% for attribItem in site.data.species_image_attribution %}
+        {% if attribItem.gensp contains item["abbrev"] %}
   <div class="attribution">
-    {%   if attribItem.source == nil %}
+          {% if attribItem.source == nil %}
     &copy; {{ attribItem.attribution }}
-    {%   else %}
+          {% else %}
     &copy; <a href="{{ attribItem.source }}">{{ attribItem.attribution }}</a>
-    {%   endif %}
+          {% endif %}
   </div>
-  {%   endif %}
-  {% endfor %}
+        {% endif %}
+      {% endfor %}
 </div>
-{% endif %}
+    {% endif %}
 
 <p>{{ item["description"] }}</p>
 
 <p>NCBI taxonomy ID: <b>{{ item["taxid"] }}</b></p>
 
-{% if item["resources"].size > 0 %}
+    {% if item contains "resources" %}
 <h4><i>{{ item["genus"] }} {{ item["species"] }}</i> resources</h4>
 <dl>
-  {% for resource in item["resources"] %}
+      {% for resource in item["resources"] %}
   <dt><a href="{{ resource.URL }}">{{ resource.name }}</a></dt>
   <dd>{{ resource.description }}</dd>
-  {% endfor %}
+      {% endfor %}
 </dl>
-{% else %}
+    {% else %}
 <h4><i>No resources are currently listed for {{ item["genus"] }} {{ item["species"] }}</i></h4>
-{% endif %}
+    {% endif %}
 
 <h4><i>{{ item["genus"] }} {{ item["species"] }}</i> accessions</h4>
-{% for strain in item["strains"] %}
-<b>{{ strain.identifier }}</b> ({{ strain.origin }}) <br/>
-{{ strain.description }}
-{% if strain.resources.size > 0 %}
+    {% if item contains "strains" %}
+      {% for strain in item["strains"] %}
+<b>{{ strain.identifier }}</b>{% if strain contains "origin" %} ({{ strain.origin }}){% endif %}<br/>
+        {% if strain contains "description" %}{{ strain.description }}{% endif %}
+        {% if strain contains "resources" %}
 <ul>
-  {% for resource in strain.resources %}
+          {% for resource in strain.resources %}
   <li><a href="{{ resource.URL }}">{{ resource.name }}</a> : {{ resource.description }}</li>
-  {% endfor %}
+          {% endfor %}
 </ul>
-{% else %}
+        {% else %}
 <br/><i>No resources are currently listed for accession <b>{{ strain.identifier }}</b></i>.
-{% endif %}
-{% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
 
-{% endfor %}
+  {% endfor %}
 
 {% endif %}
