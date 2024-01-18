@@ -90,7 +90,9 @@ root/
 │   └── _posts/
 │       ├── 2021-09-14-very-important-news.html
 │       └── ...
-└── taxa/
+├── taxa/
+│   └── index.html
+└── tools/
     └── index.html
 ```
 
@@ -516,11 +518,11 @@ summary:    This news is sensational! Everyone will talk about it... but it chan
 Note that the blog post's `layout` variable has the value `blog-post`.
 This defines a layout provided by the Legumeinfo Jekyll theme for blog posts, thus all blog posts should specify the `blog-post` layout.
 Similarly, the event's `layout` variable has the value `event` and the news item's `layout` variable has the value `news-item`.
-All events and news items should specify these layouts as well.
+All events and news items should specify these layouts as well; see the [layouts](#layouts) section for details..
 
 The most recent blog posts, events, and news items can be listed in cards on the right side of any page in a Jekyll site using the Legumeinfo Jekyll theme.
 These cards contain links to `blog/index.html`, `events/index.html`, and `news/index.html`, respectively.
-It is left to users of the theme to implement these pages.
+It is left to users of the theme to implement these pages, although default layouts are provided by the Legumeinfo Jekyll theme; see the [layouts](#layouts) section for details.
 See the [Configuration via Front Matter](#configuration-via-front-matter) section for details on how to enable the cards and see the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for example implementations of the pages the cards link to.
 
 **[By default](https://jekyllrb.com/docs/upgrading/2-to-3/#future-posts) Jekyll doesn't generate static pages for posts whose date is after the date the site was built.
@@ -540,6 +542,14 @@ The Legumeinfo Jekyll theme generates a page for each taxon (genus) when the Jek
 These pages are placed in the `_site/taxa/` directory, which corresponds to the `taxa/` directory in the site's source code.
 It is left to users of the theme to implement the `taxa/index.html` page.
 See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for an example implementations of this page.
+</details>
+
+### `tools/`
+<details>
+
+The Legumeinfo Jekyll theme supports a list of web-based tools that are provided by a site; see **`tools.yml`** in the [`_data/`](#_data) section for details.
+If a site wants to display this list on a dedicated page, then they can add a `tools/index.html` page that uses the `tools` layout; see the [layouts](#layouts) section for details.
+Additionally, the `tools/` directory is intended to store pages for tools that need to be embedded in pages within a site.
 </details>
 
 
@@ -574,6 +584,7 @@ The Legumeinfo Jekyll theme provides the following layouts:
 * `post`: Alias for `default`.
 * `reading-width`: A layout that puts content in a container with a width ideal for reading.
 * `taxon`: The template used when generating pages for the taxa (genera) in the `_data/taxon_list.yml` file.
+* `tools`: The template used when viewing all tools in the `_data/tools.yml` file.
 
 It is recommend that each page uses the `default` layout unless the page corresponds to a previously described page that has a specific layout.
 </details>
