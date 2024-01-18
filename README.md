@@ -306,7 +306,7 @@ The list should adhere to the following schema:
 
 These tools can optionally be listed in a vertical menu on the left side of any page in the site.
 See the [Configuration via Front Matter](#configuration-via-front-matter) section for details.
-The tools within the list will be grouped by category.
+The tools can also be listed on a dedicated tools page; see the [`tools/`](#tools) section for details.
 </details>
 
 
