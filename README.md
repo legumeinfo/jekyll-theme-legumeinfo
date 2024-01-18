@@ -202,8 +202,8 @@ The `taxon_list.yml` file should adhere to the following schema pattern:
   genus: Apios
   category: special
 ```
-Each `category` variable should have the value `main` or `special`.
-These categories are used to determine the groupings of the genera in the taxa menu.
+The category variable is optional unless using the [menus](#_includes) or [`taxon` layout](#layouts) provided by the theme.
+In this case, each `category` variable should have the value `main` or `special`, which will be used to group the genera in these elements.
 
 The `taxa/` directory should contain a subdirectory for each genus in the `taxon_list.yml` file.
 Each subidrectory should contain three files: `genus_resources.yml`, `species_collections.yml`, and `species_resources.yml`.
@@ -540,8 +540,7 @@ Alternatively, the `--future` command line option can be used when building the 
 
 The Legumeinfo Jekyll theme generates a page for each taxon (genus) when the Jekyll site is built; see **`taxon_list.yml` and `taxa/`** in the [`_data/`](#_data) section for details.
 These pages are placed in the `_site/taxa/` directory, which corresponds to the `taxa/` directory in the site's source code.
-It is left to users of the theme to implement the `taxa/index.html` page.
-See the [jekyll-starter-legumeinfo](https://github.com/legumeinfo/jekyll-starter-legumeinfo) repository for an example implementations of this page.
+It is left to users of the theme to implement the `taxa/index.html` page, although a `taxa` layout is provided as a default implementation; see the [layouts](#layouts) section for details.
 </details>
 
 ### `tools/`
