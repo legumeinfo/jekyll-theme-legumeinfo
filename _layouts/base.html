@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{% if page contains 'lang' %}{{ page.lang }}{% elsif site contains 'lang' %}{{ site.lang }}{% else %}en{% endif %}">
+<html lang="{% if page contains 'lang' %}{{ page.lang }}{% elsif site.keys contains 'lang' %}{{ site.lang }}{% else %}en{% endif %}">
 
 {% include head.html %}
 

@@ -1,13 +1,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{% if page contains 'title' %}{{ page.title | strip_html }} &#8211; {% endif %}{% if site contains 'title' %}{{ site.title | strip_html }}{% endif %}</title>
+  <title>{% if page contains 'title' %}{{ page.title | strip_html }} &#8211; {% endif %}{% if site.keys contains "title" %}{{ site.title | strip_html }}{% endif %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{% if page contains 'meta_description' %}{{ page.meta_description | xml_escape }}{% elsif page contains 'summary' %}{{ page.summary | xml_escape }}{% else %}{{ site.description | xml_escape }}{% endif %}">
   {% if page contains 'meta_robots' %}<meta name="robots" content="{{ page.meta_robots }}">
   {% else %}<meta name="robots" content="all">{% endif %}
-  {% if site contains 'author' %}<meta name="author" content="{{ site.author }}">{% endif %}
-  {% if site contains 'fb_page' %}<meta property="fb:pages" content="{{ site.fb_page_id }}" />{% endif %}
+  {% if site.keys contains 'author' %}<meta name="author" content="{{ site.author }}">{% endif %}
+  {% if site.keys contains 'fb_page' %}<meta property="fb:pages" content="{{ site.fb_page_id }}" />{% endif %}
   {% if page contains 'categories' %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
   <link rel="canonical" href="{{ page.url | absolute_url }}">
 
@@ -34,7 +34,7 @@
     }
   </script>
 
-  {% if page contains "web_components" and page.web_components and site contains "web_components_version" %}
+  {% if page contains "web_components" and page.web_components and site.keys contains "web_components_version" %}
   <!-- LIS Web Components -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/@legumeinfo/web-components@{{ site.web_components_version }}/dist/web-components.min.js"></script>
   {% endif %}
