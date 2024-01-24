@@ -1,11 +1,11 @@
-{% capture title %}Tweets from <a class="uk-link-heading"
+{% capture title %}Tweets{% if site.keys contains "twitter_username" %} from <a class="uk-link-heading"
   href="https://twitter.com/{{ site.twitter_username }}"
   target="_blank"
->@{{ site.twitter_username }}</a>
+>@{{ site.twitter_username }}</a>{% endif %}
 {% endcapture %}
 
 {% capture content %}
-  {% if site.twitter_username %}
+  {% if site.keys contains "twitter_username" %}
   <!-- code from Twitter -->
   <a class="twitter-timeline uk-padding-small"
     href="https://twitter.com/{{ site.twitter_username }}"
@@ -25,10 +25,12 @@
 {% endcapture %}
 
 {% capture footer %}
+  {% if site.keys contains "twitter_username" %}
     <a class="uk-button uk-button-text"
       href="https://twitter.com/{{ site.twitter_username }}"
       target="_blank"
     >More Tweets</a>
+  {% endif %}
 {% endcapture %}
 
 {% include card.html title=title content=content footer=footer %}

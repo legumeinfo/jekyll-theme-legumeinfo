@@ -329,7 +329,7 @@ For example, the blog card uses the `card.html` file as follows:
   <div class="uk-card-body">
     <ul class="uk-list uk-list-disc">
       {% assign blogLimit = site.card_item_limit %}
-      {% if site.blog_card_item_limit %}
+      {% if site.keys contains "blog_card_item_limit" %}
         {% assign blogLimit = site.blog_card_item_limit %}
       {% endif %}
       {% for post in site.categories.blog limit:blogLimit %}

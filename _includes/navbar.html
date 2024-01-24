@@ -1,7 +1,7 @@
 {% assign default_paths = site.pages | map: "path" %}
 {% capture page_paths %}{% if site.keys contains "header_pages" %}{{ site.header_pages }}{% else %}{{ default_paths }}{% endif %}{% endcapture %}
 
-<div id="navbar" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed{% if site.style.invert_navbar_text %} uk-light{% endif %}" uk-sticky>
+<div id="navbar" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed{% if site.keys contains 'style.invert_navbar_text' %} uk-light{% endif %}" uk-sticky>
 
   <div id="alerts">
     {% capture alerts %}
