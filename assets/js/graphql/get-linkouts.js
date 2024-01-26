@@ -108,6 +108,7 @@ export function locationLinkoutsFunction(linkoutData, options) {
     .then(({data}) => locationLinkoutsToLinkoutResults(data));
 }
 
+
 /** The GraphQL query used to get linkouts for gene families. */
 export const getGeneFamilyLinkoutsQuery = `
   query GeneFamilyLinkoutsQuery($identifier: ID!) {
@@ -161,6 +162,7 @@ export function geneFamilyLinkoutsFunction(linkoutData, options) {
     .then(({data}) => geneFamilyLinkoutsToLinkoutResults(data));
 }
 
+
 /** The GraphQL query used to get linkouts for pangene sets. */
 export const getPanGeneSetLinkoutsQuery = `
   query PanGeneSetLinkoutsQuery($identifier: ID!) {
@@ -213,6 +215,7 @@ export function panGeneSetLinkoutsFunction(linkoutData, options) {
   return getPanGeneSetLinkouts(linkoutData, options)
     .then(({data}) => panGeneSetLinkoutsToLinkoutResults(data));
 }
+
 
 /**
  * A linkouts function to use for the `linkoutFunction` property of the `LisLinkoutElement`

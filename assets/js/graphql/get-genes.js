@@ -174,15 +174,15 @@ export function locationModalLinkFactory(modalId) {
 
 /**
  * Creates a callback function that can be used with the `geneSearchFunctionFactory` function
- * to convert `identifiers` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
+ * to convert `geneFamilyAssignments` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
  * open a modal with the given `modalId`.
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function} The created callback function.
  */
-export function geneFamilyIdentifierModalLinkFactory(modalId) {
+export function geneFamilyAssignmentsModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
-    const results = oldResults.map(({geneFamilyAssignments, ...geneInfo}) => {
-      geneFamilyAssignments = geneFamilyAssignments.map((identifier) => {
+    const results = oldResults.map(({geneFamilyAssignments: oldGeneFamilyAssignments, ...geneInfo}) => {
+      const geneFamilyAssignments = oldGeneFamilyAssignments.map((identifier) => {
         const data = {identifier, type: 'geneFamily'};
         return modalLink(modalId, identifier, data);
       });
@@ -197,15 +197,15 @@ export function geneFamilyIdentifierModalLinkFactory(modalId) {
 
 /**
  * Creates a callback function that can be used with the `geneSearchFunctionFactory` function
- * to convert `identifiers` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
+ * to convert `panGeneSets` in the `PaginatedSearchResults<GeneSearchResult[]>` into links that
  * open a modal with the given `modalId`.
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function} The created callback function.
  */
-export function panGeneSetIdentifierModalLinkFactory(modalId) {
+export function panGeneSetsModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
-    const results = oldResults.map(({panGeneSets, ...geneInfo}) => {
-      panGeneSets = panGeneSets.map((identifier) => {
+    const results = oldResults.map(({panGeneSets: oldPanGeneSets, ...geneInfo}) => {
+      const panGeneSets = oldPanGeneSets.map((identifier) => {
         const data = {identifier, type: 'panGeneSet'};
         return modalLink(modalId, identifier, data);
       });
@@ -228,7 +228,7 @@ export function allModalLinksFactory(modalId) {
   return [
     geneIdentifierModalLinkFactory(modalId),
     locationModalLinkFactory(modalId),
-    geneFamilyIdentifierModalLinkFactory(modalId),
-    panGeneSetIdentifierModalLinkFactory(modalId),
+    geneFamilyAssignmentsModalLinkFactory(modalId),
+    panGeneSetsModalLinkFactory(modalId),
   ];
 }
