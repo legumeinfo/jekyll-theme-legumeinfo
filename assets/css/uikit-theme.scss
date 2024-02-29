@@ -269,7 +269,7 @@ html {
 
 .tm-sidebar-right {
     width: $sidebar-right-width !important;
-    padding-right: 40px;
+    padding-left: 40px;
 }
 
 /* Tablet landscape and bigger */
@@ -291,7 +291,7 @@ html {
     .tm-sidebar-left + .tm-main { padding-left: $sidebar-left-width-xl; }
     .tm-sidebar-right {
         width: $sidebar-right-width-xl !important;
-        padding-right: 45px;
+        padding-left: 45px;
     }
 }
 
