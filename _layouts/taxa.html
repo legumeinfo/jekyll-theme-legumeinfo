@@ -3,6 +3,8 @@ layout: default
 ---
 <h1>Taxa</h1>
 
+{{ content }}
+
 {% if site.data.taxon_list %}
 {% assign genera = site.data.taxon_list | group_by: "genus"  %}
 
