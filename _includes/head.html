@@ -25,11 +25,16 @@
 
   {% include global-scripts.html %}
 
+  {% if page.events_js %}
+  <script src="{{ "assets/js/events.js" | relative_url }}"></script>
+  {% endif %}
+
   <!-- opt-in code for integrating GraphQL with LIS Web Components -->
   <script type="importmap">
     {
       "imports": {
-        "lis-graphql": "{{ "assets/js/graphql/index.js" | relative_url }}"
+        "lis-graphql": "{{ 'assets/js/graphql/index.js' | relative_url }}",
+        "lis-events": "{{ 'assets/js/events.js' | relative_url }}"
       }
     }
   </script>

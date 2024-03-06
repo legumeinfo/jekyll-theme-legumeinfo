@@ -15,7 +15,9 @@ layout: default
 {% comment %}
 Populate the description lists using JavaScript so the site doesn't have to be rebuilt when the event is over
 {% endcomment %}
-<script type="text/javascript">
+<script type="module">
+
+  import { pastEvents, upcomingEvents } from "lis-events";
 
   /* generates the description list HTML for an event */
   function eventHtml(event) {
@@ -30,33 +32,6 @@ Populate the description lists using JavaScript so the site doesn't have to be r
     `;
   }
 
-  /* all events */
-  const events = [
-    {% for post in site.categories.events reversed %}
-      {
-        url: "{{ post.url }}",
-        title: "{{ post.title }}",
-        date: "{{ post.date | date_to_string }}",
-        unixDate: {{ post.date | date: '%s' }},
-        {% if post.end_date %}
-        endDate: "{{ post.end_date | date_to_string }}",
-        unixEndDate: {{ post.end_date | date: '%s' }},
-        {% else %}
-        endDate: null,
-        unixEndDate: null,
-        {% endif %}
-        summary: "{{ post.summary }}",
-      },
-    {% endfor %}
-    ];
-
-  /* separate current and upcoming events from past events */
-  const currentUnixDate = Math.floor(Date.now() / 1000);
-  const upcomingEvents = events
-    .filter((event) => event.unixDate >= currentUnixDate || event.unixEndDate >= currentUnixDate);
-  const pastEvents = events
-    .filter((event) => event.unixDate < currentUnixDate && event.unixEndDate < currentUnixDate);
-
   /* generate HTML for events */
   const upcomingHtml = upcomingEvents.map(eventHtml);
   const pastHtml = pastEvents.map(eventHtml);
@@ -66,4 +41,5 @@ Populate the description lists using JavaScript so the site doesn't have to be r
   upcomingElement.innerHTML = upcomingHtml.join("");
   const pastElement = document.getElementById("past-events");
   pastElement.innerHTML = pastHtml.join("");
+
 </script>
