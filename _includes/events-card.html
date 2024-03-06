@@ -1,6 +1,6 @@
 {% capture content %}
   <div class="uk-card-body">
-    <ul id="upcoming-events" class="uk-list uk-list-disc"></ul>
+    <ul id="card-upcoming-events" class="uk-list uk-list-disc"></ul>
   </div>
 {% endcapture %}
 
@@ -13,37 +13,20 @@
 {% comment %}
 Populate the widget using JavaScript so the site doesn't have to be rebuilt when the event is over
 {% endcomment %}
-<script type="text/javascript">
-  /* all events */
-  const events = [
-    {% for post in site.categories.events reversed %}
-      {
-        url: "{{ post.url }}",
-        title: "{{ post.title }}",
-        date: "{{ post.date | date_to_string }}",
-        unixDate: {{ post.date | date: '%s' }},
-        {% if post.end_date %}
-        endDate: "{{ post.end_date | date_to_string }}",
-        unixEndDate: {{ post.end_date | date: '%s' }},
-        {% else %}
-        endDate: null,
-        unixEndDate: null,
-        {% endif %}
-      },
-    {% endfor %}
-    ];
-  /* only keep soonest eventsLimit events that are currently happening or upcoming */
+<script type="module">
+
+  import { upcomingEvents } from "lis-events";
+
   const eventsLimit = {% if site.events_card_item_limit %}
     {{ site.events_card_item_limit }}
   {% else %}
     {{ site.card_item_limit }}
   {% endif %};
-  const currentUnixDate = Math.floor(Date.now() / 1000);
-  const upcomingEvents = events
-    .filter((event) => event.unixDate >= currentUnixDate || event.unixEndDate >= currentUnixDate)
-    .slice(0, eventsLimit);
+
+  const cardUpcomingEvents = upcomingEvents.slice(0, eventsLimit);
+
   /* generate HTML for each event */
-  const listItems = upcomingEvents
+  const cardListItems = upcomingEvents
     .map((event) => {
       const titleLink = `<a href="${ event.url }"><b>${ event.title }</b></a>`;
       let dates = event.date;
@@ -52,7 +35,8 @@ Populate the widget using JavaScript so the site doesn't have to be rebuilt when
       }
       return `<li>${ titleLink } ${ dates }</li>`;
     });
+
   /* add the upcoming events to the upcoming events element */
-  const eventList = document.getElementById("upcoming-events");
-  eventList.innerHTML = listItems.join("");
+  const cardEventList = document.getElementById("card-upcoming-events");
+  cardEventList.innerHTML = cardListItems.join("");
 </script>
