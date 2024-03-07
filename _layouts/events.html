@@ -29,8 +29,7 @@ Populate the description lists using JavaScript so the site doesn't have to be r
       dates += ` - ${ event.endDate }`;
     }
     return `
-      <dt>${ titleLink } ${ dates }</dt>
-      <dd>${ event.summary }<dd>
+      {% include post-description.html url='${ event.url }' title='${ event.title }' date='${ dates }' summary='${ event.summary }' %}
     `;
   }
 
