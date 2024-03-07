@@ -7,7 +7,7 @@
 {% capture content %}
   {% if site.twitter_username %}
   <!-- code from Twitter -->
-  <a class="twitter-timeline uk-padding-small"
+  <p><a class="twitter-timeline uk-padding-small"
     href="https://twitter.com/{{ site.twitter_username }}"
     data-tweet-limit={% if site.twitter_card_item_limit %}
       {{ site.twitter_card_item_limit }}
@@ -16,19 +16,21 @@
     {% endif %}
     data-chrome="noheader, nofooter, noborders"
     dnt=true
-  >Tweets by {{ site.twitter_username }}</a>
+  ><b>Tweets by {{ site.twitter_username }}</b></a></p>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <!-- end code from Twitter -->
   {% else %}
-  <span class="uk-padding-small uk-text-danger">No Twitter username provided</span>
+  <div class="uk-card-body">
+    <p class="uk-text-danger">No Twitter username provided</p>
+  </div>
   {% endif %}
 {% endcapture %}
 
 {% capture footer %}
-    <a class="uk-button uk-button-text"
-      href="https://twitter.com/{{ site.twitter_username }}"
-      target="_blank"
-    >More Tweets</a>
+  <a class="uk-button uk-button-text"
+    href="https://twitter.com/{{ site.twitter_username }}"
+    target="_blank"
+  >More Tweets</a>
 {% endcapture %}
 
 {% include card.html title=title content=content footer=footer %}
