@@ -10,8 +10,8 @@ layout: default
 {% if site.categories.blog.size > 0 %}
 <dl class="uk-description-list uk-description-list-divider">
 {% for post in site.categories.blog %}
-  {% capture date %}{{ post.date | date_to_long_string }}{% endcapture %}
-  {% include post-description.html url=post.url title=post.title date=date author=post.author summary=post.summary %}
+  {% capture meta %}{{ post.author }}, {{ post.date | date_to_long_string }}{% endcapture %}
+  {% include post-description.html url=post.url title=post.title date=date meta=meta summary=post.summary %}
 {% endfor %}
 </dl>
 {% else %}
