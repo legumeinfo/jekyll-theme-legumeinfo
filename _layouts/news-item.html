@@ -1,14 +1,6 @@
 ---
-layout: reading-width 
+layout: reading-width
 ---
 
-<article class="uk-article">
-  <h1 class="uk-article-title">{{ page.title }}</h1>
-
-  <p class="uk-article-meta">Written by {{ page.author }} on {{ page.date | date_to_string }}.</p>
-
-  <p class="uk-text-lead">{{ page.summary }}</p>
-
-  {{ content }}
-
-</article>
+{% capture meta %}Posted on {{ page.date | date_to_long_string }}{% endcapture %}
+{% include article.html title=page.title meta=meta summary=page.summary content=content %}

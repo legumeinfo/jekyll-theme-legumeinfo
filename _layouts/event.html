@@ -2,13 +2,5 @@
 layout: reading-width
 ---
 
-<article class="uk-article">
-  <h1 class="uk-article-title">{{ page.title }}</h1>
-
-  <p class="uk-article-meta">{{ page.date | date_to_string }}{% if page.end_date %} - {{ page.end_date | date_to_string }}{% endif %}</p>
-
-  <p class="uk-text-lead">{{ page.summary }}</p>
-
-  {{ content }}
-
-</article>
+{% capture meta %}When: {{ page.date | date_to_long_string }}{% if page.end_date %} - {{ page.end_date | date_to_long_string }}{% endif %}{% endcapture %}
+{% include article.html title=page.title meta=meta summary=page.summary content=content %}
