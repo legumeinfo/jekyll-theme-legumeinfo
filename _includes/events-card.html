@@ -31,12 +31,11 @@ Populate the widget using JavaScript so the site doesn't have to be rebuilt when
   if (upcomingEvents.length > 0) {
     const cardListItems = upcomingEvents
       .map((event) => {
-        const titleLink = `<a href="${ event.url }"><b>${ event.title }</b></a>`;
         let dates = event.date;
         if (event.endDate) {
           dates += ` - ${ event.endDate }`;
         }
-        return `<li>${ titleLink } ${ dates }</li>`;
+        return `{% include card-item.html url='${ event.url }' title='${ event.title }' meta='${ dates }' %}`;
       });
     innerHTML = `
       <ul id="card-upcoming-events" class="uk-list uk-list-disc">

@@ -7,7 +7,7 @@
         {% assign blogLimit = site.blog_card_item_limit %}
       {% endif %}
       {% for post in site.categories.blog limit:blogLimit %}
-      <li><b>{{ post.date | date_to_string }}:</b> <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% include card-item.html url=post.url title=post.title %}
       {% endfor %}
     </ul>
     {% else %}
