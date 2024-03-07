@@ -6,11 +6,13 @@ layout: default
 
 {{ content }}
 
-<h2>Current and Upcoming Events</h2>
-<dl id="upcoming-events" class="uk-description-list uk-description-list-divider"></dl>
+<h2 class="uk-heading-divider">Current and Upcoming Events</h2>
 
-<h2>Past Events</h2>
-<dl id="past-events" class="uk-description-list uk-description-list-divider"></dl>
+<div id="upcoming-events"></div>
+
+<h2 class="uk-heading-divider">Past Events</h2>
+
+<div id="past-events"></div>
 
 {% comment %}
 Populate the description lists using JavaScript so the site doesn't have to be rebuilt when the event is over
@@ -32,14 +34,30 @@ Populate the description lists using JavaScript so the site doesn't have to be r
     `;
   }
 
-  /* generate HTML for events */
-  const upcomingHtml = upcomingEvents.map(eventHtml);
-  const pastHtml = pastEvents.map(eventHtml);
-
-  /* add the events to the events elements */
+  /* add the current and upcoming events */
+  let innerHTML = "<p>There are no current or upcoming events.</p>";
+  if (upcomingEvents.length > 0) {
+    const upcomingHtml = upcomingEvents.map(eventHtml);
+    innerHTML = `
+      <dl class="uk-description-list uk-description-list-divider">
+        ${ upcomingHtml.join("") }
+      </dl>
+    `;
+  }
   const upcomingElement = document.getElementById("upcoming-events");
-  upcomingElement.innerHTML = upcomingHtml.join("");
+  upcomingElement.innerHTML = innerHTML;
+
+  /* add the current and upcoming events */
+  innerHTML = "<p>There are no past events.</p>";
+  if (pastEvents.length > 0) {
+    const pastHtml = pastEvents.map(eventHtml);
+    innerHTML = `
+      <dl class="uk-description-list uk-description-list-divider">
+        ${ pastHtml.join("") }
+      </dl>
+    `;
+  }
   const pastElement = document.getElementById("past-events");
-  pastElement.innerHTML = pastHtml.join("");
+  pastElement.innerHTML = innerHTML;
 
 </script>
