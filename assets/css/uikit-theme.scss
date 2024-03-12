@@ -248,6 +248,9 @@ html {
     overflow-x: hidden;
 }
 
+/* override description list text transform */
+dl > dt { text-transform: none !important; }
+
 
 /* Documentation Sidebars
  ========================================================================== */

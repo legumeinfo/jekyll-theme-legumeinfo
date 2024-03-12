@@ -1,14 +1,18 @@
 {% capture content %}
   <div class="uk-card-body">
+    {% if site.categories.blog.size > 0 %}
     <ul class="uk-list uk-list-disc">
       {% assign blogLimit = site.card_item_limit %}
       {% if site.blog_card_item_limit %}
         {% assign blogLimit = site.blog_card_item_limit %}
       {% endif %}
       {% for post in site.categories.blog limit:blogLimit %}
-      <li><b>{{ post.date | date_to_string }}:</b> <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% include card-item.html url=post.url title=post.title %}
       {% endfor %}
     </ul>
+    {% else %}
+    <p>There are currently no blog posts.</p>
+    {% endif %}
   </div>
 {% endcapture %}
 

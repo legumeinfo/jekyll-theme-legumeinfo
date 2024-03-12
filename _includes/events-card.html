@@ -1,7 +1,5 @@
 {% capture content %}
-  <div class="uk-card-body">
-    <ul id="card-upcoming-events" class="uk-list uk-list-disc"></ul>
-  </div>
+  <div id="events-card" class="uk-card-body"></div>
 {% endcapture %}
 
 {% capture footer %}
@@ -26,17 +24,24 @@ Populate the widget using JavaScript so the site doesn't have to be rebuilt when
   const cardUpcomingEvents = upcomingEvents.slice(0, eventsLimit);
 
   /* generate HTML for each event */
-  const cardListItems = upcomingEvents
-    .map((event) => {
-      const titleLink = `<a href="${ event.url }"><b>${ event.title }</b></a>`;
-      let dates = event.date;
-      if (event.endDate) {
-        dates += ` - ${ event.endDate }`;
-      }
-      return `<li>${ titleLink } ${ dates }</li>`;
-    });
 
   /* add the upcoming events to the upcoming events element */
-  const cardEventList = document.getElementById("card-upcoming-events");
-  cardEventList.innerHTML = cardListItems.join("");
+  const cardEventList = document.getElementById("events-card");
+  let innerHTML = "<p>There are no current or upcoming events.</p>";
+  if (upcomingEvents.length > 0) {
+    const cardListItems = upcomingEvents
+      .map((event) => {
+        let dates = event.date;
+        if (event.endDate) {
+          dates += ` - ${ event.endDate }`;
+        }
+        return `{% include card-item.html url='${ event.url }' title='${ event.title }' meta='${ dates }' %}`;
+      });
+    innerHTML = `
+      <ul id="card-upcoming-events" class="uk-list uk-list-disc">
+        ${ cardListItems.join("") }
+      </ul>
+    `;
+  }
+  cardEventList.innerHTML = innerHTML;
 </script>
