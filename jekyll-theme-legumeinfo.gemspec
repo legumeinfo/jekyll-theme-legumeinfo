@@ -3,8 +3,8 @@
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-legumeinfo"
   spec.version       = "0.0.0"
-  spec.authors       = ["Alan Cleary"]
-  spec.email         = ["acleary@ncgr.org"]
+  spec.authors       = ["Legume Information System"]
+  spec.email         = ["lis@ncgr.org"]
 
   spec.summary       = "A Jekyll theme for the Legume Information System and related biodata websites."
   spec.homepage      = "https://github.com/legumeinfo/jekyll-theme-legumeinfo"
