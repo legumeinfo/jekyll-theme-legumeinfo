@@ -217,6 +217,114 @@ export function panGeneSetLinkoutsFunction(linkoutData, options) {
 }
 
 
+/** The GraphQL query used to get linkouts for GWAS. */
+export const getGWASLinkoutsQuery = `
+  query GWASLinkoutsQuery($identifier: ID!) {
+    GWASLinkouts(identifier: $identifier) {
+      results {
+        href
+        text
+      }
+    }
+  }
+`;
+
+
+/**
+ * Gets linkouts for GWAS from GraphQL.
+ * @param {object} queryData - An object containing zero or more variables for the GraphQL query.
+ * @param {object} options - An object containing optional parameters for the HTTP request,
+ * namely, an optional `AbortSignal` instance that can be used to cancel the request mid-flight.
+ * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
+ */
+export function getGWASLinkouts(queryData={}, options={}) {
+  const {identifier} = queryData;
+  const variables = {identifier};
+  const {abortSignal} = options;
+  return query(getGWASLinkoutsQuery, variables, abortSignal);
+}
+
+
+/**
+ * Converts GraphQL `GWASLinkoutsResults` into the `LinkoutResults` used by the `LisLinkoutElement`
+ * (`<lis-linkout-element>`) Web Component.
+ * @param {object} data - An object containing the data portional of the GraphQL query HTTP response.
+ * @returns {object} A `LinkoutResults` object.
+ */
+export function GWASLinkoutsToLinkoutResults(data) {
+  const results = data.GWASLinkouts.results;
+  return {results};
+}
+
+
+/**
+ * The GWAS linkouts function to use for the `linkoutFunction` property of the `LisLinkoutElement`
+ * (`<lis-linkout-element>`) Web Component.
+ * @param {object} linkoutData - An object containing the data needed to get linkouts.
+ * @param {object} options - An object containing optional parameters to pass to the `getGeneLinkouts` function.
+ * @returns {Promise} A `Promise` that resolves to the `LinkoutResults` used by the
+ * `LisLinkoutElement` (`<lis-linkout-element>`) Web Component.
+ */
+export function GWASLinkoutsFunction(linkoutData, options) {
+  return getGWASStudyLinkouts(linkoutData, options)
+    .then(({data}) => GWASLinkoutsToLinkoutResults(data));
+}
+
+
+/** The GraphQL query used to get linkouts for QTLStudies. */
+export const getQTLStudyLinkoutsQuery = `
+  query QTLStudyLinkoutsQuery($identifier: ID!) {
+    QTLStudyLinkouts(identifier: $identifier) {
+      results {
+        href
+        text
+      }
+    }
+  }
+`;
+
+
+/**
+ * Gets linkouts for QTLStudies from GraphQL.
+ * @param {object} queryData - An object containing zero or more variables for the GraphQL query.
+ * @param {object} options - An object containing optional parameters for the HTTP request,
+ * namely, an optional `AbortSignal` instance that can be used to cancel the request mid-flight.
+ * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
+ */
+export function getQTLStudiesLinkouts(queryData={}, options={}) {
+  const {identifier} = queryData;
+  const variables = {identifier};
+  const {abortSignal} = options;
+  return query(getQTLStudyLinkoutsQuery, variables, abortSignal);
+}
+
+
+/**
+ * Converts GraphQL `QTLStudyLinkoutsResults` into the `LinkoutResults` used by the `LisLinkoutElement`
+ * (`<lis-linkout-element>`) Web Component.
+ * @param {object} data - An object containing the data portional of the GraphQL query HTTP response.
+ * @returns {object} A `LinkoutResults` object.
+ */
+export function QTLStudyLinkoutsToLinkoutResults(data) {
+  const results = data.QTLStudyLinkouts.results;
+  return {results};
+}
+
+
+/**
+ * The QTLStudy linkouts function to use for the `linkoutFunction` property of the `LisLinkoutElement`
+ * (`<lis-linkout-element>`) Web Component.
+ * @param {object} linkoutData - An object containing the data needed to get linkouts.
+ * @param {object} options - An object containing optional parameters to pass to the `getGeneLinkouts` function.
+ * @returns {Promise} A `Promise` that resolves to the `LinkoutResults` used by the
+ * `LisLinkoutElement` (`<lis-linkout-element>`) Web Component.
+ */
+export function QTLStudyLinkoutsFunction(linkoutData, options) {
+  return getQTLStudyLinkouts(linkoutData, options)
+    .then(({data}) => QTLStudyLinkoutsToLinkoutResults(data));
+}
+
+
 /**
  * A linkouts function to use for the `linkoutFunction` property of the `LisLinkoutElement`
  * (`<lis-linkout-element>`) Web Component that supports all linkout types.
@@ -235,6 +343,10 @@ export function allLinkoutsFunction({type, linkoutData}, options) {
       return geneFamilyLinkoutsFunction(linkoutData, options);
     case 'panGeneSet':
       return panGeneSetLinkoutsFunction(linkoutData, options);
+    case 'gwas':
+      return GWASLinkoutsFunction(linkoutData, options);
+    case 'qtlStudy':
+      return QTLStudyLinkoutsFunction(linkoutData, options);
   }
   return Promise.reject();
 }
