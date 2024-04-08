@@ -219,8 +219,8 @@ export function panGeneSetLinkoutsFunction(linkoutData, options) {
 
 /** The GraphQL query used to get linkouts for GWAS. */
 export const getGWASLinkoutsQuery = `
-  query GWASLinkoutsQuery($identifier: ID!) {
-    GWASLinkouts(identifier: $identifier) {
+  query gwasLinkoutsQuery($identifier: ID!) {
+    gwasLinkouts(identifier: $identifier) {
       results {
         href
         text
@@ -252,7 +252,7 @@ export function getGWASLinkouts(queryData={}, options={}) {
  * @returns {object} A `LinkoutResults` object.
  */
 export function GWASLinkoutsToLinkoutResults(data) {
-  const results = data.GWASLinkouts.results;
+  const results = data.gwasLinkouts.results;
   return {results};
 }
 
@@ -266,15 +266,15 @@ export function GWASLinkoutsToLinkoutResults(data) {
  * `LisLinkoutElement` (`<lis-linkout-element>`) Web Component.
  */
 export function GWASLinkoutsFunction(linkoutData, options) {
-  return getGWASStudyLinkouts(linkoutData, options)
+  return getGWASLinkouts(linkoutData, options)
     .then(({data}) => GWASLinkoutsToLinkoutResults(data));
 }
 
 
 /** The GraphQL query used to get linkouts for QTLStudies. */
 export const getQTLStudyLinkoutsQuery = `
-  query QTLStudyLinkoutsQuery($identifier: ID!) {
-    QTLStudyLinkouts(identifier: $identifier) {
+  query qtlStudyLinkoutsQuery($identifier: ID!) {
+    qtlStudyLinkouts(identifier: $identifier) {
       results {
         href
         text
@@ -291,7 +291,7 @@ export const getQTLStudyLinkoutsQuery = `
  * namely, an optional `AbortSignal` instance that can be used to cancel the request mid-flight.
  * @returns {Promise} A `Promise` that resolves to the result of the GraphQL query.
  */
-export function getQTLStudiesLinkouts(queryData={}, options={}) {
+export function getQTLStudyLinkouts(queryData={}, options={}) {
   const {identifier} = queryData;
   const variables = {identifier};
   const {abortSignal} = options;
@@ -306,7 +306,7 @@ export function getQTLStudiesLinkouts(queryData={}, options={}) {
  * @returns {object} A `LinkoutResults` object.
  */
 export function QTLStudyLinkoutsToLinkoutResults(data) {
-  const results = data.QTLStudyLinkouts.results;
+  const results = data.qtlStudyLinkouts.results;
   return {results};
 }
 
@@ -343,9 +343,9 @@ export function allLinkoutsFunction({type, linkoutData}, options) {
       return geneFamilyLinkoutsFunction(linkoutData, options);
     case 'panGeneSet':
       return panGeneSetLinkoutsFunction(linkoutData, options);
-    case 'gwas':
+    case 'GWAS':
       return GWASLinkoutsFunction(linkoutData, options);
-    case 'qtlStudy':
+    case 'QTLStudy':
       return QTLStudyLinkoutsFunction(linkoutData, options);
   }
   return Promise.reject();
