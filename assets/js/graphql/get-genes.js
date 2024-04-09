@@ -232,3 +232,9 @@ export function geneAllModalLinksFactory(modalId) {
     panGeneSetsModalLinkFactory(modalId),
   ];
 }
+
+/**
+ * Deprecated alias for geneAllModalLinksFactory, for backward compatibility until
+ * we have enough significant breaking changes to warrant a major revision update
+ */
+export const allModalLinksFactory = geneAllModalLinksFactory;
