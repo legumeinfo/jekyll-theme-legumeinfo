@@ -153,11 +153,14 @@ export function traitSearchFunctionFactory(...callbacks) {
 export function GWASModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
     const results = oldResults.map(({identifier, type, ...traitInfo}) => {
-      const data = {identifier, type: 'GWAS'};
+      if (type === "GWAS") {
+        const data = {identifier, type: 'GWAS'};
+        identifier = modalLink(modalId, identifier, data);
+      }
       return {
         ...traitInfo,
-        identifier: (type == "GWAS" ? modalLink(modalId, identifier, data) : identifier),
-        type: type
+        identifier: identifier,
+        type: type,
       }
     });
     return {...pageInfo, results};
@@ -174,11 +177,14 @@ export function GWASModalLinkFactory(modalId) {
 export function QTLStudiesModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
     const results = oldResults.map(({identifier, type, ...traitInfo}) => {
-      const data = {identifier, type: 'QTLStudy'};
+      if (type === "QTL") {
+        const data = {identifier, type: 'QTLStudy'};
+        identifier = modalLink(modalId, identifier, data);
+      }
       return {
         ...traitInfo,
-        identifier: (type === "QTL" ? modalLink(modalId, identifier, data) : identifier),
-        type: type
+        identifier: identifier,
+        type: type,
       }
     });
     return {...pageInfo, results};
@@ -191,7 +197,7 @@ export function QTLStudiesModalLinkFactory(modalId) {
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function[]} The created callback functions.
  */
-export function allTraitModalLinksFactory(modalId) {
+export function traitAllModalLinksFactory(modalId) {
   return [
     GWASModalLinkFactory(modalId),
     QTLStudiesModalLinkFactory(modalId),

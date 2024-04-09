@@ -224,7 +224,7 @@ export function panGeneSetsModalLinkFactory(modalId) {
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function[]} The created callback functions.
  */
-export function allModalLinksFactory(modalId) {
+export function geneAllModalLinksFactory(modalId) {
   return [
     geneIdentifierModalLinkFactory(modalId),
     locationModalLinkFactory(modalId),
