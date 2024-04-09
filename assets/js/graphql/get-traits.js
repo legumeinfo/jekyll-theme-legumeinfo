@@ -150,17 +150,18 @@ export function traitSearchFunctionFactory(...callbacks) {
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function} The created callback function.
  */
-export function GWASModalLinkFactory(modalId) {
+export function gwasIdentifierModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
-    const results = oldResults.map(({identifier, type, ...traitInfo}) => {
+    const results = oldResults.map(({identifier: oldIdentifier, type, ...traitInfo}) => {
+      let identifier = oldIdentifier;
       if (type === "GWAS") {
         const data = {identifier, type: 'GWAS'};
         identifier = modalLink(modalId, identifier, data);
       }
       return {
         ...traitInfo,
-        identifier: identifier,
-        type: type,
+        identifier,
+        type,
       }
     });
     return {...pageInfo, results};
@@ -174,17 +175,18 @@ export function GWASModalLinkFactory(modalId) {
  * @param {string} modalId - The HTML `id` of the target modal element.
  * @returns {Function} The created callback function.
  */
-export function QTLStudiesModalLinkFactory(modalId) {
+export function qtlStudyIdentifierModalLinkFactory(modalId) {
   return ({results: oldResults, ...pageInfo}) => {
-    const results = oldResults.map(({identifier, type, ...traitInfo}) => {
+    const results = oldResults.map(({identifier: oldIdentifier, type, ...traitInfo}) => {
+      let identifier = oldIdentifier;
       if (type === "QTL") {
         const data = {identifier, type: 'QTLStudy'};
         identifier = modalLink(modalId, identifier, data);
       }
       return {
         ...traitInfo,
-        identifier: identifier,
-        type: type,
+        identifier,
+        type,
       }
     });
     return {...pageInfo, results};
@@ -199,7 +201,7 @@ export function QTLStudiesModalLinkFactory(modalId) {
  */
 export function traitAllModalLinksFactory(modalId) {
   return [
-    GWASModalLinkFactory(modalId),
-    QTLStudiesModalLinkFactory(modalId),
+    gwasIdentifierModalLinkFactory(modalId),
+    qtlStudyIdentifierModalLinkFactory(modalId),
   ];
 }
