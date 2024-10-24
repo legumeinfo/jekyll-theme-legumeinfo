@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-legumeinfo"
-  spec.version       = "1.2.0"
+  spec.version       = "1.3.0"
   spec.authors       = ["Legume Information System"]
   spec.email         = ["lis@ncgr.org"]
 
