@@ -3,7 +3,7 @@ import { modalLink } from './modal.js';
 
 
 /** The GraphQL query used to get genes. */
-export const getGenesQuery = `
+/*export const getGenesQuery = `
   query GenesQuery($identifier: String, $name: String, $description: String, $genus: String, $species: String, $strain: String, $family: String, $page: Int, $pageSize: Int) {
     genes(genus: $genus, species: $species, strain: $strain, identifier: $identifier, name: $name, description: $description, geneFamilyIdentifier: $family, page: $page, pageSize: $pageSize) {
       results {
@@ -24,9 +24,71 @@ export const getGenesQuery = `
       }
     }
   }
+`;*/
+
+export const getGenesQuery = `
+query GenesQuery(
+  $identifier: String, 
+  $name: String, 
+  $description: String, 
+  $genus: String, 
+  $species: String, 
+  $strain: String, 
+  $family: String, 
+  $page: Int, 
+  $pageSize: Int
+) {
+  genes(
+    genus: $genus, 
+    species: $species, 
+    strain: $strain, 
+    identifier: $identifier, 
+    name: $name, 
+    description: $description, 
+    geneFamilyIdentifier: $family, 
+    page: $page, 
+    pageSize: $pageSize
+  ) {
+    results {
+      name
+      identifier
+      description
+      organism { 
+        genus 
+        species 
+      }
+      strain { 
+        identifier 
+      }
+      chromosome { 
+        identifier 
+      }
+      supercontig { 
+        identifier 
+      }
+      geneFamilyAssignments { 
+        geneFamily { 
+          identifier 
+        } 
+      }
+      panGeneSets { 
+        identifier 
+      }
+      locations {
+        start
+        end
+        strand
+      }
+    }
+    pageInfo {
+      hasNextPage
+      numResults
+      pageSize
+      pageCount
+    }
+  }
+}
 `;
-
-
 /**
  * Gets genes from GraphQL.
  * @param {object} queryData - An object containing zero or more variables for the GraphQL query.
@@ -59,6 +121,7 @@ export function getGenes(queryData={}, options={}) {
  */
 export function genesDataToSearchResults(data) {
   // extract the page info
+  console.log(data)
   const {hasNextPage: hasNext, numResults, pageSize, pageCount: numPages}
     = data.genes.pageInfo;
   // flatten results
