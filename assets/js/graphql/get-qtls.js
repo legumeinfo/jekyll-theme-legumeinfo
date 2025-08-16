@@ -6,25 +6,28 @@ export const getQTLsQuery = `
   query getQTLsQuery($traitName: String!, $page: Int, $pageSize: Int) {
     qtls(traitName: $traitName, page: $page, pageSize: $pageSize) {
       results {
-        trait {
-           name
-        }
         identifier
-        linkageGroup {
-           geneticMap {
-              identifier
-           }
-           identifier
+        trait {
+          name
+          description
         }
-        start
         end
-        markerNames
+        start
+        markers {
+          name
+        }
+        linkageGroup {
+          geneticMap {
+            identifier
+          }
+          identifier
+        }
       }
       pageInfo {
         hasNextPage
         numResults
-        pageSize
         pageCount
+        pageSize
       }
     }
   }
