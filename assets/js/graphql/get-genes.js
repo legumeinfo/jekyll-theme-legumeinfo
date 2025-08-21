@@ -127,11 +127,9 @@ export function genesDataToSearchResults(data) {
   // flatten results
   const results =
     data.genes.results.map(({organism: {genus, species}, strain, ...gene}) => {
-//      const geneFamilyAssignments =
-//        gene.geneFamilyAssignments
-//          .map(({geneFamily: {identifier}}) => identifier);
-      const geneFamilyAssignments = gene.geneFamilyAssignments
-        .map(({ geneFamily }) => geneFamily?.identifier ?? 'CTCPLACEHOLDER');
+      const geneFamilyAssignments =
+        gene.geneFamilyAssignments
+          .map(({geneFamily: {identifier}}) => identifier);
       const panGeneSets =
         gene.panGeneSets
           .map(({identifier}) => identifier);
