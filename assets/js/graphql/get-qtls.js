@@ -70,10 +70,10 @@ export function qtlsDataToSearchResults(data) {
       linkageGroup,
       start,
       end,
-      markerNames,
     } = qtl;
     const {geneticMap, identifier: linkageGroup_identifier} = linkageGroup;
     const {identifier: linkageGroup_geneticMap_identifier} = geneticMap || {identifier: ""};
+    const markerNames = qtl.markers.map(obj => obj.name);
     return {
       trait_name,
       identifier,
