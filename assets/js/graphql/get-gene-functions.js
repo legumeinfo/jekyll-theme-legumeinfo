@@ -38,8 +38,8 @@ export function getGeneFunctionFormDataFunction({abortSignal}) {
 }
 
 const geneFunctionQuery = `
-  query GeneFunctions($symbol: String, $trait: String, $gene: String, $genus: String, $species: String, $page: Int, $pageSize: Int) {
-    geneFunctions(symbol: $symbol, trait: $trait, gene: $gene, genus: $genus, species: $species, page: $page, pageSize: $pageSize) {
+  query GeneFunctions($symbol: String, $trait: String, $gene: String, $genus: String, $species: String, $author: String, $publicationId: String, $page: Int, $pageSize: Int) {
+    geneFunctions(symbol: $symbol, trait: $trait, gene: $gene, genus: $genus, species: $species, publicationId: $publicationId, author: $author, page: $page, pageSize: $pageSize) {
       pageInfo {
         currentPage
         pageSize
@@ -81,6 +81,8 @@ export function getGeneFunctions(searchData,{abortSignal}) {
     gene: searchData['geneIdentifier'],
     genus: searchData['genus'],
     species: searchData['species'],
+    publicationId: searchData['pubId'],
+    author: searchData['author'],
     page: searchData['page'],
     pageSize: 10
   };
