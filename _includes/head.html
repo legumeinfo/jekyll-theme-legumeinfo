@@ -41,7 +41,8 @@
 
   {% if page.web_components and site.web_components_version %}
   <!-- LIS Web Components -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@legumeinfo/web-components@{{ site.web_components_version }}/dist/web-components.min.js"></script>
+  <!--<script type="module" src="https://cdn.jsdelivr.net/npm/@legumeinfo/web-components@{{ site.web_components_version }}/dist/web-components.min.js"></script>-->
+  <script type="module" src="{{ "assets/js/web-components.min.js" | relative_url }}"></script>
   {% endif %}
 
   <!-- Icons -->
