@@ -64,7 +64,7 @@ const geneFunctionQuery = `
         }
         publications {
           title
-          firstAuthor
+          citation
           doi
         }
       }
@@ -94,17 +94,15 @@ export function getGeneFunctions(searchData,{abortSignal}) {
         = data.geneFunctions.pageInfo;
       // flatten results
       const results = 
-        data.geneFunctions.results.map(({symbol, symbolLong, classicalLocus, genes, synopsis, traits, publications}) => {
+        data.geneFunctions.results.map(({symbol, symbolLong, genes, synopsis, traits, publications}) => {
           return {
-            // Missing: Locus, gene symbols, description, gene model name, citation
-            geneSymbols: [symbol],
+            geneSymbols: [`<a href="#modal" data-symbol="${symbol}" uk-toggle>${symbol}</a>`],
             geneSymbolDescription: symbolLong,
-            classicalLocus,
             geneModelPubName: genes[0]?.name,
-            geneModelFullName: genes[0]?.identifier,
+            geneModelFullName: genes[0] ? `<a href="#modal" data-gene="${genes[0].identifier}" uk-toggle>${genes[0].identifier}</a>` : '',
             synopsis,
             traits: traits.map(t => t.name).join(', '),
-            citation: publications.map(p => p.doi).join(', '),
+            citations: publications.map(p => `<a href="https://doi.org/${p.doi}">${p.citation}</a>`).join('; '),
           };
         });
         
