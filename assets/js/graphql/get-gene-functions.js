@@ -54,6 +54,7 @@ const geneFunctionQuery = `
           identifier
           secondaryIdentifier
         }
+        pubName
         symbol
         classicalLocus
         symbolLong
@@ -94,11 +95,11 @@ export function getGeneFunctions(searchData,{abortSignal}) {
         = data.geneFunctions.pageInfo;
       // flatten results
       const results = 
-        data.geneFunctions.results.map(({symbol, symbolLong, genes, synopsis, traits, publications}) => {
+        data.geneFunctions.results.map(({symbol, symbolLong, genes, synopsis, pubName, traits, publications}) => {
           return {
             geneSymbols: [`<a href="#modal" data-symbol="${symbol}" uk-toggle>${symbol}</a>`],
             geneSymbolDescription: symbolLong,
-            geneModelPubName: genes[0]?.name,
+            geneModelPubName: pubName,
             geneModelFullName: genes[0] ? `<a href="#modal" data-gene="${genes[0].identifier}" uk-toggle>${genes[0].identifier}</a>` : '',
             synopsis,
             traits: traits.map(t => t.name).join(', '),
