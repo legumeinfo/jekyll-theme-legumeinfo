@@ -21,7 +21,6 @@ export function getGeneFunctionFormDataFunction({abortSignal}) {
         if (!(genus in binnedFormData)) {
           binnedFormData[genus] = [];
         }
-        console.log(species);
         binnedFormData[genus].push(species);
       });
       // collapse the bins into arrays of objects
@@ -52,17 +51,13 @@ const geneFunctionQuery = `
         genes {
           name
           identifier
-          secondaryIdentifier
         }
-        pubName
         symbol
-        classicalLocus
         synonyms
         symbolLong
         synopsis
         traits {
           name
-          description
         }
         publications {
           title
@@ -76,7 +71,6 @@ const geneFunctionQuery = `
 
 // search function
 export function getGeneFunctions(searchData,{abortSignal}) {
-  console.log(`getGeneFunctions`);
   const variables = {
     symbol: null,
     trait: searchData['traits'],
@@ -96,15 +90,15 @@ export function getGeneFunctions(searchData,{abortSignal}) {
         = data.geneFunctions.pageInfo;
       // flatten results
       const results = 
-        data.geneFunctions.results.map(({symbol, symbolLong, genes, synopsis, pubName, traits, synonyms, publications}) => {
+        data.geneFunctions.results.map(({symbol, symbolLong, genes, synopsis, traits, synonyms, publications}) => {
           return {
-            geneSymbols: [`<a href="#modal" data-symbol="${symbol}" uk-toggle>${symbol}</a>`, ...synonyms.filter(i => ![symbol, symbolLong].includes(i))].join(', '),
+            geneSymbols: [symbol, ...synonyms.filter(i => ![symbol, symbolLong].includes(i)).map(s => ({value: s, linkable: false}))],
             geneSymbolDescription: symbolLong,
-            geneModelPubName: pubName,
-            geneModelFullName: genes[0] ? `<a href="#modal" data-gene="${genes[0].identifier}" uk-toggle>${genes[0].identifier}</a>` : '',
+            geneModelPubName: genes[0]?.name,
+            geneModelFullName: genes[0]?.identifier || '',
             synopsis,
             traits: traits.map(t => t.name).join(', '),
-            citations: publications.map(p => `<a href="https://doi.org/${p.doi}">${p.citation}</a>`).join('; '),
+            citations: publications,
           };
         });
         
