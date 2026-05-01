@@ -3,7 +3,7 @@ import { modalLink } from './modal.js';
 
 
 /** The GraphQL query used to get genes. */
-/*export const getGenesQuery = `
+export const getGenesQuery = `
   query GenesQuery($identifier: String, $name: String, $description: String, $genus: String, $species: String, $strain: String, $family: String, $page: Int, $pageSize: Int) {
     genes(genus: $genus, species: $species, strain: $strain, identifier: $identifier, name: $name, description: $description, geneFamilyIdentifier: $family, page: $page, pageSize: $pageSize) {
       results {
@@ -14,7 +14,7 @@ import { modalLink } from './modal.js';
         strain { identifier }
         geneFamilyAssignments { geneFamily { identifier } }
         panGeneSets { identifier }
-        locations { chromosome { identifier } supercontig { identifier } start end strand }
+        locations { locatedOn { identifier } start end strand }
       }
       pageInfo {
         hasNextPage
@@ -24,70 +24,6 @@ import { modalLink } from './modal.js';
       }
     }
   }
-`;*/
-
-export const getGenesQuery = `
-query GenesQuery(
-  $identifier: String, 
-  $name: String, 
-  $description: String, 
-  $genus: String, 
-  $species: String, 
-  $strain: String, 
-  $family: String, 
-  $page: Int, 
-  $pageSize: Int
-) {
-  genes(
-    genus: $genus, 
-    species: $species, 
-    strain: $strain, 
-    identifier: $identifier, 
-    name: $name, 
-    description: $description, 
-    geneFamilyIdentifier: $family, 
-    page: $page, 
-    pageSize: $pageSize
-  ) {
-    results {
-      name
-      identifier
-      description
-      organism { 
-        genus 
-        species 
-      }
-      strain { 
-        identifier 
-      }
-      chromosome { 
-        identifier 
-      }
-      supercontig { 
-        identifier 
-      }
-      geneFamilyAssignments { 
-        geneFamily { 
-          identifier 
-        } 
-      }
-      panGeneSets { 
-        identifier 
-      }
-      locations {
-        start
-        end
-        strand
-      }
-    }
-    pageInfo {
-      hasNextPage
-      numResults
-      pageSize
-      pageCount
-    }
-  }
-}
 `;
 /**
  * Gets genes from GraphQL.
@@ -121,7 +57,6 @@ export function getGenes(queryData={}, options={}) {
  */
 export function genesDataToSearchResults(data) {
   // extract the page info
-  console.log(data)
   const {hasNextPage: hasNext, numResults, pageSize, pageCount: numPages}
     = data.genes.pageInfo;
   // flatten results
@@ -134,12 +69,10 @@ export function genesDataToSearchResults(data) {
         gene.panGeneSets
           .map(({identifier}) => identifier);
       const locations =
-        gene.locations.map(({chromosome, supercontig, start, end, strand}) => {
+        gene.locations.map(({locatedOn, start, end, strand}) => {
           const interval = `${start}-${end} (${strand})`;
-          if (chromosome?.identifier) {
-            return `${chromosome?.identifier}:${interval} (chromosome)`;
-          } else if (supercontig?.identifier) {
-            return `${supercontig?.identifier}:${interval} (supercontig)`;
+          if (locatedOn?.identifier) {
+            return `${locatedOn.identifier}:${interval}`;
           }
           return `unknown:${interval}`;
         });
