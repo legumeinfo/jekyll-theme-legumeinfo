@@ -1,11 +1,4 @@
----
-# This YAML front matter ensures Jekyll will pass the site variables in.
-layout: none
----
 import { query } from './query.js';
-
-/** The base URL of the Intermine instance for gene symbol linkouts, e.g. https://mines.lis.ncgr.org/glycinemine */
-const INTERMINE_URL = "{{ site.intermine_url }}";
 
 
 /** The GraphQL query used to get linkouts for genes. */
@@ -359,6 +352,19 @@ export function allLinkoutsFunction({type, linkoutData}, options) {
 }
 
 
+/** The GraphQL query used to get gene function (symbol) linkouts. */
+export const getGeneFunctionLinkoutsQuery = `
+  query GeneFunctionLinkoutsQuery($identifier: ID!) {
+    geneFunctionLinkouts(identifier: $identifier) {
+      results {
+        href
+        text
+      }
+    }
+  }
+`;
+
+
 /**
  * The linkouts function for the `LisGeneFunctionSearchElement`
  * (`<lis-gene-function-search-element>`) Web Component.
@@ -367,8 +373,9 @@ export function allLinkoutsFunction({type, linkoutData}, options) {
  * - `'gene'`: fetches linkouts via the `geneLinkouts` GraphQL query
  * - `'publication'`: resolves to a doi.org link, using `variables.label` (the
  *   publication title) as the link text when available
- * - `'symbol'`: resolves to an Intermine gene function page when `intermine_url`
- *   is set in `_config.yml`; silently rejects if not configured
+ * - `'symbol'`: resolves to an Intermine gene function page via the
+ *   `geneFunctionLinkouts` GraphQL query (derived server-side from the
+ *   GraphQL API's configured Intermine instance)
  *
  * @param {object} linkoutData - `{type, variables}` as emitted by the component.
  * @param {object} options - Optional parameters including an `AbortSignal`.
@@ -385,9 +392,9 @@ export function geneFunctionSearchLinkoutsFunction({type, variables}, options={}
     const text = variables.label || href;
     return Promise.resolve({results: [{href, text}]});
   }
-  if (type === 'symbol' && INTERMINE_URL) {
-    const href = `${INTERMINE_URL}/genefunction:${variables.identifier}`;
-    return Promise.resolve({results: [{href, text: href}]});
+  if (type === 'symbol') {
+    return query(getGeneFunctionLinkoutsQuery, variables, abortSignal)
+      .then(({data}) => ({results: data.geneFunctionLinkouts.results}));
   }
   return Promise.reject(new Error(`Unknown linkout type: ${type}`));
 }
