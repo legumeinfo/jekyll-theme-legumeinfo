@@ -1,0 +1,22 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout jekyll-starter-legumeinfo
+        uses: actions/checkout@v4
+        with:
+          repository: legumeinfo/jekyll-starter-legumeinfo
+  
+      - name: Checkout jekyll-theme-legumeinfo
+        uses: actions/checkout@v4
+        with:
+          path: _themes/jekyll-theme-legumeinfo
+          submodules: true
+
+      - name: Build
+        run: docker compose run build
